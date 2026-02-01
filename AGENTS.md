@@ -18,7 +18,7 @@ This is a **beginner-friendly course** teaching GitHub Copilot CLI. It's educati
 ├── 04-agents-custom-instructions/# Custom AI personas
 ├── 05-skills/               # Reusable commands
 ├── 06-mcp-servers/          # External service connections
-├── 07-advanced-workflows/   # Production integrations
+├── 07-putting-it-together/  # Complete feature workflows
 ├── samples/
 │   ├── buggy-code/          # Intentionally broken code for practice
 │   ├── agents/              # Example agent configurations

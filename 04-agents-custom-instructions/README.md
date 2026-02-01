@@ -8,10 +8,11 @@ In this chapter, you'll transform Copilot from a generalist into a team of speci
 
 By the end of this chapter, you'll be able to:
 
-- Create specialized agents using AGENTS.md
+- Use built-in agents like `/explore`, `/task`, `/plan`, and `/review`
+- Create specialized agents using agent files (`.agent.md`)
 - Use agents for domain-specific tasks
 - Delegate work across multiple agents
-- Write custom instruction files
+- Write custom instruction files for project-specific standards
 
 ---
 
@@ -169,13 +170,13 @@ You are a backend API specialist for this Node.js/Express project.
 
 **Expertise:**
 - Express.js with TypeScript
-- PostgreSQL with Prisma ORM
+- PostgreSQL with Prisma ORM (database toolkit)
 - JWT authentication
 - REST API design (OpenAPI 3.0)
 
 **Code standards:**
 - async/await for all async operations
-- Zod for input validation
+- Zod for input validation (TypeScript schema library)
 - Structured error handling with error codes
 - Request/response logging
 
@@ -183,7 +184,7 @@ You are a backend API specialist for this Node.js/Express project.
 - Parameterized queries (never concatenate SQL)
 - Input sanitization on all endpoints
 - Rate limiting on public routes
-- CORS properly configured
+- CORS (Cross-Origin Resource Sharing) properly configured
 
 ---
 
@@ -459,6 +460,10 @@ Good agent names are short, descriptive, and indicate the specialty:
 
 ## Project-Level Instructions
 
+Custom instructions let you encode team standards so Copilot applies them automatically. There are two ways to set them up:
+
+### Quick Setup with /init
+
 Use `/init` to create instructions for your repository:
 
 ```bash
@@ -490,6 +495,50 @@ The `/init` command creates a `COPILOT.md` (or similar) file in your repo. This 
 - Use Jest for unit tests
 - Use Playwright for E2E tests
 ```
+
+### Custom Instruction Files (.instructions.md)
+
+For more granular control, create instruction files in `.github/instructions/`:
+
+```
+.github/
+└── instructions/
+    ├── typescript-standards.instructions.md
+    ├── security-checklist.instructions.md
+    └── api-design.instructions.md
+```
+
+**Example: `.github/instructions/typescript-standards.instructions.md`**
+
+```markdown
+# TypeScript Standards
+
+Apply these standards to all TypeScript files in this project.
+
+## Type Safety
+- Enable strict mode in tsconfig.json
+- Avoid `any` type; use `unknown` when type is truly unknown
+- Use type guards for runtime type checking
+- Prefer interfaces over type aliases for object shapes
+
+## Naming Conventions
+- PascalCase for types, interfaces, and classes
+- camelCase for variables, functions, and methods
+- SCREAMING_SNAKE_CASE for constants
+- Prefix interfaces with `I` only when needed to distinguish from classes
+
+## Error Handling
+- Use custom error classes extending Error
+- Always include error codes for API errors
+- Type catch blocks with `unknown`, then narrow
+
+## Async Patterns
+- Use async/await over .then() chains
+- Handle all promise rejections
+- Use Promise.all for concurrent operations
+```
+
+**Finding community instruction files**: Browse [github/awesome-copilot](https://github.com/github/awesome-copilot) for pre-made instruction files covering .NET, Angular, Azure, Python, Docker, and many more technologies.
 
 ### Disabling Custom Instructions
 
@@ -706,11 +755,12 @@ copilot  # This loads custom instructions by default
 
 ## Key Takeaways
 
-1. **Agents** are specialists defined in AGENTS.md
-2. **Good agents** have clear expertise, standards, and output formats
-3. **Multi-agent collaboration** solves complex problems by combining expertise
-4. **Instruction files** customize behavior for specific workflows
-5. **Consistent output** comes from well-defined agent instructions
+1. **Built-in agents** (`/explore`, `/task`, `/plan`, `/review`) handle common tasks efficiently
+2. **Custom agents** are specialists defined in `.agent.md` files
+3. **Good agents** have clear expertise, standards, and output formats
+4. **Multi-agent collaboration** solves complex problems by combining expertise
+5. **Instruction files** (`.instructions.md`) encode team standards for automatic application
+6. **Consistent output** comes from well-defined agent instructions
 
 ---
 

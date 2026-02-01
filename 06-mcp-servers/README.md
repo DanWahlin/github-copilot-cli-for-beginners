@@ -9,6 +9,7 @@ In this chapter, you'll connect Copilot to the outside world using MCP (Model Co
 By the end of this chapter, you'll be able to:
 
 - Understand what MCP is and why it matters
+- Manage MCP servers using `/mcp` commands
 - Configure MCP servers for GitHub, filesystem, and documentation
 - Use MCP in your daily workflows
 - Build a basic custom MCP server
@@ -125,7 +126,7 @@ Access files with advanced capabilities beyond basic `@` syntax.
   "mcpServers": {
     "filesystem": {
       "type": "local",
-      "command": "npx",
+      "command": "npx",  // Runs npm packages without global install
       "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/project"],
       "tools": ["*"]
     }
@@ -774,13 +775,13 @@ copilot
 
 You now have all the building blocks: modes, context, workflows, agents, skills, and MCP. Time to put them all together.
 
-In **[Chapter 07: Advanced Workflows](../07-advanced-workflows/README.md)**, you'll learn:
+In **[Chapter 07: Putting It All Together](../07-putting-it-together/README.md)**, you'll learn:
 
 - Combining agents, skills, and MCP
-- Production-ready automation
 - Complete feature development workflows
+- Automation with hooks
 - Best practices for team environments
 
 ---
 
-**[← Back to Chapter 05](../05-skills/README.md)** | **[Continue to Chapter 07 →](../07-advanced-workflows/README.md)**
+**[← Back to Chapter 05](../05-skills/README.md)** | **[Continue to Chapter 07 →](../07-putting-it-together/README.md)**

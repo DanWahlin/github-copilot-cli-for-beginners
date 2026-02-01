@@ -398,13 +398,12 @@ For each issue found, provide:
 4. Recommended fix
 EOF
 
-# Reload skills
+# Test your skill (skills load automatically based on your prompt)
 copilot
 
-> /skills reload
-
-# Test your skill
-> /security-audit @src/api/
+> @src/api/ Check this code for security vulnerabilities
+# Copilot detects "security vulnerabilities" matches your skill
+# and automatically applies its OWASP checklist
 ```
 
 ---
@@ -568,14 +567,14 @@ EOF
 
 After completing the demos, try these variations:
 
-1. **Skill Creation Challenge**: Create a `/quick-review` skill that does a 3-point checklist:
+1. **Skill Creation Challenge**: Create a `quick-review` skill that does a 3-point checklist:
    - Security issues
    - Missing error handling
    - Unclear variable names
 
-   Test it on userService.js.
+   Test it by asking: "Do a quick review of userService.js"
 
-2. **Skill Comparison**: Time yourself writing a detailed code review prompt manually. Then use `/security-audit`. How much time did the skill save?
+2. **Skill Comparison**: Time yourself writing a detailed security review prompt manually. Then just ask "Check for security issues in this file" and let your security-audit skill load automatically. How much time did the skill save?
 
 3. **Team Skill Challenge**: Think about your team's code review checklist. Could you encode it as a skill? Write down 3 things the skill should always check.
 

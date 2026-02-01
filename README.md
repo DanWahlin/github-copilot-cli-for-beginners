@@ -19,15 +19,15 @@ This hands-on course takes you from zero to productive with GitHub Copilot CLI. 
 | 04 | [Agents and Custom Instructions](./04-agents-custom-instructions/README.md) | Specialized AI assistants |
 | 05 | [Skills System](./05-skills/README.md) | Reusable CLI commands |
 | 06 | [MCP Servers](./06-mcp-servers/README.md) | Connect to GitHub, databases, APIs |
-| 07 | [Advanced Workflows](./07-advanced-workflows/README.md) | Production-ready integrations |
+| 07 | [Putting It All Together](./07-putting-it-together/README.md) | Complete feature workflows |
 
 ## Prerequisites
 
 Before starting, ensure you have:
 
 - [ ] **GitHub account**: [Create one free](https://github.com/signup)
-- [ ] **GitHub Copilot access**: [Free for students/teachers](https://education.github.com/pack), or [$10/month subscription](https://github.com/features/copilot)
-- [ ] **Node.js v18+**: [Download here](https://nodejs.org/) (for npm installation)
+- [ ] **GitHub Copilot access**: [Free for students/teachers](https://education.github.com/pack), get started with the [Free option](https://github.com/features/copilot/plans), or [Monthly subscription](https://github.com/features/copilot/plans)
+- [ ] **Node.js LTS**: [Download here](https://nodejs.org/) (for npm installation)
 - [ ] **Terminal basics**: Comfortable with `cd`, `ls`, running commands
 
 ## Quick Start
@@ -36,9 +36,9 @@ Can't wait? Run this in your terminal right now:
 
 ```bash
 # Install (choose one)
+npm install -g @github/copilot    # All platforms
 brew install copilot-cli          # macOS/Linux
 winget install GitHub.Copilot     # Windows
-npm install -g @github/copilot    # All platforms
 
 # Start and authenticate
 copilot
@@ -48,7 +48,7 @@ copilot
 copilot -p "Explain what GitHub Copilot CLI can do for developers"
 ```
 
-Then head to [Chapter 00](./00-quick-start/README.md) for the full quick start experience.
+Want more details? Head to [Chapter 00](./00-quick-start/README.md) for the full quick start experience.
 
 ## How This Course Works
 
@@ -60,49 +60,7 @@ Each chapter follows the same pattern:
 4. **Assignment**: Practice what you learned
 5. **What's Next**: Preview of the following chapter
 
-**Code examples are runnable.** Every bash block in this course can be copied and executed in your terminal.
-
-## Three Ways to Extend Copilot CLI
-
-As you progress through the course, you'll learn three powerful extension mechanisms:
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                                                             │
-│   AGENTS (Chapter 04)                                       │
-│   Change HOW the AI thinks                                  │
-│   Example: Frontend expert, Security auditor                │
-│                                                             │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│   SKILLS (Chapter 05)                                       │
-│   Add new COMMANDS the AI can use                           │
-│   Example: /my-code-review, /generate-tests                 │
-│                                                             │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│   MCP SERVERS (Chapter 06)                                  │
-│   Connect to EXTERNAL services                              │
-│   Example: GitHub issues, databases, documentation          │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-                            │
-                            ▼
-              ┌─────────────────────────┐
-              │   YOUR WORKFLOW         │
-              │   (Chapter 07)          │
-              │   Combine all three     │
-              └─────────────────────────┘
-```
-
-## Sample Files
-
-This repository includes sample code files for hands-on practice:
-
-- `samples/buggy-code/js/`: JavaScript code with intentional bugs for debugging practice
-- `samples/buggy-code/python/`: Python code with intentional bugs for debugging practice
-- `samples/agents/`: Example agent file configurations
-- `samples/mcp-configs/`: MCP server configuration examples
+**Code examples are runnable.** Every copilot text block in this course can be copied and run in your terminal.
 
 ## Quick Reference Card
 
@@ -142,20 +100,19 @@ Quick reference for technical terms used throughout this course:
 | **OWASP** | Open Web Application Security Project - organization that publishes security best practices. |
 | **Programmatic Mode** | Running Copilot with `-p` flag for single commands without interaction. |
 | **Session** | A conversation with Copilot that maintains context and can be resumed later. |
-| **Skill** | A reusable prompt packaged as a slash command (e.g., `/my-code-review`). |
+| **Skill** | A folder with instructions that Copilot automatically loads when relevant to your prompt. |
 | **Slash Command** | Commands starting with `/` that control Copilot (e.g., `/help`, `/clear`, `/model`). |
 | **Token** | A unit of text that AI models process. Roughly 4 characters or 0.75 words. |
 | **WCAG** | Web Content Accessibility Guidelines - standards for making web content accessible. |
 
 ## Getting Help
 
-- **Stuck on a concept?** Each chapter has a troubleshooting section
 - **Found a bug?** [Open an issue](https://github.com/microsoft/github-copilot-cli-for-beginners/issues)
 - **Want to contribute?** PRs welcome!
 
 ## Start Learning
 
-Ready? Let's see what GitHub Copilot CLI can do.
+Ready? Let's see what GitHub Copilot CLI can do!
 
 **[Begin with Chapter 00: Quick Start →](./00-quick-start/README.md)**
 

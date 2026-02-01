@@ -8,10 +8,11 @@ In this chapter, you'll unlock the real power of GitHub Copilot CLI: context. Yo
 
 By the end of this chapter, you'll be able to:
 
-- Use the `@` syntax to reference files and directories
+- Use the `@` syntax to reference files, directories, and images
 - Resume previous sessions with `--resume` and `--continue`
 - Understand how context windows work
 - Write effective multi-turn conversations
+- Manage directory permissions for multi-project workflows
 
 ---
 
@@ -798,11 +799,12 @@ copilot --add-dir /path/to/directory
 
 ## Key Takeaways
 
-1. **`@` syntax** gives Copilot context about your specific code
-2. **Multi-turn conversations** build on each other - context accumulates
-3. **Sessions auto-save** - use `--continue` or `--resume` to pick up where you left off
-4. **Context windows** have limits - manage them with `/context`, `/clear`, and `/compact`
-5. **Permission flags** (`--add-dir`, `--allow-all-paths`) control what files Copilot can access
+1. **`@` syntax** gives Copilot context about files, directories, and images
+2. **Multi-turn conversations** build on each other as context accumulates
+3. **Sessions auto-save**: use `--continue` or `--resume` to pick up where you left off
+4. **Context windows** have limits: manage them with `/context`, `/clear`, and `/compact`
+5. **Permission flags** (`--add-dir`, `--allow-all-paths`) control multi-directory access
+6. **Image references** (`@screenshot.png`) help debug UI issues visually
 
 ---
 

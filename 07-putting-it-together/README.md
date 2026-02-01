@@ -1,8 +1,15 @@
-# Chapter 07: Advanced Workflows
+# Chapter 07: Putting It All Together
 
 > **Everything you learned combines here. Go from idea to merged PR in a single session.**
 
-In this chapter, you'll orchestrate everything you've learned into production-ready workflows. You'll build complete features using multi-agent collaboration, set up pre-commit hooks that catch security issues before they're committed, integrate Copilot into CI/CD pipelines, and go from feature idea to merged PR in a single terminal session. This is where Copilot CLI becomes a genuine force multiplier.
+In this chapter, you'll bring together everything you've learned into complete workflows. You'll build features using multi-agent collaboration, set up pre-commit hooks that catch security issues before they're committed, integrate Copilot into CI/CD pipelines, and go from feature idea to merged PR in a single terminal session. This is where Copilot CLI becomes a genuine force multiplier.
+
+> ⚠️ **Prerequisites**: This chapter assumes you've completed or are familiar with:
+> - **[Chapter 04: Agents](../04-agents-custom-instructions/README.md)** - Creating custom agents like `frontend` and `backend`
+> - **[Chapter 05: Skills](../05-skills/README.md)** - Creating skills like `generate-tests`
+> - **[Chapter 06: MCP Servers](../06-mcp-servers/README.md)** - Configuring GitHub MCP for PR creation
+>
+> The examples below use agents and skills created in those chapters. If you're jumping directly here, review those chapters first or adapt the examples to use Copilot's built-in capabilities.
 
 ## Learning Objectives
 
@@ -59,9 +66,8 @@ copilot
 > Implement the backend API
 > Implement the frontend components
 
-# TEST
-> /generate-tests
-# or use your test generation skill
+# TEST (using your custom skill from Chapter 05, or just ask naturally)
+> Generate comprehensive tests for the favorites feature
 
 # SHIP
 > Create a pull request with title "Feature: Add user favorites"
