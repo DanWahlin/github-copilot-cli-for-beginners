@@ -1,5 +1,7 @@
 ![GitHub Copilot CLI for Beginners](./images/copilot-banner.png)
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) ![Copilot CLI](https://img.shields.io/badge/GitHub-Copilot%20CLI-blue)
+
 🎯 [What You'll Learn](#what-youll-learn) | 📚 [Course Structure](#course-structure) | ✅ [Prerequisites](#prerequisites) | 🚀 [Quick Start](#quick-start) | 📋 [Quick Reference](#quick-reference-card) | 📖 [Glossary](#glossary)
 
 # GitHub Copilot CLI for Beginners
@@ -12,18 +14,20 @@ This hands-on course takes you from zero to productive with GitHub Copilot CLI. 
 
 **No AI experience required.** If you can use a terminal, you can learn this.
 
+**Perfect for:** Developers, students, and anyone who uses a terminal daily.
+
 ## Course Structure
 
 | Chapter | Title | What You'll Build |
-|---------|-------|-------------------|
-| 00 | [Quick Start](./00-quick-start/README.md) | Installation and verification |
-| 01 | [First Steps](./01-setup-and-first-steps/README.md) | Live demos + three interaction modes |
-| 02 | [Context and Conversations](./02-context-conversations/README.md) | Multi-file project analysis |
-| 03 | [Development Workflows](./03-development-workflows/README.md) | Code review, debug, test generation |
-| 04 | [Agents and Custom Instructions](./04-agents-custom-instructions/README.md) | Specialized AI assistants |
-| 05 | [Skills System](./05-skills/README.md) | Reusable CLI commands |
-| 06 | [MCP Servers](./06-mcp-servers/README.md) | Connect to GitHub, databases, APIs |
-| 07 | [Putting It All Together](./07-putting-it-together/README.md) | Complete feature workflows |
+|:-------:|-------|-------------------|
+| 00 | 🚀 [Quick Start](./00-quick-start/README.md) | Installation and verification |
+| 01 | 👋 [First Steps](./01-setup-and-first-steps/README.md) | Live demos + three interaction modes |
+| 02 | 🔍 [Context and Conversations](./02-context-conversations/README.md) | Multi-file project analysis |
+| 03 | ⚡ [Development Workflows](./03-development-workflows/README.md) | Code review, debug, test generation |
+| 04 | 🤖 [Agents and Custom Instructions](./04-agents-custom-instructions/README.md) | Specialized AI assistants |
+| 05 | 🛠️ [Skills System](./05-skills/README.md) | Reusable CLI commands |
+| 06 | 🔌 [MCP Servers](./06-mcp-servers/README.md) | Connect to GitHub, databases, APIs |
+| 07 | 🎯 [Putting It All Together](./07-putting-it-together/README.md) | Complete feature workflows |
 
 ## Prerequisites
 
@@ -111,8 +115,10 @@ Quick reference for technical terms used throughout this course:
 
 ## Getting Help
 
-- **Found a bug?** [Open an issue](https://github.com/microsoft/github-copilot-cli-for-beginners/issues)
-- **Want to contribute?** PRs welcome!
+- 💬 **Questions?** [Start a Discussion](https://github.com/microsoft/github-copilot-cli-for-beginners/discussions)
+- 🐛 **Found a bug?** [Open an Issue](https://github.com/microsoft/github-copilot-cli-for-beginners/issues)
+- 🤝 **Want to contribute?** PRs welcome!
+- 📚 **Official Docs:** [GitHub Copilot CLI Documentation](https://docs.github.com/en/copilot)
 
 ## Start Learning
 
