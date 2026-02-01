@@ -206,7 +206,7 @@ copilot --agent frontend
 
 ## Multiple Agent Files
 
-Create separate agent files for different specialties. Here's a comprehensive set:
+Create separate agent files for different specialties. Here are examples for a complete team:
 
 > 💡 **Note for beginners**: The examples below use specific libraries and tools. Don't worry if you don't know them all - **replace them with whatever your project uses**. The important thing is the *structure* of the agent, not the specific technologies.
 >
@@ -241,10 +241,12 @@ You are a frontend specialist for this React/TypeScript project.
 - React Testing Library for components
 - MSW for API mocking
 - 80% coverage minimum
+```
 
----
+**`~/.copilot/agents/backend.agent.md`**:
 
-## Backend Agent
+```markdown
+# Backend Agent
 
 You are a backend API specialist for this Node.js/Express project.
 
@@ -265,10 +267,12 @@ You are a backend API specialist for this Node.js/Express project.
 - Input sanitization on all endpoints
 - Rate limiting on public routes
 - CORS (Cross-Origin Resource Sharing) properly configured
+```
 
----
+**`~/.copilot/agents/testing.agent.md`**:
 
-## Testing Agent
+```markdown
+# Testing Agent
 
 You are a testing specialist focused on quality assurance.
 
@@ -288,10 +292,12 @@ You are a testing specialist focused on quality assurance.
 - Unit tests: 80%+
 - Integration tests: 70%+
 - E2E: Critical paths only
+```
 
----
+**`~/.copilot/agents/devops.agent.md`**:
 
-## DevOps Agent
+```markdown
+# DevOps Agent
 
 You are a DevOps specialist for CI/CD and infrastructure.
 

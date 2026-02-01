@@ -456,9 +456,12 @@ Available models:
 
 > ⚠️ **Important**: The models shown above are examples only. Available models change frequently and vary based on your subscription, region, and GitHub Copilot updates. Always run `/model` to see your current options.
 
+```bash
+# Switch to a specific model
 > /model gpt-4o
 Model switched to gpt-4o
 
+# Now use the new model
 > Write a creative story opening about a space explorer
 ```
 
