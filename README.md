@@ -4,7 +4,7 @@
 
 🎯 [What You'll Learn](#what-youll-learn) | 📚 [Course Structure](#course-structure) | ✅ [Prerequisites](#prerequisites) | 🚀 [Quick Start](#quick-start) | 📋 [Quick Reference](#quick-reference-card) | 📖 [Glossary](#glossary)
 
-# GitHub Copilot CLI for Beginners
+# GitHub Copilot CLI for Beginners [Work in Progress]
 
 Learn to supercharge your development workflow with AI-powered command-line assistance.
 
