@@ -1,8 +1,8 @@
-# GitHub Copilot CLI Quick Reference Card
+![Quick Reference Card](images/quick-reference-header.png)
 
 > Your cheat sheet for GitHub Copilot CLI commands, syntax, and workflows.
 >
-> *Last updated: 2026-02-01*
+> *Last updated: 2026-02-02*
 
 ---
 
@@ -72,6 +72,7 @@
 | `/theme` | View or set terminal theme |
 | `/terminal-setup` | Enable multiline input support |
 | `/user` | Manage GitHub accounts |
+| `/feedback` | Submit feedback to GitHub |
 | `/init` | Initialize Copilot instructions for repository |
 
 ---
