@@ -7,7 +7,7 @@ In this chapter, you'll bring together everything you've learned into complete w
 > ⚠️ **Prerequisites**: This chapter assumes you've completed or are familiar with:
 > - **[Chapter 04: Agents](../04-agents-custom-instructions/README.md)** - Creating custom agents like `frontend` and `backend`
 > - **[Chapter 05: Skills](../05-skills/README.md)** - Creating skills like `generate-tests`
-> - **[Chapter 06: MCP Servers](../06-mcp-servers/README.md)** - Configuring GitHub MCP for PR creation
+> - **[Chapter 06: MCP Servers](../06-mcp-servers/README.md)** - Using GitHub MCP (built-in) for PR creation
 >
 > **Don't have agents/skills set up yet?** No problem! See the "Minimal Workflow" section below that uses only built-in features.
 

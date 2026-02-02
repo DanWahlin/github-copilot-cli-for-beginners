@@ -18,7 +18,7 @@ By the end of this chapter, you'll have:
   - Students/Teachers: [Free via GitHub Education](https://education.github.com/pack)
   - Everyone else: [$10/month or $100/year](https://github.com/features/copilot)
 - **Terminal/Command line** basics (cd, ls, etc.)
-- **Node.js v18+** (only required if using npm installation method - not needed for Homebrew, WinGet, or install script)
+- **Node.js LTS** (only required if using npm installation method - not needed for Homebrew, WinGet, or install script)
 
 ### What "Copilot Access" Means
 

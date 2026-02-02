@@ -142,15 +142,15 @@ Think of GitHub Copilot CLI like a car with three driving modes:
 
 | Mode | Car Analogy | When to Use |
 |------|-------------|-------------|
-| **Interactive** | Automatic transmission | Exploring, learning, iterating on ideas |
+| **Interactive** | Rally driver with co-driver | Exploring, iterating, real-time guidance as you go |
 | **Plan** | GPS navigation | Complex tasks where you want to see the route first |
-| **Programmatic** | Cruise control | Automation, scripts, CI/CD (Continuous Integration/Deployment) pipelines |
+| **Programmatic** | Self-driving car | Automation, scripts, CI/CD - set the destination and let it run |
 
 Just like driving, you'll naturally learn when each mode feels right.
 
-<img src="images/learning-to-drive-analogy.png" alt="Learning to Drive Analogy - Three Modes of GitHub Copilot CLI" width="800"/>
+<img src="images/learning-to-drive-analogy.png" alt="Three Modes of GitHub Copilot CLI" width="800"/>
 
-*Choose your gear based on the task: Interactive for exploration, Plan for structured work, Programmatic for automation*
+*Choose your mode based on the task: Interactive for real-time collaboration, Plan for seeing the route first, Programmatic for hands-off automation*
 
 ### Which Mode Should I Start With?
 
