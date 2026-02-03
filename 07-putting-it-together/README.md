@@ -640,6 +640,17 @@ copilot
 
 ---
 
+## Common Mistakes
+
+| Mistake | What Happens | Fix |
+|---------|--------------|-----|
+| Jumping straight to implementation | Miss design issues that are costly to fix later | Use `/plan` first to think through the approach |
+| Using one tool when multiple would help | Slower, less thorough results | Combine: Agent for analysis → Skill for execution → MCP for integration |
+| Not reviewing before committing | Security issues or bugs slip through | Always run `/review` or use a [pre-commit hook](#workflow-3-code-review-automation) |
+| Forgetting to share workflows with team | Each person reinvents the wheel | Document patterns in shared agents, skills, and instructions |
+
+---
+
 ## Course Complete!
 
 Congratulations! You've learned:

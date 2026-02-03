@@ -789,6 +789,17 @@ copilot
 
 ---
 
+## Common Mistakes
+
+| Mistake | What Happens | Fix |
+|---------|--------------|-----|
+| Naming the file something other than `SKILL.md` | Skill won't be recognized | The file must be named exactly `SKILL.md` |
+| Vague `description` field | Skill never gets loaded automatically | Description is the PRIMARY discovery mechanism. Use specific trigger words |
+| Missing `name` or `description` in frontmatter | Skill fails to load | Add both fields in YAML frontmatter |
+| Wrong folder location | Skill not found | Use `~/.copilot/skills/skill-name/` (personal) or `.github/skills/` (project) |
+
+---
+
 ## Troubleshooting
 
 ### Skill not being used

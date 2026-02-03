@@ -634,6 +634,17 @@ copilot
 
 ---
 
+## Common Mistakes
+
+| Mistake | What Happens | Fix |
+|---------|--------------|-----|
+| Using vague prompts like "Review this code" | Generic feedback that misses specific issues | Be specific: "Review for SQL injection, XSS, and auth issues" |
+| Not using `/review` for code reviews | Missing the optimized code-review agent | Use `/review` which is tuned for high signal-to-noise output |
+| Asking to "find bugs" without context | Copilot doesn't know what bug you're experiencing | Describe the symptom: "Users report X happens when Y" |
+| Generating tests without specifying framework | Tests may use wrong syntax or assertion library | Specify: "Generate tests using Jest" or "using pytest" |
+
+---
+
 ## Troubleshooting
 
 ### Review seems incomplete

@@ -790,6 +790,17 @@ Then resume with: `copilot --continue`
 
 ---
 
+## Common Mistakes
+
+| Mistake | What Happens | Fix |
+|---------|--------------|-----|
+| Forgetting `@` before filenames | Copilot treats "src/index.js" as plain text | Use `@src/index.js` to reference files |
+| Expecting sessions to persist automatically | Starting `copilot` fresh loses all previous context | Use `--continue` (last session) or `--resume` (pick a session) |
+| Referencing files outside current directory | "Permission denied" or "File not found" errors | Use `/add-dir /path/to/directory` to grant access |
+| Not using `/clear` when switching topics | Old context confuses responses about the new topic | Run `/clear` before starting a different task |
+
+---
+
 ## Troubleshooting
 
 ### "File not found" errors
@@ -803,7 +814,7 @@ ls   # List files
 # Then start copilot and use relative paths
 copilot
 
-> Review @./src/index.js
+> Review @src/index.js
 ```
 
 ### "Permission denied"

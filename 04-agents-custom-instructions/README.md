@@ -934,6 +934,17 @@ Test each instruction file on real code in your project.
 
 ---
 
+## Common Mistakes
+
+| Mistake | What Happens | Fix |
+|---------|--------------|-----|
+| Missing `description` in agent frontmatter | Agent won't load or won't be discoverable | Always include `description:` in YAML frontmatter |
+| Wrong file location for agents | Agent not found when you try to use it | Place in `~/.copilot/agents/` (personal) or `.github/agents/` (project) |
+| Using `.md` instead of `.agent.md` | File may not be recognized as an agent | Name files like `frontend.agent.md` |
+| Overly long agent prompts | May hit the 30,000 character limit | Keep agent definitions focused; use skills for detailed instructions |
+
+---
+
 ## Troubleshooting
 
 ### Agent not found

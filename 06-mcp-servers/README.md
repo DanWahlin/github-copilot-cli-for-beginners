@@ -645,6 +645,17 @@ Ready to go deeper? Follow the [Custom MCP Server Guide](mcp-custom-server.md) t
 
 ---
 
+## Common Mistakes
+
+| Mistake | What Happens | Fix |
+|---------|--------------|-----|
+| Not knowing GitHub MCP is built-in | Trying to install/configure it manually | GitHub MCP is included by default. Just use it: "List my open PRs" |
+| Looking for config in wrong location | Can't find or edit MCP settings | Config is in `~/.copilot/mcp-config.json` |
+| Invalid JSON in config file | MCP servers fail to load | Use `/mcp show` to check configuration; validate JSON syntax |
+| Forgetting to authenticate MCP servers | "Authentication failed" errors | Some MCPs need separate auth. Check each server's requirements |
+
+---
+
 ## Troubleshooting
 
 ### "MCP server not found"

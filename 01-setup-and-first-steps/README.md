@@ -641,6 +641,16 @@ Try this same task in all three modes:
 
 ---
 
+## Common Mistakes
+
+| Mistake | What Happens | Fix |
+|---------|--------------|-----|
+| Typing `exit` instead of `/exit` | Copilot treats "exit" as a prompt, not a command | Slash commands always start with `/` |
+| Using `-p` for multi-turn conversations | Each `-p` call is isolated with no memory of previous calls | Use interactive mode (`copilot`) for conversations that build on context |
+| Forgetting quotes around prompts with `$` or `!` | Shell interprets special characters before Copilot sees them | Wrap prompts in quotes: `copilot -p "What does $HOME mean?"` |
+
+---
+
 ## Troubleshooting
 
 ### "Model not available"
@@ -655,9 +665,6 @@ Your conversation has used the full context window. Use `/clear` to reset, or st
 
 Wait a few minutes and try again. Consider using programmatic mode for batch operations with delays.
 
-### Interactive mode exits unexpectedly
-
-Check your terminal configuration. Some terminals don't handle interactive sessions well. Try a different terminal emulator.
 
 ---
 
@@ -667,7 +674,7 @@ Check your terminal configuration. Some terminals don't handle interactive sessi
 2. **Plan mode** is for complex tasks - review before implementation
 3. **Programmatic mode** is for automation - no interaction needed
 4. **Slash commands** (`/help`, `/clear`, `/model`, `/exit`) control your sessions
-5. **Agents, Skills, and MCP** extend Copilot's capabilities - you'll learn each in upcoming chapters
+5. **Agents, Skills, and MCP** extend Copilot's capabilities - you'll learn more about each of them in upcoming chapters
 
 > 📋 **Quick Reference**: See the [Command Cheat Sheet](../QUICK-REFERENCE.md) for a complete list of commands and shortcuts.
 
