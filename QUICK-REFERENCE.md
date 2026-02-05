@@ -77,6 +77,8 @@
 | `/init` | Initialize Copilot instructions for repository |
 | `/experimental` | Toggle experimental features on/off |
 
+> 📖 **Official docs**: [CLI command reference](https://docs.github.com/copilot/reference/cli-command-reference)
+
 ---
 
 ## @ Syntax for Context
@@ -223,6 +225,8 @@ Instructions for the skill...
 > Create a PR for this branch     # Uses GitHub MCP
 ```
 
+> 📖 **Official docs**: [About MCP](https://docs.github.com/copilot/concepts/context/mcp)
+
 ---
 
 ## Plugins
@@ -331,6 +335,8 @@ for file in $STAGED; do
   copilot -p "Quick security review of @$file - critical issues only"
 done
 ```
+
+> 📖 **Official docs**: [Use hooks](https://docs.github.com/copilot/how-tos/copilot-cli/use-hooks)
 
 ---
 
