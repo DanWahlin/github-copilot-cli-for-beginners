@@ -851,7 +851,10 @@ Test each instruction file on real code in your project.
 
 ---
 
-## Common Mistakes
+<details>
+<summary>🔧 <strong>Common Mistakes & Troubleshooting</strong> (click to expand)</summary>
+
+### Common Mistakes
 
 | Mistake | What Happens | Fix |
 |---------|--------------|-----|
@@ -860,13 +863,9 @@ Test each instruction file on real code in your project.
 | Using `.md` instead of `.agent.md` | File may not be recognized as an agent | Name files like `frontend.agent.md` |
 | Overly long agent prompts | May hit the 30,000 character limit | Keep agent definitions focused; use skills for detailed instructions |
 
----
+### Troubleshooting
 
-## Troubleshooting
-
-### Agent not found
-
-Check that the agent file exists in one of these locations:
+**Agent not found** - Check that the agent file exists in one of these locations:
 - `~/.copilot/agents/`
 - `.github/agents/`
 
@@ -878,16 +877,12 @@ copilot
 # Shows all available agents
 ```
 
-### Agent not following instructions
-
-Be explicit in your prompts and add more detail to agent definitions:
+**Agent not following instructions** - Be explicit in your prompts and add more detail to agent definitions:
 - Specific frameworks/libraries with versions
 - Team conventions
 - Example code patterns
 
-### Custom instructions not loading
-
-Run `/init` in your project to set up project-specific instructions:
+**Custom instructions not loading** - Run `/init` in your project to set up project-specific instructions:
 
 ```bash
 copilot
@@ -899,6 +894,8 @@ Or check if they're disabled:
 # Don't use --no-custom-instructions if you want them loaded
 copilot  # This loads custom instructions by default
 ```
+
+</details>
 
 ---
 

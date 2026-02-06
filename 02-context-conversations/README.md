@@ -744,7 +744,10 @@ Then resume with: `copilot --continue`
 
 ---
 
-## Common Mistakes
+<details>
+<summary>🔧 <strong>Common Mistakes & Troubleshooting</strong> (click to expand)</summary>
+
+### Common Mistakes
 
 | Mistake | What Happens | Fix |
 |---------|--------------|-----|
@@ -753,13 +756,9 @@ Then resume with: `copilot --continue`
 | Referencing files outside current directory | "Permission denied" or "File not found" errors | Use `/add-dir /path/to/directory` to grant access |
 | Not using `/clear` when switching topics | Old context confuses responses about the new topic | Run `/clear` before starting a different task |
 
----
+### Troubleshooting
 
-## Troubleshooting
-
-### "File not found" errors
-
-Make sure you're in the correct directory:
+**"File not found" errors** - Make sure you're in the correct directory:
 
 ```bash
 pwd  # Check current directory
@@ -771,9 +770,7 @@ copilot
 > Review @samples/src/index.js
 ```
 
-### "Permission denied"
-
-Add the directory to your allowed list:
+**"Permission denied"** - Add the directory to your allowed list:
 
 ```bash
 copilot --add-dir /path/to/directory
@@ -782,11 +779,12 @@ copilot --add-dir /path/to/directory
 > /add-dir /path/to/directory
 ```
 
-### Context fills up too quickly
-
+**Context fills up too quickly**:
 - Be more specific with file references
 - Use `/clear` between different topics
 - Split work across multiple sessions
+
+</details>
 
 ---
 

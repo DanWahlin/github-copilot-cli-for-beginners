@@ -558,7 +558,10 @@ Try this same task in all three modes:
 
 ---
 
-## Common Mistakes
+<details>
+<summary>🔧 <strong>Common Mistakes & Troubleshooting</strong> (click to expand)</summary>
+
+### Common Mistakes
 
 | Mistake | What Happens | Fix |
 |---------|--------------|-----|
@@ -566,22 +569,15 @@ Try this same task in all three modes:
 | Using `-p` for multi-turn conversations | Each `-p` call is isolated with no memory of previous calls | Use interactive mode (`copilot`) for conversations that build on context |
 | Forgetting quotes around prompts with `$` or `!` | Shell interprets special characters before Copilot sees them | Wrap prompts in quotes: `copilot -p "What does $HOME mean?"` |
 
----
+### Troubleshooting
 
-## Troubleshooting
+**"Model not available"** - Your subscription may not include all models. Use `/model` to see what's available.
 
-### "Model not available"
+**"Context too long"** - Your conversation has used the full context window. Use `/clear` to reset, or start a new session.
 
-Your subscription may not include all models. Use `/model` to see what's available.
+**"Rate limit exceeded"** - Wait a few minutes and try again. Consider using programmatic mode for batch operations with delays.
 
-### "Context too long"
-
-Your conversation has used the full context window. Use `/clear` to reset, or start a new session.
-
-### "Rate limit exceeded"
-
-Wait a few minutes and try again. Consider using programmatic mode for batch operations with delays.
-
+</details>
 
 ---
 

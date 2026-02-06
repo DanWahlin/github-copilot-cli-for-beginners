@@ -559,7 +559,8 @@ copilot -p "Generate commit message for: $(git diff --staged)"
 
 ---
 
-## Common Mistakes
+<details>
+<summary>🔧 <strong>Common Mistakes</strong> (click to expand)</summary>
 
 | Mistake | What Happens | Fix |
 |---------|--------------|-----|
@@ -567,6 +568,8 @@ copilot -p "Generate commit message for: $(git diff --staged)"
 | Using one tool when multiple would help | Slower, less thorough results | Combine: Agent for analysis → Skill for execution → MCP for integration |
 | Not reviewing before committing | Security issues or bugs slip through | Always run `/review` or use a [pre-commit hook](#workflow-3-code-review-automation) |
 | Forgetting to share workflows with team | Each person reinvents the wheel | Document patterns in shared agents, skills, and instructions |
+
+</details>
 
 ---
 

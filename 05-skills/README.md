@@ -683,7 +683,10 @@ copilot
 
 ---
 
-## Common Mistakes
+<details>
+<summary>🔧 <strong>Common Mistakes & Troubleshooting</strong> (click to expand)</summary>
+
+### Common Mistakes
 
 | Mistake | What Happens | Fix |
 |---------|--------------|-----|
@@ -692,13 +695,9 @@ copilot
 | Missing `name` or `description` in frontmatter | Skill fails to load | Add both fields in YAML frontmatter |
 | Wrong folder location | Skill not found | Use `~/.copilot/skills/skill-name/` (personal) or `.github/skills/` (project) |
 
----
+### Troubleshooting
 
-## Troubleshooting
-
-### Skill not being used
-
-If Copilot isn't using your skill when expected:
+**Skill not being used** - If Copilot isn't using your skill when expected:
 
 1. **Check the description**: Does it match how you're asking?
    ```markdown
@@ -729,24 +728,20 @@ If Copilot isn't using your skill when expected:
    # Instructions here
    ```
 
-### Skill not appearing
-
-Verify the folder structure:
+**Skill not appearing** - Verify the folder structure:
 ```
 ~/.copilot/skills/
 └── my-skill/           # Folder name
     └── SKILL.md        # Must be exactly SKILL.md (case-sensitive)
 ```
 
-### Testing if a skill loads
-
-Ask Copilot directly:
+**Testing if a skill loads** - Ask Copilot directly:
 ```bash
 > What skills do you have available for code review?
 # Copilot will describe relevant skills it found
 ```
 
-### How do I know my skill is actually working?
+**How do I know my skill is actually working?**
 
 1. **Check the output format**: If your skill specifies an output format (like `[CRITICAL]` tags), look for that in the response
 2. **Ask directly**: After getting a response, ask "Did you use any skills for that?"
@@ -759,6 +754,8 @@ Ask Copilot directly:
    copilot -p "Review @file.js for security issues" --no-custom-instructions
    ```
 4. **Check for specific checks**: If your skill includes specific checks (like "functions over 50 lines"), see if those appear in the output
+
+</details>
 
 ---
 

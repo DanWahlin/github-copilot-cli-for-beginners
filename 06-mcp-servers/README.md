@@ -651,7 +651,10 @@ Ready to go deeper? Follow the [Custom MCP Server Guide](mcp-custom-server.md) t
 
 ---
 
-## Common Mistakes
+<details>
+<summary>🔧 <strong>Common Mistakes & Troubleshooting</strong> (click to expand)</summary>
+
+### Common Mistakes
 
 | Mistake | What Happens | Fix |
 |---------|--------------|-----|
@@ -660,22 +663,16 @@ Ready to go deeper? Follow the [Custom MCP Server Guide](mcp-custom-server.md) t
 | Invalid JSON in config file | MCP servers fail to load | Use `/mcp show` to check configuration; validate JSON syntax |
 | Forgetting to authenticate MCP servers | "Authentication failed" errors | Some MCPs need separate auth. Check each server's requirements |
 
----
+### Troubleshooting
 
-## Troubleshooting
-
-### "MCP server not found"
-
-Check that:
+**"MCP server not found"** - Check that:
 1. The npm package exists: `npm view @modelcontextprotocol/server-github`
 2. Your configuration is valid JSON
 3. The server name matches your config
 
 Use `/mcp show` to see the current configuration.
 
-### "GitHub authentication failed"
-
-The built-in GitHub MCP uses your `/login` credentials. Try:
+**"GitHub authentication failed"** - The built-in GitHub MCP uses your `/login` credentials. Try:
 
 ```bash
 copilot
@@ -684,17 +681,13 @@ copilot
 
 This will re-authenticate you with GitHub. If issues persist, check that your GitHub account has the necessary permissions for the repository you're accessing.
 
-### "MCP server failed to start"
-
-Check the server logs:
+**"MCP server failed to start"** - Check the server logs:
 ```bash
 # Run the server command manually to see errors
 npx -y @modelcontextprotocol/server-github
 ```
 
-### MCP tools not available
-
-Make sure the server is enabled:
+**MCP tools not available** - Make sure the server is enabled:
 ```bash
 copilot
 
@@ -704,6 +697,8 @@ copilot
 > /mcp enable server-name
 # Enable if disabled
 ```
+
+</details>
 
 ---
 

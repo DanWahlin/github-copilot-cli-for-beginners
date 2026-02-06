@@ -674,7 +674,10 @@ This quick exercise shows developers how to use GitHub Copilot CLI to create iss
 
 ---
 
-## Common Mistakes
+<details>
+<summary>🔧 <strong>Common Mistakes & Troubleshooting</strong> (click to expand)</summary>
+
+### Common Mistakes
 
 | Mistake | What Happens | Fix |
 |---------|--------------|-----|
@@ -683,13 +686,9 @@ This quick exercise shows developers how to use GitHub Copilot CLI to create iss
 | Asking to "find bugs" without context | Copilot doesn't know what bug you're experiencing | Describe the symptom: "Users report X happens when Y" |
 | Generating tests without specifying framework | Tests may use wrong syntax or assertion library | Specify: "Generate tests using Jest" or "using pytest" |
 
----
+### Troubleshooting
 
-## Troubleshooting
-
-### Review seems incomplete
-
-Be more specific about what to look for:
+**Review seems incomplete** - Be more specific about what to look for:
 
 ```bash
 copilot
@@ -701,9 +700,7 @@ copilot
 > Review @file.js for security vulnerabilities, specifically: SQL injection, XSS, and authentication issues
 ```
 
-### Tests don't match my framework
-
-Specify the framework:
+**Tests don't match my framework** - Specify the framework:
 
 ```bash
 copilot
@@ -711,15 +708,15 @@ copilot
 > @file.js Generate tests using Mocha and Chai (not Jest)
 ```
 
-### Refactoring changes behavior
-
-Ask Copilot to preserve behavior:
+**Refactoring changes behavior** - Ask Copilot to preserve behavior:
 
 ```bash
 copilot
 
 > @file.js Refactor to async/await. IMPORTANT: Maintain identical external behavior - no breaking changes
 ```
+
+</details>
 
 ---
 
