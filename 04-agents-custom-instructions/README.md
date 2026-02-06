@@ -545,7 +545,7 @@ Good agent names are short, descriptive, and indicate the specialty:
 
 ## Project-Level Instructions
 
-Custom instructions let you encode team standards so Copilot applies them automatically.
+So far, you've learned how to create **agents** - specialized AI personalities you invoke with `/agent`. Now let's look at a related concept: **custom instructions** that apply automatically to every Copilot session in a project, without needing to invoke them. Think of agents as specialists you call on, and custom instructions as team standards that are always active.
 
 ### Instruction File Formats
 
@@ -558,6 +558,8 @@ Copilot supports multiple instruction file formats for cross-platform compatibil
 | `.github/instructions/*.instructions.md` | Project | Granular, topic-specific instructions |
 | `*.agent.md` | Anywhere | Individual agent definitions |
 | `CLAUDE.md`, `GEMINI.md` | Project root | Supported for compatibility |
+
+> 🎯 **Just getting started?** Use `*.agent.md` files for agents and `AGENTS.md` for project instructions. You can explore the other formats later as needed.
 
 > 💡 **Cross-Platform Tip**: If you want your instructions to work across multiple AI coding tools, use `AGENTS.md`. It's an [open standard](https://agents.md/) supported by GitHub Copilot and many others.
 

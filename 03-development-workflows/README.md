@@ -734,43 +734,15 @@ copilot
 
 ## Building Your Personal Workflow
 
-There's no single "right" way to use GitHub Copilot CLI. Teams and individuals develop their own patterns over time. Here's how to build yours:
+There's no single "right" way to use GitHub Copilot CLI. Here are a few tips as you develop your own patterns:
 
 > 📚 **Official Documentation**: [Copilot CLI best practices](https://docs.github.com/copilot/how-tos/copilot-cli/cli-best-practices) for recommended workflows and tips from GitHub.
 
-### Start with Plan Mode
+- **Start with `/plan`** for anything non-trivial. Refine the plan before execution - a good plan leads to better results.
+- **Save prompts that work well.** When Copilot makes a mistake, note what went wrong. Over time, this becomes your personal playbook.
+- **Experiment freely.** Some developers prefer long, detailed prompts. Others prefer short prompts with follow-ups. Try different approaches and notice what feels natural.
 
-For anything non-trivial, start with `/plan` and refine it before execution:
-
-```bash
-copilot
-
-> /plan Add user authentication to this Express app
-```
-
-Go back and forth until you like the plan. A good plan leads to better results.
-
-### Document What Works
-
-When you find prompts that work well, save them. When Copilot makes a mistake, note what went wrong and how you corrected it. Over time, this becomes your personal playbook.
-
-> 💡 **Coming in Chapter 04**: You'll learn about custom instruction files that let you codify these learnings so Copilot remembers them automatically.
-
-### Turn Repetitive Tasks into Skills
-
-If you do something more than once a day, it's a candidate for a skill:
-
-- End-of-session cleanup (find duplicated code, remove dead code)
-- Pre-commit checks (security scan, lint, test)
-- PR description generation
-
-> 💡 **Coming in Chapter 05**: You'll learn how to create skills that Copilot loads automatically based on your prompt.
-
-### Experiment Freely
-
-What works for one developer may not work for another. Some prefer long, detailed prompts. Others prefer short prompts with follow-up questions. Some use Plan mode for everything; others rarely touch it.
-
-Try different approaches and notice what feels natural for your workflow.
+> 💡 **Coming up**: In Chapters 04 and 05, you'll learn how to codify your best practices into custom instructions and skills that Copilot loads automatically.
 
 ---
 
