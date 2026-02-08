@@ -23,7 +23,7 @@ Enter
 Sleep 5s
 
 # Execute the prompt
-Type "Say hello and tell me what you can help with"
+Type "What does @samples/book-app-project/book_app.py do? Summarize in 2-3 sentences."
 Enter
 
 # Wait for response

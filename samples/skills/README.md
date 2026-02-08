@@ -17,7 +17,8 @@ cp -r code-review .github/skills/
 | Skill | Description | Best For |
 |-------|-------------|----------|
 | `hello-world` | Minimal example (learning the format) | First-time skill creators |
-| `code-review` | Team code review checklist | Consistent PR reviews |
+| `code-review` | Python code review checklist (PEP 8, type hints, validation) | Consistent code reviews |
+| `pytest-gen` | Generate comprehensive pytest tests | Structured test generation |
 | `commit-message` | Conventional commit messages | Standardized git history |
 
 ## How Skills Work
@@ -36,7 +37,8 @@ copilot
 
 You can also invoke skills directly:
 ```bash
-> /code-review Check src/api.js
+> /code-review Check books.py
+> /pytest-gen Generate tests for BookCollection
 > /commit-message
 ```
 

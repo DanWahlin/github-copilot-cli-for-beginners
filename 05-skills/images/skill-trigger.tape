@@ -1,7 +1,7 @@
-# 01-setup-and-first-steps: Generate Working Code
+# 05-skills: Skill Auto-Trigger
 # Auto-generated from demos.json - Real copilot execution
 
-Output generate-script-demo.gif
+Output skill-trigger-demo.gif
 
 Set FontSize 18
 Set Width 1000
@@ -23,7 +23,7 @@ Enter
 Sleep 5s
 
 # Execute the prompt
-Type "Write a bash script that finds all files over 100MB and lists them by size"
+Type "Review @samples/book-app-project/books.py for code quality issues"
 Enter
 
 # Wait for response

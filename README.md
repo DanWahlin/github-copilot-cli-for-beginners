@@ -10,7 +10,7 @@ Learn to supercharge your development workflow with AI-powered command-line assi
 
 ## What You'll Learn
 
-This hands-on course takes you from zero to productive with GitHub Copilot CLI. By the end, you'll confidently use AI to review code, generate tests, debug issues, and automate workflows: all from your terminal.
+This hands-on course takes you from zero to productive with GitHub Copilot CLI. You'll work with a single Python book collection app throughout all chapters, progressively improving it using AI-assisted workflows. By the end, you'll confidently use AI to review code, generate tests, debug issues, and automate workflows: all from your terminal.
 
 **No AI experience required.** If you can use a terminal, you can learn this.
 
@@ -68,11 +68,20 @@ Before starting, ensure you have:
 
 ✅ **GitHub account**: [Create one free](https://github.com/signup)<br>
 ✅ **GitHub Copilot access**: [Free offering](https://github.com/features/copilot/plans), [Monthly subscription](https://github.com/features/copilot/plans), or [Free for students/teachers](https://education.github.com/pack)<br>
-✅ **Terminal basics**: Comfortable with `cd`, `ls`, running commands
+✅ **Terminal basics**: Comfortable with `cd`, `ls`, running commands<br>
+✅ **Python 3.10+**: For running the sample book app (pre-installed in Codespaces)
 
 ## Quick Start
 
-Can't wait? Run this in your terminal right now:
+### Fastest: Open in Codespaces (Recommended)
+
+This repo includes a dev container with Python, pytest, and Copilot CLI pre-installed:
+
+1. [Fork this repository](https://github.com/github/github-copilot-cli-for-beginners/fork)
+2. Click **Code** > **Codespaces** > **Create codespace on main**
+3. Run: `cd samples/book-app-project && python book_app.py list`
+
+### Alternative: Local Install
 
 ```bash
 # Install (choose one)
@@ -84,8 +93,8 @@ winget install GitHub.Copilot     # Windows
 copilot
 > /login    # The > indicates you're typing inside the Copilot session
 
-# See the magic
-copilot -p "Explain what GitHub Copilot CLI can do for developers"
+# See the magic - ask about the sample book app
+copilot -p "What does @samples/book-app-project/book_app.py do?"
 ```
 
 Want more details? Head to [Chapter 00](./00-quick-start/README.md) for the full quick start experience.
@@ -143,5 +152,5 @@ Quick reference for technical terms used throughout this course. Don't worry abo
 
 **[View Full Glossary →](./GLOSSARY.md)**
 
-Key terms: [Agent](./GLOSSARY.md#agent) | [Context Window](./GLOSSARY.md#context-window) | [Token](./GLOSSARY.md#token) | [MCP](./GLOSSARY.md#mcp) | [Skill](./GLOSSARY.md#skill) | [OWASP](./GLOSSARY.md#owasp) | [WCAG](./GLOSSARY.md#wcag)
+Key terms: [Agent](./GLOSSARY.md#agent) | [Context Window](./GLOSSARY.md#context-window) | [Dataclass](./GLOSSARY.md#dataclass) | [Token](./GLOSSARY.md#token) | [MCP](./GLOSSARY.md#mcp) | [Skill](./GLOSSARY.md#skill) | [PEP 8](./GLOSSARY.md#pep-8) | [pytest](./GLOSSARY.md#pytest)
 

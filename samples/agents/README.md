@@ -9,7 +9,7 @@ This folder contains some simple agent templates for GitHub Copilot CLI intended
 cp hello-world.agent.md ~/.copilot/agents/
 
 # Or copy to your project for team sharing
-cp frontend.agent.md .github/agents/
+cp python-reviewer.agent.md .github/agents/
 ```
 
 ## Sample Files in This Folder
@@ -17,8 +17,8 @@ cp frontend.agent.md .github/agents/
 | File | Description | Best For |
 |------|-------------|----------|
 | `hello-world.agent.md` | Minimal example (11 lines) | Learning the format |
-| `code-reviewer.agent.md` | Code review specialist | PR reviews, bug hunting |
-| `frontend.agent.md` | React/TypeScript expert | Frontend development |
+| `python-reviewer.agent.md` | Python code quality reviewer | Code reviews, PEP 8, type hints |
+| `pytest-helper.agent.md` | Pytest testing specialist | Test generation, fixtures, edge cases |
 
 ## Finding More Agents
 
@@ -72,21 +72,21 @@ Each agent is a separate file with the `.agent.md` extension.
 
 ```bash
 # Start with a specific agent
-copilot --agent frontend
+copilot --agent python-reviewer
 
 # Or select an agent interactively during a session
 copilot
 > /agent
-# Select "frontend" from the list
+# Select "python-reviewer" from the list
 
 # The agent's expertise applies to your prompts
-> Create a user profile card component
+> @samples/book-app-project/books.py Review this code for quality issues
 
 # Switch to a different agent
 > /agent
-# Select "backend"
+# Select "pytest-helper"
 
-> Design a REST endpoint for user preferences
+> @samples/book-app-project/tests/test_books.py What additional tests should we add?
 ```
 
 ---

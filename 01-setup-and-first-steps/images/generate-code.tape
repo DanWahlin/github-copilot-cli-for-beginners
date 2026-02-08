@@ -1,7 +1,7 @@
-# 03-development-workflows: Fix a Bug
+# 01-setup-and-first-steps: Generate Working Code
 # Auto-generated from demos.json - Real copilot execution
 
-Output fix-bug-demo.gif
+Output generate-code-demo.gif
 
 Set FontSize 18
 Set Width 1000
@@ -23,7 +23,7 @@ Enter
 Sleep 5s
 
 # Execute the prompt
-Type "@samples/book-app-buggy/books_buggy.py Users report that searching for 'The Hobbit' returns no results even though it's in the data. Debug why."
+Type "Write a Python function that takes a list of books and returns statistics: total count, number read, number unread, oldest and newest book"
 Enter
 
 # Wait for response

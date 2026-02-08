@@ -1,7 +1,7 @@
-# 01-setup-and-first-steps: Generate Algorithm Code
+# 06-mcp-servers: MCP Issue-to-Fix Workflow
 # Auto-generated from demos.json - Real copilot execution
 
-Output luhn-algorithm-demo.gif
+Output mcp-workflow-demo.gif
 
 Set FontSize 18
 Set Width 1000
@@ -22,12 +22,26 @@ Enter
 # Wait for copilot to start
 Sleep 5s
 
-# Execute the prompt
-Type "Write a Python function to validate credit card numbers using the Luhn algorithm"
+# Prompt 1
+Type "List open issues on this repository"
 Enter
 
 # Wait for response
 Sleep 25s
+
+# Prompt 2
+Type "@samples/book-app-project/books.py What code handles the search functionality?"
+Enter
+
+# Wait for response
+Sleep 20s
+
+# Prompt 3
+Type "Based on the code, suggest improvements for the search feature"
+Enter
+
+# Wait for response
+Sleep 30s
 
 # Exit cleanly
 Ctrl+C

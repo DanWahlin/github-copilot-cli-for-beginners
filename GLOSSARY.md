@@ -30,9 +30,17 @@ Command Line Interface. A text-based way to interact with software (like this to
 
 The amount of text an AI can consider at once. Like a desk that can only hold so much. When you add files, conversation history, and system prompts, they all take up space in this window.
 
+### Context Manager
+
+A Python construct using the `with` statement that automatically handles setup and cleanup (like opening and closing files). Example: `with open("file.txt") as f:` ensures the file is closed even if an error occurs.
+
 ### Conventional Commit
 
 A commit message format that follows a standardized structure: `type(scope): description`. Common types include `feat` (new feature), `fix` (bug fix), `docs` (documentation), `refactor`, and `test`. Example: `feat(auth): add password reset flow`.
+
+### Dataclass
+
+A Python decorator (`@dataclass`) that automatically generates `__init__`, `__repr__`, and other methods for classes that primarily store data. Used in the book app to define the `Book` class with fields like `title`, `author`, `year`, and `read`.
 
 ---
 
@@ -86,9 +94,17 @@ Open Web Application Security Project. An organization that publishes security b
 
 ## P
 
+### PEP 8
+
+Python Enhancement Proposal 8. The official style guide for Python code, covering naming conventions (snake_case for functions, PascalCase for classes), indentation (4 spaces), and code layout. Following PEP 8 makes Python code consistent and readable.
+
 ### Pre-commit Hook
 
 A script that runs automatically before each `git commit`. Can be used to run Copilot security reviews or code quality checks before code is committed.
+
+### pytest
+
+A popular Python testing framework known for its simple syntax, powerful fixtures, and rich plugin ecosystem. Used throughout this course for testing the book app. Tests are run with `python -m pytest tests/`.
 
 ### Programmatic Mode
 
@@ -125,6 +141,10 @@ Commands starting with `/` that control Copilot (e.g., `/help`, `/clear`, `/mode
 ### Token
 
 A unit of text that AI models process. Roughly 4 characters or 0.75 words. Used to measure both input (your prompts and context) and output (AI responses).
+
+### Type Hints
+
+Python annotations that indicate the expected types of function parameters and return values (e.g., `def add_book(title: str, year: int) -> Book:`). They don't enforce types at runtime but help with code clarity, IDE support, and static analysis tools like mypy.
 
 ---
 

@@ -86,17 +86,17 @@
 ### File References
 
 ```bash
-@filename.js                      # Single file
-@samples/src/api/users.js         # File with path
-@samples/src/                     # Entire directory
-@samples/src/**/*.js              # Glob pattern
+@filename.py                                  # Single file
+@samples/book-app-project/books.py            # File with path
+@samples/book-app-project/                    # Entire directory
+@samples/book-app-project/*.py                # Glob pattern
 ```
 
 ### Multiple Files
 
 ```bash
-> @samples/src/auth/login.js @samples/src/auth/register.js Compare these implementations
-> @samples/src/api/ Generate tests for all API endpoints
+> @samples/book-app-project/book_app.py @samples/book-app-project/books.py How do these work together?
+> @samples/book-app-project/ Review all files for code quality
 ```
 
 ### Best Practices
@@ -126,19 +126,19 @@ Create `AGENTS.md` or `*.agent.md` files:
 
 ```markdown
 ---
-name: frontend
-description: Frontend specialist with expertise in React and TypeScript
+name: python-reviewer
+description: Python code quality specialist for reviewing Python projects
 tools: ["read", "edit", "search"]
 ---
 
-## Frontend Agent
+## Python Code Reviewer
 
-You are a frontend specialist with expertise in React and TypeScript.
+You are a Python specialist focused on code quality and best practices.
 
 **Focus Areas**:
-- Component architecture
-- Accessibility (WCAG 2.1 AA)
-- Performance optimization
+- PEP 8 compliance
+- Type hints and dataclasses
+- Error handling patterns
 ```
 
 > 💡 **Required**: The `description` field in YAML frontmatter is required. Other fields like `name`, `tools`, and `target` are optional. Tool aliases: `read`, `edit`, `search`, `execute`, `web`, `agent`.
@@ -243,32 +243,26 @@ Extend GitHub Copilot CLI with community plugins:
 
 ## Common Workflows
 
-### Security Review
-
-```bash
-copilot -p "Review @samples/src/auth/ for security vulnerabilities"
-```
-
 ### Code Review
 
 ```bash
 copilot
 > /review                         # Review staged changes
-> @samples/src/api/users.js Review for security, performance, best practices
+> @samples/book-app-project/books.py Review for code quality and best practices
 ```
 
 ### Test Generation
 
 ```bash
-copilot -p "@samples/src/utils/helpers.js Generate Jest tests with edge cases"
+copilot -p "@samples/book-app-project/books.py Generate pytest tests with edge cases"
 ```
 
 ### Debugging
 
 ```bash
 copilot
-> @samples/buggy-code/js/paymentProcessor.js Users report $10.20 + $5.10 shows as $15.299999
-> Debug why this happens
+> @samples/book-app-buggy/books_buggy.py Users report searching for "The Hobbit"
+> returns no results. Debug why this happens
 ```
 
 ### Git Commit Message
@@ -323,16 +317,16 @@ copilot --continue
 ### Basic Usage
 
 ```bash
-copilot -p "Security review of @$file" --silent >> review.md
+copilot -p "Code review of @$file" --silent >> review.md
 ```
 
 ### Pre-commit Hook Example
 
 ```bash
 #!/bin/bash
-STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts)$')
+STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.py$')
 for file in $STAGED; do
-  copilot -p "Quick security review of @$file - critical issues only"
+  copilot -p "Quick review of @$file - critical issues only"
 done
 ```
 

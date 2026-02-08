@@ -1,4 +1,4 @@
-# 01-setup-and-first-steps: Explain Confusing Code
+# 01-setup-and-first-steps: Explain Code
 # Auto-generated from demos.json - Real copilot execution
 
 Output explain-code-demo.gif
@@ -23,7 +23,7 @@ Enter
 Sleep 5s
 
 # Execute the prompt
-Type "Explain this in simple terms: const debounce = (fn, ms) => { let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); }; }"
+Type "Explain what @samples/book-app-project/books.py does in simple terms"
 Enter
 
 # Wait for response

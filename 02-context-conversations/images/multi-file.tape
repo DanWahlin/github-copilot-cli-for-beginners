@@ -23,7 +23,7 @@ Enter
 Sleep 5s
 
 # Execute the prompt
-Type "Compare @samples/buggy-code/js/userService.js and @samples/buggy-code/js/paymentProcessor.js - which has more critical bugs?"
+Type "Compare @samples/book-app-project/book_app.py and @samples/book-app-project/books.py - how do they work together? What's the data flow?"
 Enter
 
 # Wait for response

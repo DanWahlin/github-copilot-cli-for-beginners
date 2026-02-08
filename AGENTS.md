@@ -7,7 +7,12 @@ Beginner-friendly course teaching GitHub Copilot CLI. Educational content, not s
 | Path | Purpose |
 |------|---------|
 | `00-07/` | Chapters: analogy → concepts → hands-on → assignment → next |
-| `samples/buggy-code/` | **Intentional bugs** for debugging exercises |
+| `samples/book-app-project/` | **Primary sample**: Python CLI book collection app used throughout all chapters |
+| `samples/book-app-buggy/` | **Intentional bugs** for debugging exercises (Ch 03) |
+| `samples/buggy-code/` | **Optional extra**: Security-focused buggy code (JS and Python) |
+| `samples/src/` | **Optional extra**: Legacy JS/React samples from earlier course version |
+| `samples/agents/` | Agent templates (python-reviewer, pytest-helper, hello-world) |
+| `samples/skills/` | Skill templates (code-review, pytest-gen, commit-message, hello-world) |
 | `QUICK-REFERENCE.md` | Command cheat sheet (source of truth) |
 | `QUICK-REFERENCE.pdf` | Auto-generated from above |
 
@@ -17,10 +22,12 @@ Beginner-friendly course teaching GitHub Copilot CLI. Educational content, not s
 - Ensure bash examples are copy-paste ready
 - Use terminology from `QUICK-REFERENCE.md`
 - Tone: friendly, encouraging, practical
+- Use `samples/book-app-project/` paths in all primary examples
+- Use Python/pytest context for code examples
 
 ## Don't
 
-- Fix bugs in `samples/buggy-code/` — they're intentional
+- Fix bugs in `samples/book-app-buggy/` or `samples/buggy-code/` — they're intentional
 - Add chapters without updating README.md course table
 - Assume readers know AI/ML terminology
 
