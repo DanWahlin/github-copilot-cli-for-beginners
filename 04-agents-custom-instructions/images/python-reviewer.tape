@@ -1,7 +1,7 @@
-# 04-agents-custom-instructions: Security Expert Agent
+# 04-agents-custom-instructions: Python Reviewer Agent
 # Auto-generated from demos.json - Real copilot execution
 
-Output security-expert-demo.gif
+Output python-reviewer-demo.gif
 
 Set FontSize 18
 Set Width 1000
@@ -23,7 +23,7 @@ Enter
 Sleep 5s
 
 # Execute the prompt
-Type "As a security expert, prioritize the vulnerabilities in @samples/buggy-code/js/paymentProcessor.js by risk level"
+Type "As a Python code quality expert, review @samples/book-app-project/books.py for type hints, error handling, and PEP 8 compliance"
 Enter
 
 # Wait for response

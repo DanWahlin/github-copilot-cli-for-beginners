@@ -1,7 +1,7 @@
-# 03-development-workflows: Fix a Bug
+# 05-skills: Available Skills
 # Auto-generated from demos.json - Real copilot execution
 
-Output fix-bug-demo.gif
+Output list-skills-demo.gif
 
 Set FontSize 18
 Set Width 1000
@@ -23,11 +23,11 @@ Enter
 Sleep 5s
 
 # Execute the prompt
-Type "@samples/book-app-buggy/books_buggy.py Users report that searching for 'The Hobbit' returns no results even though it's in the data. Debug why."
+Type "What slash commands and skills are available? List the main ones."
 Enter
 
 # Wait for response
-Sleep 25s
+Sleep 15s
 
 # Exit cleanly
 Ctrl+C

@@ -23,7 +23,7 @@ Enter
 Sleep 5s
 
 # Execute the prompt
-Type "Refactor @samples/buggy-code/js/userService.js to use parameterized queries instead of string concatenation"
+Type "@samples/book-app-project/book_app.py Refactor the command handling to use a dictionary dispatch pattern instead of if/elif chains"
 Enter
 
 # Wait for response

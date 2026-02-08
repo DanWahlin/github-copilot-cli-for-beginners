@@ -1,4 +1,4 @@
-# 07-advanced-workflows: Full Codebase Review
+# 07-putting-it-together: Full Project Review
 # Auto-generated from demos.json - Real copilot execution
 
 Output full-review-demo.gif
@@ -23,7 +23,7 @@ Enter
 Sleep 5s
 
 # Execute the prompt
-Type "Review @samples/buggy-code/js/ for all security issues. Prioritize by severity."
+Type "Review @samples/book-app-project/ for all code quality issues. Prioritize by severity."
 Enter
 
 # Wait for response

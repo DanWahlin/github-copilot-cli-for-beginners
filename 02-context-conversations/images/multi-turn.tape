@@ -1,7 +1,7 @@
-# 01-setup-and-first-steps: Security Scan in 5 Seconds
+# 02-context-conversations: Multi-Turn Conversation
 # Auto-generated from demos.json - Real copilot execution
 
-Output security-scan-demo.gif
+Output multi-turn-demo.gif
 
 Set FontSize 18
 Set Width 1000
@@ -22,12 +22,26 @@ Enter
 # Wait for copilot to start
 Sleep 5s
 
-# Execute the prompt
-Type "Review @samples/buggy-code/js/userService.js for security vulnerabilities"
+# Prompt 1
+Type "@samples/book-app-project/ Give me an overview of this project"
 Enter
 
 # Wait for response
 Sleep 25s
+
+# Prompt 2
+Type "What are the main code quality issues?"
+Enter
+
+# Wait for response
+Sleep 25s
+
+# Prompt 3
+Type "Which issue should I fix first and show me how?"
+Enter
+
+# Wait for response
+Sleep 30s
 
 # Exit cleanly
 Ctrl+C

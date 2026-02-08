@@ -23,7 +23,7 @@ Enter
 Sleep 5s
 
 # Execute the prompt
-Type "What does @samples/buggy-code/js/userService.js do? Summarize briefly."
+Type "What does @samples/book-app-project/utils.py do? Summarize briefly."
 Enter
 
 # Wait for response
