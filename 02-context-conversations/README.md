@@ -62,9 +62,9 @@ copilot
 
 > 💡 **Don't have a project handy?** Create a quick test file:
 > ```bash
-> echo "function greet(name) { return 'Hello ' + name; }" > test.js
+> echo "def greet(name): return 'Hello ' + name" > test.py
 > copilot
-> > What does @test.js do?
+> > What does @test.py do?
 > ```
 
 ### Basic @ Patterns
@@ -124,9 +124,9 @@ copilot
 > How do these files work together? What's the data flow?
 ```
 
-> 💡 **Advanced Option**: For security-focused cross-file analysis, try the buggy-code examples (these are JavaScript files - a different language, but the cross-file analysis technique works the same way):
+> 💡 **Advanced Option**: For security-focused cross-file analysis, try the Python security examples:
 > ```bash
-> > @samples/buggy-code/js/userService.js @samples/buggy-code/js/paymentProcessor.js
+> > @samples/buggy-code/python/user_service.py @samples/buggy-code/python/payment_processor.py
 > > Find security vulnerabilities that span BOTH files
 > ```
 
@@ -362,8 +362,8 @@ For power users, Copilot supports glob patterns and image references:
 
 | Pattern | What It Does |
 |---------|--------------|
-| `@folder/*.js` | All .js files in folder |
-| `@**/*.test.js` | Recursive glob - find all test files anywhere |
+| `@folder/*.py` | All .py files in folder |
+| `@**/test_*.py` | Recursive glob - find all test files anywhere |
 | `@image.png` | Image file for UI review |
 
 ```bash
@@ -481,7 +481,7 @@ Context usage: 120,000 / 128,000 tokens (94%)
 
 # Warning: Approaching context limit
 
-> @another-large-file.js
+> @another-large-file.py
 
 Context limit reached. Older context will be summarized.
 ```
@@ -551,7 +551,7 @@ Not all files are equal when it comes to context. Here's how to choose wisely:
 - Data models or dataclasses
 
 **Lower value** (consider excluding):
-- Generated files (`*.min.js`, bundled output)
+- Generated files (compiled output, bundled assets)
 - Node modules or vendor directories
 - Large data files or fixtures
 - Files unrelated to your question

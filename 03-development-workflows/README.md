@@ -115,7 +115,7 @@ Before using the `/review` command, you need to understand two types of changes 
 ```bash
 # Quick reference
 git status           # Shows both staged and unstaged
-git add file.js      # Stage a file for commit
+git add file.py      # Stage a file for commit
 git diff             # Shows unstaged changes
 git diff --staged    # Shows staged changes
 ```

@@ -56,7 +56,7 @@ Metadata at the top of a Markdown file enclosed in `---` delimiters. Used in age
 
 ### Glob Pattern
 
-A pattern using wildcards to match file paths (e.g., `*.js` matches all JavaScript files).
+A pattern using wildcards to match file paths (e.g., `*.py` matches all Python files, `*.js` matches all JavaScript files).
 
 ---
 

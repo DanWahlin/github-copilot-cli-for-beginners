@@ -281,10 +281,10 @@ Status: Ready for review
 Context7 gives Copilot access to up-to-date documentation for popular frameworks and libraries. Instead of relying on training data that might be outdated, Copilot fetches the actual current documentation.
 
 **Supported documentation sources include:**
-- React, Vue, Angular, Svelte
-- Node.js, Express, Fastify
-- TypeScript, JavaScript
+- Django, Flask, FastAPI, SQLAlchemy
 - PostgreSQL, MongoDB, Redis
+- React, Vue, Angular, Node.js
+- TypeScript, JavaScript, Go, Rust
 - And many more...
 
 ### Configuration
@@ -316,33 +316,35 @@ Context7 gives Copilot access to up-to-date documentation for popular frameworks
 ```bash
 copilot
 
-> What's the best practice for useEffect cleanup in React?
+> What's the best practice for database connection management in Python?
 
-From React Documentation:
+From SQLAlchemy Documentation:
 
-## useEffect Cleanup
+## Connection Management
 
-Effects can return a cleanup function that runs before
-the component unmounts or before the effect runs again:
+Use context managers to ensure connections are properly closed:
 
-```jsx
-useEffect(() => {
-  const subscription = props.source.subscribe();
-  return () => {
-    subscription.unsubscribe();
-  };
-}, [props.source]);
+```python
+from sqlalchemy import create_engine
+
+engine = create_engine("sqlite:///books.db")
+
+with engine.connect() as conn:
+    result = conn.execute(text("SELECT * FROM books"))
+    for row in result:
+        print(row)
+# Connection automatically closed when exiting the 'with' block
 ```
 
-Common cleanup scenarios:
-- Unsubscribing from subscriptions
-- Cancelling fetch requests
-- Clearing timeouts/intervals
-- Removing event listeners
+Best practices:
+- Use context managers for automatic cleanup
+- Use connection pooling for production
+- Handle connection errors gracefully
+- Close connections in finally blocks
 
-> How do I implement this in my UserProfile component?
+> How do I apply this to the book app's data persistence?
 
-# Copilot now knows the official React patterns
+# Copilot now knows the official SQLAlchemy patterns
 # and can apply them to your specific code
 ```
 

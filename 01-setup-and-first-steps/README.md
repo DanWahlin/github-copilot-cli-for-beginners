@@ -249,13 +249,13 @@ Available commands:
   /model    - Show or change the AI model
   /exit     - Exit the session
 
-> What's the best way to handle errors in async JavaScript?
+> What's the best way to handle file I/O errors in Python?
 
-[Copilot explains try/catch, .catch(), and error boundaries]
+[Copilot explains try/except, context managers, and specific exception types]
 
-> Show me an example with fetch()
+> Show me an example with reading a JSON file
 
-[Copilot builds on the previous context to show a fetch example]
+[Copilot builds on the previous context to show a JSON file example]
 
 > /exit
 ```
@@ -449,13 +449,13 @@ copilot
 > !git status
 # Runs git status directly, bypassing the AI
 
-> !npm test
-# Runs npm test directly
+> !python -m pytest tests/
+# Runs pytest directly
 ```
 
 ### The /delegate Command
 
-The `/delegate` command hands off tasks to the Copilot coding agent on GitHub:
+The `/delegate` command hands off tasks to the [Copilot coding agent on GitHub](https://docs.github.com/copilot/using-github-copilot/using-copilot-coding-agent-to-work-on-tasks). This is a powerful way to get work done in the cloud without leaving your terminal.
 
 ```bash
 copilot

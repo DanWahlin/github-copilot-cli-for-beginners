@@ -389,7 +389,7 @@ Each skill lives in its own folder with a `SKILL.md` file. You can optionally in
 └── my-skill/
     ├── SKILL.md           # Required: Skill definition and instructions
     ├── examples/          # Optional: Example files Copilot can reference
-    │   └── sample.ts
+    │   └── sample.py
     └── scripts/           # Optional: Scripts the skill can use
         └── validate.sh
 ```
