@@ -2,7 +2,7 @@
 
 > **What if the AI could find bugs you didn't even know to ask about?**
 
-In this chapter, GitHub Copilot CLI becomes your daily driver. You'll learn how to leverage Copilot CLI in the workflows you'll use constantly already, such as testing, refactoring, debugging, and git.
+In this chapter, GitHub Copilot CLI becomes your daily driver. You’ll use it inside the workflows you already rely on every day: testing, refactoring, debugging, and Git.
 
 ## Learning Objectives
 
@@ -33,7 +33,7 @@ Similarly, developers have workflows for different tasks. GitHub Copilot CLI enh
 
 ### Programming Workflows
 
-Here are five commonly used workflows in programming that you can use in the order you need. We'll see how Copilot CLI can help us upgrade them.
+Here are five commonly used workflows in programming that you can use in the order you need. You'll see how GitHub Copilot CLI can help us upgrade them.
 
 <img src="images/five-workflows-swimlane.png" alt="Five Development Workflows: Code Review, Refactoring, Debugging, Test Generation, and Git Integration shown as horizontal swimlanes" width="800"/>
 
@@ -80,7 +80,7 @@ copilot
 
 ### Interactive Code Review
 
-Use a multi-turn conversation to drill deeper — start with a broad review, then ask follow-up questions without restarting.
+Use a multi-turn conversation to drill deeper. Start with a broad review, then ask follow-up questions without restarting.
 
 ```bash
 copilot
@@ -156,7 +156,7 @@ copilot
 
 ### Simple Refactoring
 
-Start with straightforward improvements. Try these on the book app. Each prompt below uses an `@` file reference paired with a specific refactoring instruction so Copilot knows exactly what to change.
+Start with straightforward improvements. Try these on the book app. Each prompt uses an `@` file reference paired with a specific refactoring instruction so Copilot knows exactly what to change.
 
 ```bash
 copilot
@@ -219,7 +219,7 @@ copilot
 
 ### Safe Refactoring with Tests
 
-Chain two related requests in a multi-turn conversation — first generate tests, then refactor with those tests as a safety net.
+Chain two related requests in a multi-turn conversation. First generate tests, then refactor with those tests as a safety net.
 
 ```bash
 copilot
@@ -259,7 +259,7 @@ copilot
 
 ### The "Bug Detective" - AI Finds RELATED Bugs
 
-This is where context-aware debugging shines. Try this scenario with the buggy book app. Provide the whole file via `@` and describe only the user-reported symptom — Copilot will trace the root cause and may spot additional bugs nearby.
+This is where context-aware debugging shines. Try this scenario with the buggy book app. Provide the whole file via `@` and describe only the user-reported symptom. Copilot will trace the root cause and may spot additional bugs nearby.
 
 ```bash
 copilot
@@ -302,7 +302,7 @@ return [b for b in self.books if author.lower() in b.author.lower()]
 
 ### Real-World Security Sidebar
 
-While debugging your own code is important, understanding security vulnerabilities in production applications is critical. Try this example — point Copilot at an unfamiliar file and ask it to audit for security issues.
+While debugging your own code is important, understanding security vulnerabilities in production applications is critical. Try this example: Point Copilot at an unfamiliar file and ask it to audit for security issues.
 
 ```bash
 copilot
@@ -378,9 +378,9 @@ copilot
 Manually writing tests, developers typically create 2-3 basic tests:
 - Test valid input
 - Test invalid input
-- Maybe one edge case
+- Test an edge case
 
-Watch what happens when you ask Copilot — this prompt uses a structured bullet list with an `@` file reference to guide Copilot toward thorough test coverage:
+Watch what happens when you ask Copilot to generate comprehensive tests! This prompt uses a structured bullet list with an `@` file reference to guide Copilot toward thorough test coverage:
 
 ```bash
 copilot
@@ -458,7 +458,7 @@ copilot
 
 ### Running Tests
 
-Ask Copilot a plain-English question about your toolchain — it can generate the right shell command for you.
+Ask Copilot a plain-English question about your toolchain. It can generate the right shell command for you.
 
 ```bash
 copilot
