@@ -142,8 +142,8 @@ Common pattern: Read from JSON → Work with Python objects → Write back to JS
 Need a function you'd otherwise spend 15 minutes googling? Still in your session:
 
 ```
-> Write a Python function that takes a list of books and returns statistics:
-> total count, number read, number unread, oldest and newest book
+> Write a Python function that takes a list of books and returns statistics: 
+  total count, number read, number unread, oldest and newest book
 ```
 
 <details>
