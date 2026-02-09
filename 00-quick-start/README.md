@@ -16,7 +16,7 @@ By the end of this chapter, you'll have:
 
 ## Prerequisites
 
-- **GitHub Account** with Copilot access. [See subscription options](https://github.com/features/copilot/plans)). Students/Teachers can access copilot [free via GitHub Education](https://education.github.com/pack).
+- **GitHub Account** with Copilot access. [See subscription options](https://github.com/features/copilot/plans)). Students/Teachers can access Copilot Pro for [free via GitHub Education](https://education.github.com/pack).
 - **Terminal basics**: Comfortable with commands like `cd` and `ls`
 - **[Python 3.10+](https://www.python.org/downloads/)**: Used to run the sample book app used throughout this course. If you don't have Python, the Codespaces option below includes it pre-installed.
 
@@ -182,6 +182,7 @@ curl -fsSL https://gh.io/copilot-install | bash
 ### "You don't have access to GitHub Copilot"
 
 1. Verify you have a Copilot subscription at [github.com/settings/copilot](https://github.com/settings/copilot)
+2. Check your subscription tier. Copilot CLI is not avaialbe with the GitHub Copilot's free personal tier. [Checkout Pro and Pro+ tiers to gain access](https://github.com/features/copilot/plans). 
 2. Check that your organization permits CLI access if using a work account
 
 ### "Authentication failed"
