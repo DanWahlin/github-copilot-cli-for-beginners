@@ -2,7 +2,7 @@
 
 > **What if the AI could find bugs you didn't even know to ask about?**
 
-In this chapter, GitHub Copilot CLI becomes your daily driver. You’ll use it inside the workflows you already rely on every day: testing, refactoring, debugging, and Git.
+In this chapter, GitHub Copilot CLI becomes your daily driver. You'll use it inside the workflows you already rely on every day: testing, refactoring, debugging, and Git.
 
 ## Learning Objectives
 
@@ -18,32 +18,35 @@ By the end of this chapter, you'll be able to:
 
 ---
 
-## Real-World Analogy: Master Craftsman's Workflow
+## Real-World Analogy: A Carpenter's Workflow
 
-A master carpenter doesn't just know how to use tools - they have *workflows* for different jobs:
+A carpenter doesn't just know how to use tools, they have *workflows* for different jobs:
 
-| Job | Workflow |
-|-----|----------|
-| Building furniture | Measure → Cut → Assemble → Finish |
-| Fixing damage | Assess → Remove → Repair → Match |
-| Quality check | Inspect → Test joints → Check alignment |
+<img src="images/carpenter-workflow-steps.png" alt="Craftsman workshop showing three workflow lanes: Building Furniture (Measure, Cut, Assemble, Finish), Fixing Damage (Assess, Remove, Repair, Match), and Quality Check (Inspect, Test Joints, Check Alignment)" width="800"/>
 
-Similarly, developers have workflows for different tasks. GitHub Copilot CLI enhances each one.
+Similarly, developers have workflows for different tasks. GitHub Copilot CLI enhances each of these workflows, making you more efficient and effective in your daily coding tasks.
 
 
-### Programming Workflows
+## Choose Your Own Adventure
 
-Here are five commonly used workflows in programming that you can use in the order you need. You'll see how GitHub Copilot CLI can help us upgrade them.
+This chapter covers five workflows that developers typically use. However, you don't need to read them all at once! Each workflow is self-contained in a collapsible section below. Pick the ones that match what you need and that fits best with your current project. You can always come back and explore the others later.
 
 <img src="images/five-workflows-swimlane.png" alt="Five Development Workflows: Code Review, Refactoring, Debugging, Test Generation, and Git Integration shown as horizontal swimlanes" width="800"/>
 
-*Each workflow follows a clear progression of steps, all enhanced by GitHub Copilot CLI*
+| I want to... | Jump to |
+|---|---|
+| Review code before merging | [Workflow 1: Code Review](#workflow-1-code-review) |
+| Clean up messy or legacy code | [Workflow 2: Refactoring](#workflow-2-refactoring) |
+| Track down and fix a bug | [Workflow 3: Debugging](#workflow-3-debugging) |
+| Generate tests for my code | [Workflow 4: Test Generation](#workflow-4-test-generation) |
+| Write better commits and PRs | [Workflow 5: Git Integration](#workflow-5-git-integration) |
+| See a full bug-fix workflow end to end | [Putting It All Together](#putting-it-all-together-bug-fix-workflow) |
 
 ---
 
-## Workflow 1: Code Review
-
-
+<a id="workflow-1-code-review"></a>
+<details>
+<summary><strong>Workflow 1: Code Review</strong> — Review files, use the /review agent, create severity checklists</summary>
 
 <img src="images/code-review-swimlane-single.png" alt="Code review workflow: review, identify issues, prioritize, generate checklist." width="800"/>
 
@@ -149,9 +152,14 @@ copilot
 
 > 💡 **Tip**: The code-review agent works best when you have pending changes. Stage your files with `git add` for more focused reviews.
 
+</details>
+
 ---
 
-## Workflow 2: Refactoring
+<a id="workflow-2-refactoring"></a>
+<details>
+<summary><strong>Workflow 2: Refactoring</strong> — Restructure code, separate concerns, improve error handling</summary>
+
 <img src="images/refactoring-swimlane-single.png" alt="Refactoring workflow: assess code, plan changes, implement, verifiy behavrior." width="800"/>
 
 ### Simple Refactoring
@@ -233,9 +241,14 @@ copilot
 # Refactor with confidence - tests verify behavior is preserved
 ```
 
+</details>
+
 ---
 
-## Workflow 3: Debugging
+<a id="workflow-3-debugging"></a>
+<details>
+<summary><strong>Workflow 3: Debugging</strong> — Track down bugs, security audits, trace issues across files</summary>
+
 <img src="images/debugging-swimlane-single.png" alt="Debugging workflow: understand error, locate root cause, fix, test." width="800"/>
 
 ### Simple Debugging
@@ -368,9 +381,14 @@ copilot
 > Sometimes the JSON file gets corrupted and the app crashes. How should we handle this gracefully?
 ```
 
+</details>
+
 ---
 
-## Workflow 4: Test Generation
+<a id="workflow-4-test-generation"></a>
+<details>
+<summary><strong>Workflow 4: Test Generation</strong> — Generate comprehensive tests and edge cases automatically</summary>
+
 <img src="images/test-gen-swimlane-single.png" alt="Test Generationg workflow: analyze function, generate tests, include edge cases, run." width="800"/>
 
 ### The "Test Explosion" - 2 Tests vs 15+ Tests
@@ -501,9 +519,13 @@ copilot
 > - Author name with accented characters
 ```
 
+</details>
+
 ---
 
-## Workflow 5: Git Integration
+<a id="workflow-5-git-integration"></a>
+<details>
+<summary><strong>Workflow 5: Git Integration</strong> — Commit messages, PR descriptions, /delegate, and /diff</summary>
 
 <img src="images/git-integration-swimlane-single.png" alt="Git Integreation workflow: stage changes, generate message, commit, create PR." width="800"/>
 
@@ -596,6 +618,8 @@ copilot
 # Shows a visual diff of all files modified in this session
 # Great for reviewing before committing
 ```
+
+</details>
 
 ---
 
@@ -711,9 +735,9 @@ copilot
 
 ### Bonus Challenge: Create an application with the Copilot CLI
 
-> 💡 **Note**: This GitHub Skills exercise uses **Node.js** (not Python). It's included because the CLI techniques you'll practice - creating issues, generating code, and collaborating from the terminal - apply to any language.
+> 💡 **Note**: This GitHub Skills exercise uses **Node.js** rather than Python. The GitHub Copilot CLI techniques you'll practice - creating issues, generating code, and collaborating from the terminal - apply to any language.
 
-This quick exercise shows developers how to use GitHub Copilot CLI to create issues, generate code, and collaborate from the terminal while building a Node.js calculator app. You will install the CLI, use templates and agents, and practice iterative, command-line driven development in under an hour.
+The exercise shows developers how to use GitHub Copilot CLI to create issues, generate code, and collaborate from the terminal while building a Node.js calculator app. You'll install the CLI, use templates and agents, and practice iterative, command-line driven development.
 
 ##### <img src="../images/github-skills-logo.png" width="28" align="center" /> [Start the "Create applications with the Copilot CLI" Skills Exercise](https://github.com/skills/create-applications-with-the-copilot-cli)
 
@@ -766,6 +790,8 @@ copilot
 ---
 
 ## Key Takeaways
+
+<img src="images/specialized-workflows.png" alt="Specialized Workflows for Every Task: Code Review, Refactoring, Debugging, Testing, and Git Integration" width="800"/>
 
 1. **Code review** becomes comprehensive with specific prompts
 2. **Refactoring** is safer when you generate tests first
