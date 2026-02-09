@@ -182,7 +182,6 @@ curl -fsSL https://gh.io/copilot-install | bash
 ### "You don't have access to GitHub Copilot"
 
 1. Verify you have a Copilot subscription at [github.com/settings/copilot](https://github.com/settings/copilot)
-2. Check your subscription tier. Copilot CLI is not available with the GitHub Copilot's free personal tier. [Checkout Pro and Pro+ tiers to gain access](https://github.com/features/copilot/plans). 
 2. Check that your organization permits CLI access if using a work account
 
 ### "Authentication failed"

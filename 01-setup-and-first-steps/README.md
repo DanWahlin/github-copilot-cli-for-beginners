@@ -309,9 +309,6 @@ Proceed with implementation? [Y/n]
 Use the `-p` flag for one-time commands that don't need interaction:
 
 ```bash
-# Analyze code
-copilot -p "List all functions in @samples/book-app-project/book_app.py"
-
 # Generate code
 copilot -p "Write a function that checks if a number is even or odd"
 
@@ -461,6 +458,8 @@ copilot
 
 ### Example 1: Interactive Exploration
 
+Start Copilot and use follow-up prompts to iteratively improve the book app:
+
 ```bash
 copilot
 
@@ -475,6 +474,8 @@ copilot
 
 ### Example 2: Plan a Feature
 
+Use `/plan` to have Copilot map out an implementation before writing any code:
+
 ```bash
 copilot
 
@@ -487,14 +488,28 @@ copilot
 
 ### Example 3: Automate with Programmatic Mode
 
-```bash
+The `-p` flag lets you run Copilot directly from your terminal without entering interactive mode. Copy and paste the following script into your terminal (not inside Copilot) from the repository root to review all Python files in the book app.
 
+```bash
 # Review all Python files in the book app
 for file in samples/book-app-project/*.py; do
   echo "Reviewing $file..."
-  copilot -p "Quick code quality review of @$file - critical issues only"
+  copilot --allow-all -p "Quick code quality review of @$file - critical issues only"
 done
 ```
+
+**PowerShell (Windows):**
+
+```powershell
+# Review all Python files in the book app
+Get-ChildItem samples/book-app-project/*.py | ForEach-Object {
+  $relativePath = "samples/book-app-project/$($_.Name)";
+  Write-Host "Reviewing $relativePath...";
+  copilot --allow-all -p "Quick code quality review of @$relativePath - critical issues only" 
+}
+```
+
+> ⚠️ **About `--allow-all`**: This flag skips all permission prompts, letting Copilot read files, run commands, and access URLs without asking first. This is necessary for programmatic mode (`-p`) since there's no interactive session to approve actions. Only use `--allow-all` with prompts you've written yourself and in directories you trust. Never use it with untrusted input or in sensitive directories.
 
 ---
 
@@ -506,7 +521,7 @@ After completing the demos, try these variations:
 
 2. **Plan Mode Challenge**: Run `/plan Add rating and review features to the book app`. Read the plan carefully. Does it make sense?
 
-3. **Programmatic Challenge**: Run `copilot -p "List all functions in @samples/book-app-project/book_app.py and describe what each does"`. Did it work on the first try?
+3. **Programmatic Challenge**: Run `copilot --allow-all -p "List all functions in @samples/book-app-project/book_app.py and describe what each does"`. Did it work on the first try?
 
 ---
 
@@ -550,7 +565,7 @@ The examples used `/plan` for a search feature and `-p` for batch reviews. Now t
 
 1. **Interactive**: `copilot` → ask it to design and build the method step by step
 2. **Plan**: `/plan Add a list_by_year(start, end) method to BookCollection that filters books by publication year range`
-3. **Programmatic**: `copilot -p "@samples/book-app-project/books.py Add a list_by_year(start, end) method that returns books published between start and end year inclusive"`
+3. **Programmatic**: `copilot --allow-all -p "@samples/book-app-project/books.py Add a list_by_year(start, end) method that returns books published between start and end year inclusive"`
 
 **Reflection**: Which mode felt most natural? When would you use each?
 
