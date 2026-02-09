@@ -49,6 +49,8 @@ Here are five commonly used workflows in programming that you can use in the ord
 
 ### Basic Review
 
+This example uses the `@` symbol to reference a file, giving Copilot direct access to its contents for review.
+
 ```bash
 copilot
 
@@ -57,6 +59,7 @@ copilot
 
 ### Input Validation Review
 
+Ask Copilot to focus its review on a specific concern — here, input validation — by listing the categories you care about in the prompt.
 
 ```text
 copilot
@@ -67,6 +70,8 @@ copilot
 
 ### Cross-File Project Review
 
+Reference an entire directory with `@` to let Copilot scan every file in the project at once.
+
 ```bash
 copilot
 
@@ -74,6 +79,8 @@ copilot
 ```
 
 ### Interactive Code Review
+
+Use a multi-turn conversation to drill deeper — start with a broad review, then ask follow-up questions without restarting.
 
 ```bash
 copilot
@@ -95,6 +102,8 @@ copilot
 ```
 
 ### Review Checklist Template
+
+Ask Copilot to structure its output in a specific format — here, a severity-categorized markdown checklist you can paste into an issue.
 
 ```bash
 copilot
@@ -125,7 +134,7 @@ git diff --staged    # Shows staged changes
 
 ### Using the /review Command
 
-The `/review` command invokes the built-in **code-review agent**, which is optimized for analyzing staged and unstaged changes with high signal-to-noise output:
+The `/review` command invokes the built-in **code-review agent**, which is optimized for analyzing staged and unstaged changes with high signal-to-noise output. Use a slash command to trigger a specialized built-in agent instead of writing a free-form prompt.
 
 ```bash
 copilot
@@ -147,7 +156,7 @@ copilot
 
 ### Simple Refactoring
 
-Start with straightforward improvements. Try these on the book app:
+Start with straightforward improvements. Try these on the book app. Each prompt below uses an `@` file reference paired with a specific refactoring instruction so Copilot knows exactly what to change.
 
 ```bash
 copilot
@@ -160,6 +169,8 @@ copilot
 > 💡 **New to refactoring?** Start with simple requests like adding type hints or improving variable names before tackling complex transformations.
 
 ### Separate Concerns
+
+Reference multiple files with `@` in a single prompt so Copilot can move code between them as part of the refactor.
 
 ```bash
 copilot
@@ -183,6 +194,8 @@ copilot
 
 ### Improve Error Handling
 
+Provide two related files and describe the cross-cutting concern so Copilot can suggest a consistent fix across both.
+
 ```bash
 copilot
 
@@ -191,6 +204,8 @@ copilot
 ```
 
 ### Add Documentation
+
+Use a detailed bullet list to specify exactly what each docstring should contain.
 
 ```bash
 copilot
@@ -203,6 +218,8 @@ copilot
 ```
 
 ### Safe Refactoring with Tests
+
+Chain two related requests in a multi-turn conversation — first generate tests, then refactor with those tests as a safety net.
 
 ```bash
 copilot
@@ -223,7 +240,7 @@ copilot
 
 ### Simple Debugging
 
-Start by describing what's wrong. Here are common debugging patterns you can try with the buggy book app:
+Start by describing what's wrong. Here are common debugging patterns you can try with the buggy book app. Each prompt pairs an `@` file reference with a clear symptom description so Copilot can locate and diagnose the bug.
 
 ```bash
 copilot
@@ -242,7 +259,7 @@ copilot
 
 ### The "Bug Detective" - AI Finds RELATED Bugs
 
-This is where context-aware debugging shines. Try this scenario with the buggy book app:
+This is where context-aware debugging shines. Try this scenario with the buggy book app. Provide the whole file via `@` and describe only the user-reported symptom — Copilot will trace the root cause and may spot additional bugs nearby.
 
 ```bash
 copilot
@@ -285,7 +302,7 @@ return [b for b in self.books if author.lower() in b.author.lower()]
 
 ### Real-World Security Sidebar
 
-While debugging your own code is important, understanding security vulnerabilities in production applications is critical. Try this example:
+While debugging your own code is important, understanding security vulnerabilities in production applications is critical. Try this example — point Copilot at an unfamiliar file and ask it to audit for security issues.
 
 ```bash
 copilot
@@ -305,6 +322,8 @@ This file demonstrates real-world security patterns you'll encounter in producti
 
 ### Understanding an Error
 
+Paste a stack trace directly into your prompt along with an `@` file reference so Copilot can map the error to the source code.
+
 ```bash
 copilot
 
@@ -317,6 +336,8 @@ copilot
 
 ### Debugging with Test Case
 
+Describe the exact input and observed output to give Copilot a concrete, reproducible test case to reason about.
+
 ```bash
 copilot
 
@@ -325,6 +346,8 @@ copilot
 ```
 
 ### Trace an Issue Through Code
+
+Reference multiple files and ask Copilot to follow the data flow across them to locate where the issue originates.
 
 ```bash
 copilot
@@ -335,6 +358,8 @@ copilot
 ```
 
 ### Understanding Data Issues
+
+Include a data file alongside the code that reads it so Copilot understands the full picture when suggesting error-handling improvements.
 
 ```bash
 copilot
@@ -355,7 +380,7 @@ Manually writing tests, developers typically create 2-3 basic tests:
 - Test invalid input
 - Maybe one edge case
 
-Watch what happens when you ask Copilot:
+Watch what happens when you ask Copilot — this prompt uses a structured bullet list with an `@` file reference to guide Copilot toward thorough test coverage:
 
 ```bash
 copilot
@@ -418,6 +443,8 @@ class TestBookCollection:
 
 ### Unit Tests
 
+Target a single function and enumerate the input categories you want tested so Copilot generates focused, thorough unit tests.
+
 ```bash
 copilot
 
@@ -430,6 +457,8 @@ copilot
 ```
 
 ### Running Tests
+
+Ask Copilot a plain-English question about your toolchain — it can generate the right shell command for you.
 
 ```bash
 copilot
@@ -444,6 +473,8 @@ copilot
 
 ### Test for Specific Scenarios
 
+List advanced or tricky scenarios you want covered so Copilot goes beyond the happy path.
+
 ```bash
 copilot
 
@@ -456,6 +487,8 @@ copilot
 ```
 
 ### Add Tests to Existing File
+
+Ask for *additional* tests for a single function so Copilot generates new cases that complement what you already have.
 
 ```bash
 copilot
@@ -476,6 +509,8 @@ copilot
 
 ### Generate Commit Messages
 
+This example uses the `-p` inline prompt flag with shell command substitution (`$(...)`) to pipe `git diff` output directly into Copilot for a one-shot commit message.
+
 ```bash
 
 # See what changed
@@ -494,12 +529,16 @@ copilot -p "Generate a conventional commit message for: $(git diff --staged)"
 
 ### Explain Changes
 
+Pipe the output of `git show` into a `-p` prompt to get a plain-English summary of the last commit.
+
 ```bash
 # What did this commit change?
 copilot -p "Explain what this commit does: $(git show HEAD --stat)"
 ```
 
 ### PR Description
+
+Combine `git log` output with a structured prompt template to auto-generate a complete pull request description.
 
 ```bash
 # Generate PR description from branch changes
@@ -515,6 +554,8 @@ Include:
 
 ### Review Before Push
 
+Use `git diff main..HEAD` inside a `-p` prompt for a quick pre-push sanity check across all branch changes.
+
 ```bash
 # Last check before pushing
 copilot -p "Review these changes for issues before I push:
@@ -523,7 +564,7 @@ $(git diff main..HEAD)"
 
 ### Using /delegate for Background Tasks
 
-The `/delegate` command hands off work to the Copilot coding agent on GitHub:
+The `/delegate` command hands off work to the Copilot coding agent on GitHub. Use the `/delegate` slash command (or the `&` shortcut) to offload a well-defined task to a background agent.
 
 ```bash
 copilot
@@ -544,7 +585,7 @@ This is great for well-defined tasks you want completed while you focus on other
 
 ### Using /diff to Review Session Changes
 
-The `/diff` command shows all changes made during your current session:
+The `/diff` command shows all changes made during your current session. Use this slash command to see a visual diff of everything Copilot has modified before you commit.
 
 ```bash
 copilot
