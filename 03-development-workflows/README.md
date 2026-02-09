@@ -2,7 +2,7 @@
 
 > **What if the AI could find bugs you didn't even know to ask about?**
 
-In this chapter, GitHub Copilot CLI becomes your daily driver. You'll learn the workflows you'll use constantly: running comprehensive code reviews, refactoring legacy code safely, debugging issues with AI assistance, generating tests automatically, and integrating Copilot with your git workflow. The "Bug Detective" demo shows AI finding related bugs you didn't even ask about. That's when it gets truly impressive.
+In this chapter, GitHub Copilot CLI becomes your daily driver. You’ll use it inside the workflows you already rely on every day: testing, refactoring, debugging, and Git.
 
 ## Learning Objectives
 
@@ -30,13 +30,10 @@ A master carpenter doesn't just know how to use tools - they have *workflows* fo
 
 Similarly, developers have workflows for different tasks. GitHub Copilot CLI enhances each one.
 
-> 💡 **Important**: The workflows below are **independent tools**, not a mandatory sequence. Use whichever workflow fits your current task. You might do code review without debugging, or jump straight to test generation. There's no "correct" order.
->
-> **Test-first developers**: If you practice TDD (Test-Driven Development), you'd typically start with Workflow 4 (Test Generation), then implement code, then use Workflow 1 (Code Review).
 
-<img src="images/craftsman-workshop-analogy.png" alt="Specialized Workflows for Every Task" width="800"/>
+### Programming Workflows
 
-*The right tool for every development task: Code Review, Refactoring, Debugging, Testing, and Git Integration*
+Here are five commonly used workflows in programming that you can use in the order you need. You'll see how GitHub Copilot CLI can help us upgrade them.
 
 <img src="images/five-workflows-swimlane.png" alt="Five Development Workflows: Code Review, Refactoring, Debugging, Test Generation, and Git Integration shown as horizontal swimlanes" width="800"/>
 
@@ -46,7 +43,13 @@ Similarly, developers have workflows for different tasks. GitHub Copilot CLI enh
 
 ## Workflow 1: Code Review
 
+
+
+<img src="images/code-review-swimlane-single.png" alt="Code review workflow: review, identify issues, prioritize, generate checklist." width="800"/>
+
 ### Basic Review
+
+This example uses the `@` symbol to reference a file, giving Copilot direct access to its contents for review.
 
 ```bash
 copilot
@@ -56,13 +59,18 @@ copilot
 
 ### Input Validation Review
 
-```bash
+Ask Copilot to focus its review on a specific concern — here, input validation — by listing the categories you care about in the prompt.
+
+```text
 copilot
 
 > Review @samples/book-app-project/utils.py for input validation issues. Check for: missing validation, error handling gaps, and edge cases
 ```
 
+
 ### Cross-File Project Review
+
+Reference an entire directory with `@` to let Copilot scan every file in the project at once.
 
 ```bash
 copilot
@@ -71,6 +79,8 @@ copilot
 ```
 
 ### Interactive Code Review
+
+Use a multi-turn conversation to drill deeper. Start with a broad review, then ask follow-up questions without restarting.
 
 ```bash
 copilot
@@ -92,6 +102,8 @@ copilot
 ```
 
 ### Review Checklist Template
+
+Ask Copilot to structure its output in a specific format — here, a severity-categorized markdown checklist you can paste into an issue.
 
 ```bash
 copilot
@@ -122,7 +134,7 @@ git diff --staged    # Shows staged changes
 
 ### Using the /review Command
 
-The `/review` command invokes the built-in **code-review agent**, which is optimized for analyzing staged and unstaged changes with high signal-to-noise output:
+The `/review` command invokes the built-in **code-review agent**, which is optimized for analyzing staged and unstaged changes with high signal-to-noise output. Use a slash command to trigger a specialized built-in agent instead of writing a free-form prompt.
 
 ```bash
 copilot
@@ -140,10 +152,11 @@ copilot
 ---
 
 ## Workflow 2: Refactoring
+<img src="images/refactoring-swimlane-single.png" alt="Refactoring workflow: assess code, plan changes, implement, verifiy behavrior." width="800"/>
 
 ### Simple Refactoring
 
-Start with straightforward improvements. Try these on the book app:
+Start with straightforward improvements. Try these on the book app. Each prompt uses an `@` file reference paired with a specific refactoring instruction so Copilot knows exactly what to change.
 
 ```bash
 copilot
@@ -156,6 +169,8 @@ copilot
 > 💡 **New to refactoring?** Start with simple requests like adding type hints or improving variable names before tackling complex transformations.
 
 ### Separate Concerns
+
+Reference multiple files with `@` in a single prompt so Copilot can move code between them as part of the refactor.
 
 ```bash
 copilot
@@ -179,6 +194,8 @@ copilot
 
 ### Improve Error Handling
 
+Provide two related files and describe the cross-cutting concern so Copilot can suggest a consistent fix across both.
+
 ```bash
 copilot
 
@@ -187,6 +204,8 @@ copilot
 ```
 
 ### Add Documentation
+
+Use a detailed bullet list to specify exactly what each docstring should contain.
 
 ```bash
 copilot
@@ -199,6 +218,8 @@ copilot
 ```
 
 ### Safe Refactoring with Tests
+
+Chain two related requests in a multi-turn conversation. First generate tests, then refactor with those tests as a safety net.
 
 ```bash
 copilot
@@ -215,10 +236,11 @@ copilot
 ---
 
 ## Workflow 3: Debugging
+<img src="images/debugging-swimlane-single.png" alt="Debugging workflow: understand error, locate root cause, fix, test." width="800"/>
 
 ### Simple Debugging
 
-Start by describing what's wrong. Here are common debugging patterns you can try with the buggy book app:
+Start by describing what's wrong. Here are common debugging patterns you can try with the buggy book app. Each prompt pairs an `@` file reference with a clear symptom description so Copilot can locate and diagnose the bug.
 
 ```bash
 copilot
@@ -237,7 +259,7 @@ copilot
 
 ### The "Bug Detective" - AI Finds RELATED Bugs
 
-This is where context-aware debugging shines. Try this scenario with the buggy book app:
+This is where context-aware debugging shines. Try this scenario with the buggy book app. Provide the whole file via `@` and describe only the user-reported symptom. Copilot will trace the root cause and may spot additional bugs nearby.
 
 ```bash
 copilot
@@ -280,7 +302,7 @@ return [b for b in self.books if author.lower() in b.author.lower()]
 
 ### Real-World Security Sidebar
 
-While debugging your own code is important, understanding security vulnerabilities in production applications is critical. Try this example:
+While debugging your own code is important, understanding security vulnerabilities in production applications is critical. Try this example: Point Copilot at an unfamiliar file and ask it to audit for security issues.
 
 ```bash
 copilot
@@ -300,6 +322,8 @@ This file demonstrates real-world security patterns you'll encounter in producti
 
 ### Understanding an Error
 
+Paste a stack trace directly into your prompt along with an `@` file reference so Copilot can map the error to the source code.
+
 ```bash
 copilot
 
@@ -312,6 +336,8 @@ copilot
 
 ### Debugging with Test Case
 
+Describe the exact input and observed output to give Copilot a concrete, reproducible test case to reason about.
+
 ```bash
 copilot
 
@@ -320,6 +346,8 @@ copilot
 ```
 
 ### Trace an Issue Through Code
+
+Reference multiple files and ask Copilot to follow the data flow across them to locate where the issue originates.
 
 ```bash
 copilot
@@ -331,6 +359,8 @@ copilot
 
 ### Understanding Data Issues
 
+Include a data file alongside the code that reads it so Copilot understands the full picture when suggesting error-handling improvements.
+
 ```bash
 copilot
 
@@ -341,15 +371,16 @@ copilot
 ---
 
 ## Workflow 4: Test Generation
+<img src="images/test-gen-swimlane-single.png" alt="Test Generationg workflow: analyze function, generate tests, include edge cases, run." width="800"/>
 
 ### The "Test Explosion" - 2 Tests vs 15+ Tests
 
 Manually writing tests, developers typically create 2-3 basic tests:
 - Test valid input
 - Test invalid input
-- Maybe one edge case
+- Test an edge case
 
-Watch what happens when you ask Copilot:
+Watch what happens when you ask Copilot to generate comprehensive tests! This prompt uses a structured bullet list with an `@` file reference to guide Copilot toward thorough test coverage:
 
 ```bash
 copilot
@@ -412,6 +443,8 @@ class TestBookCollection:
 
 ### Unit Tests
 
+Target a single function and enumerate the input categories you want tested so Copilot generates focused, thorough unit tests.
+
 ```bash
 copilot
 
@@ -424,6 +457,8 @@ copilot
 ```
 
 ### Running Tests
+
+Ask Copilot a plain-English question about your toolchain. It can generate the right shell command for you.
 
 ```bash
 copilot
@@ -438,6 +473,8 @@ copilot
 
 ### Test for Specific Scenarios
 
+List advanced or tricky scenarios you want covered so Copilot goes beyond the happy path.
+
 ```bash
 copilot
 
@@ -450,6 +487,8 @@ copilot
 ```
 
 ### Add Tests to Existing File
+
+Ask for *additional* tests for a single function so Copilot generates new cases that complement what you already have.
 
 ```bash
 copilot
@@ -466,7 +505,11 @@ copilot
 
 ## Workflow 5: Git Integration
 
+<img src="images/git-integration-swimlane-single.png" alt="Git Integreation workflow: stage changes, generate message, commit, create PR." width="800"/>
+
 ### Generate Commit Messages
+
+This example uses the `-p` inline prompt flag with shell command substitution (`$(...)`) to pipe `git diff` output directly into Copilot for a one-shot commit message.
 
 ```bash
 
@@ -486,12 +529,16 @@ copilot -p "Generate a conventional commit message for: $(git diff --staged)"
 
 ### Explain Changes
 
+Pipe the output of `git show` into a `-p` prompt to get a plain-English summary of the last commit.
+
 ```bash
 # What did this commit change?
 copilot -p "Explain what this commit does: $(git show HEAD --stat)"
 ```
 
 ### PR Description
+
+Combine `git log` output with a structured prompt template to auto-generate a complete pull request description.
 
 ```bash
 # Generate PR description from branch changes
@@ -507,6 +554,8 @@ Include:
 
 ### Review Before Push
 
+Use `git diff main..HEAD` inside a `-p` prompt for a quick pre-push sanity check across all branch changes.
+
 ```bash
 # Last check before pushing
 copilot -p "Review these changes for issues before I push:
@@ -515,7 +564,7 @@ $(git diff main..HEAD)"
 
 ### Using /delegate for Background Tasks
 
-The `/delegate` command hands off work to the Copilot coding agent on GitHub:
+The `/delegate` command hands off work to the Copilot coding agent on GitHub. Use the `/delegate` slash command (or the `&` shortcut) to offload a well-defined task to a background agent.
 
 ```bash
 copilot
@@ -536,7 +585,7 @@ This is great for well-defined tasks you want completed while you focus on other
 
 ### Using /diff to Review Session Changes
 
-The `/diff` command shows all changes made during your current session:
+The `/diff` command shows all changes made during your current session. Use this slash command to see a visual diff of everything Copilot has modified before you commit.
 
 ```bash
 copilot

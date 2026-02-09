@@ -27,11 +27,10 @@ Imagine explaining a bug to a colleague:
 
 The second approach gets better help because your colleague can see exactly what you're talking about.
 
-GitHub Copilot CLI works the same way. The `@` syntax is how you point Copilot at specific files, giving it the context it needs to help effectively.
+GitHub Copilot CLI works the same way - *The `@` syntax is how you point Copilot at specific files, giving it the context it needs to help effectively.*
 
 <img src="images/colleague-context-analogy.png" alt="Context Makes the Difference - Without vs With Context" width="800"/>
 
-*The @ syntax gives Copilot the context it needs to help effectively*
 
 ---
 
