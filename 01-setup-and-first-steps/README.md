@@ -2,7 +2,7 @@
 
 > **Watch AI find bugs instantly, explain confusing code, and generate working scripts. Then learn three different ways to use Copilot.**
 
-This chapter is where the magic happens! You'll experience firsthand why developers describe Copilot CLI as having a senior engineer on speed dial. You'll watch AI find security bugs in seconds, get complex code explained in plain English, and generate working scripts instantly. Then you'll master the three interaction modes (Interactive, Plan, and Programmatic) so you know exactly which one to use for any task.
+This chapter is where the magic starts! You'll experience firsthand why developers describe Copilot CLI as having a senior engineer on speed dial. You'll watch AI find security bugs in seconds, get complex code explained in plain English, and generate working scripts instantly. Then you'll master the three interaction modes (Interactive, Plan, and Programmatic) so you know exactly which one to use for any task.
 
 > ⚠️ **Prerequisites**: Make sure you've completed **[Chapter 00: Quick Start](../00-quick-start/README.md)** first. You'll need GitHub Copilot CLI installed and authenticated before running the demos below.
 
@@ -12,7 +12,7 @@ By the end of this chapter, you'll be able to:
 
 - Experience why developers call this "having a senior engineer on speed dial"
 - Choose the right mode (Interactive, Plan, or Programmatic) for any task
-- Use essential slash commands to control your sessions
+- Use slash commands to control your sessions
 
 > ⏱️ **Estimated Time**: ~50 minutes (20 min reading + 30 min hands-on)
 
@@ -29,14 +29,16 @@ copilot
 Try these beginner-friendly prompts:
 
 ```
-> Explain what a REST API is in simple terms
+> Explain what a dataclass is in Python in simple terms
 
-> Write a function that reverses a string in Python
+> Write a function that sorts a list of dictionaries by a specific key
 
-> What's the difference between let and const in JavaScript?
+> What's the difference between a list and a tuple in Python?
 
-> Give me 5 best practices for writing clean code
+> Give me 5 best practices for writing clean Python code
 ```
+
+Don't use Python? No problem! Just ask questions about your language of choice.
 
 Notice how natural it feels. Just ask questions like you would to a colleague. When you're done exploring, type `/exit` to leave the session.
 
@@ -50,9 +52,9 @@ Now let's see why developers are calling this "having a senior engineer on speed
 
 > 💡 **About Example Outputs**: The sample outputs shown throughout this course are illustrative. Because Copilot's responses vary each time, your results will differ in wording, formatting, and detail. Focus on the *type* of information returned, not the exact text.
 
-### Demo 1: Security Scan in Seconds
+### Demo 1: Code Review in Seconds
 
-The course includes sample files with intentional bugs. Let's scan one:
+The course includes sample files with intentional code quality issues. Let's review one:
 
 ```bash
 # Clone the course repository (if you haven't already)
@@ -66,44 +68,21 @@ copilot
 Once inside the interactive session:
 
 ```
-> Review @samples/buggy-code/js/userService.js for security vulnerabilities
+> Review @samples/book-app-project/book_app.py for code quality issues and suggest improvements
 ```
 
-> 💡 **What's the `@`?** The `@` symbol tells Copilot to read a file. You'll learn all about this in Chapter 02 - for now, just copy the command exactly as shown.
+> 💡 **What's the `@`?** The `@` symbol tells Copilot to read a file. You'll learn all about this in Chapter 02. For now, just copy the command exactly as shown.
 
 <details>
 <summary>🎬 See it in action!</summary>
 
-![Security Scan Demo](images/security-scan-demo.gif)
+![Code Review Demo](images/code-review-demo.gif)
+
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
 
 </details>
 
-**What happens** (your output will look different - Copilot's responses vary each time):
-
-```
-Security Review: userService.js
-
-CRITICAL: SQL Injection (line 13)
-    Code: `SELECT * FROM users WHERE id = ${userId}`
-    Risk: Attacker can access/delete entire database
-    Fix: Use parameterized queries
-
-CRITICAL: SQL Injection (line 29)
-    Code: `UPDATE users SET name = '${data.name}'...`
-    Risk: Same vulnerability in update operation
-
-HIGH: Sensitive Data Logged (line 36)
-    Code: console.log(`Login attempt: ${email} / ${password}`)
-    Risk: Passwords visible in production logs
-
-HIGH: Hardcoded Secret (line 59)
-    Code: const JWT_SECRET = 'super-secret-key-12345'
-    Risk: Anyone with code access can forge JWT (JSON Web Token) authentication tokens
-
-Summary: 8 issues found (4 critical/high, 4 medium)
-```
-
-**The takeaway**: A professional security audit in seconds. Manual review would take...well...more time than that!
+**The takeaway**: A professional code review in seconds. Manual review would take...well...more time than that!
 
 ---
 
@@ -112,7 +91,7 @@ Summary: 8 issues found (4 critical/high, 4 medium)
 Ever stared at code wondering what it does? Try this in your Copilot session:
 
 ```
-> Explain this in simple terms: const debounce = (fn, ms) => { let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); }; }
+> Explain what @samples/book-app-project/books.py does in simple terms
 ```
 
 <details>
@@ -120,28 +99,38 @@ Ever stared at code wondering what it does? Try this in your Copilot session:
 
 ![Explain Code Demo](images/explain-code-demo.gif)
 
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+
 </details>
 
-**What happens**:
+**What happens**: (your output will differ) Copilot reads the file, understands the code, and explains it in plain English.
 
 ```
-This is a debounce function - it delays execution until activity stops.
+This is a book collection management module using Python dataclasses.
 
-Think of it like an elevator:
-- When someone presses a button, the elevator doesn't move immediately
-- It waits to see if more people are coming
-- Only after a pause (ms milliseconds) does it actually move
+Think of it like a digital bookshelf:
+- Book is a dataclass - a simple way to store book information (title, author, year, read status)
+- BookCollection manages the entire collection and handles saving/loading
 
-How it works:
-1. Takes a function (fn) and a delay time (ms)
-2. Returns a new function that wraps the original
-3. Each call resets the timer (clearTimeout)
-4. The original function only runs after the delay passes with no new calls
+Key components:
 
-Common uses:
-- Search boxes that wait until you stop typing
-- Window resize handlers that don't fire constantly
-- Auto-save that triggers after you pause editing
+1. @dataclass decorator (line 8)
+   - Automatically creates __init__, __repr__, etc.
+   - Clean way to define data structures in Python
+
+2. BookCollection class (line 16)
+   - Maintains a list of Book objects
+   - Handles persistence with JSON file I/O
+   - load_books() reads from data.json
+   - save_books() writes to data.json using asdict()
+
+3. Book operations:
+   - add_book() - creates and saves new books
+   - find_book_by_title() - searches collection
+   - mark_as_read() - updates read status
+   - find_by_author() - filters by author name
+
+Common pattern: Read from JSON → Work with Python objects → Write back to JSON
 ```
 
 **The takeaway**: Complex code explained like a patient mentor would explain it.
@@ -150,20 +139,23 @@ Common uses:
 
 ### Demo 3: Generate Working Code
 
-Need a script you'd otherwise spend 15 minutes googling? Still in your session:
+Need a function you'd otherwise spend 15 minutes googling? Still in your session:
 
 ```
-> Write a bash script that finds all files over 100MB and lists them by size
+> Write a Python function that takes a list of books and returns statistics:
+> total count, number read, number unread, oldest and newest book
 ```
 
 <details>
 <summary>🎬 See it in action!</summary>
 
-![Generate Script Demo](images/generate-script-demo.gif)
+![Generate Code Demo](images/generate-code-demo.gif)
+
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
 
 </details>
 
-**What happens**: A complete, working script in seconds that you can copy-paste-run.
+**What happens**: A complete, working function in seconds that you can copy-paste-run.
 
 When you're done exploring, exit the session:
 
@@ -179,32 +171,32 @@ You've just seen what Copilot CLI can do. Now let's understand *how* to use thes
 
 ---
 
-## Real-World Analogy: Learning to Drive
+## Real-World Analogy: Dining Out
 
-Think of GitHub Copilot CLI like a car with three driving modes:
+Think of using GitHub Copilot CLI like going out to eat. From planning the trip to placing your order, different situations call for different approaches:
 
-| Mode | Car Analogy | When to Use |
-|------|-------------|-------------|
-| **Interactive** | Rally driver with co-driver | Exploring, iterating, real-time guidance as you go |
-| **Plan** | GPS navigation | Complex tasks where you want to see the route first |
-| **Programmatic** | Self-driving car | Automation, scripts, CI/CD - set the destination and let it run |
+| Mode | Dining Analogy | When to Use |
+|------|----------------|-------------|
+| **Plan** | GPS route to the restaurant | Complex tasks - map out the route, review stops, agree on the plan, then drive |
+| **Interactive** | Talking to the waiter | Exploration and iteration - ask questions, customize, get real-time feedback |
+| **Programmatic** | Drive-through ordering | Quick, specific tasks - stay in your environment, get a result fast |
 
-Just like driving, you'll naturally learn when each mode feels right.
+Just like dining out, you'll naturally learn when each approach feels right.
 
-<img src="images/learning-to-drive-analogy.png" alt="Three Modes of GitHub Copilot CLI" width="800"/>
+<img src="images/ordering-food-analogy.png" alt="Three Ways to Use GitHub Copilot CLI - Plan Mode (GPS route to restaurant), Interactive Mode (talking to waiter), Programmatic Mode (drive-through)" width="800"/>
 
-*Choose your mode based on the task: Interactive for real-time collaboration, Plan for seeing the route first, Programmatic for hands-off automation*
+*Choose your mode based on the task: Plan for mapping it out first, Interactive for back-and-forth collaboration, Programmatic for quick one-shot results*
 
 ### Which Mode Should I Start With?
 
-**Start with Interactive mode.** It's the most forgiving and helps you learn:
+**Start with Interactive mode.** 
 - You can experiment and ask follow-up questions
 - Context builds naturally through conversation
 - Mistakes are easy to correct with `/clear`
 
 Once you're comfortable, try:
-- **Programmatic mode** (`-p`) for quick, one-off questions
-- **Plan mode** (`/plan`) when you need to think before coding
+- **Programmatic mode** (`copilot -p "<your prompt>"`) for quick, one-off questions
+- **Plan mode** (`/plan`) when you need to plan things out in more detail before coding
 
 ---
 
@@ -212,7 +204,9 @@ Once you're comfortable, try:
 
 ### Mode 1: Interactive Mode
 
-**Best for**: Exploration, iteration, multi-turn conversations
+<img src="images/interactive-mode.png" alt="Interactive Mode - Like talking to a waiter who can answer questions and adjust the order" width="250"/>
+
+**Best for**: Exploration, iteration, multi-turn conversations. Like talking to a waiter who can answer questions, take feedback, and adjust the order on the fly.
 
 Start an interactive session:
 
@@ -220,26 +214,10 @@ Start an interactive session:
 copilot
 ```
 
-You'll see a prompt where you can type naturally:
+As you've seen up to this point, you'll see a prompt where you can type naturally. To get help on available commands, just type:
 
 ```
 > /help
-
-Available commands:
-  /help     - Show this help message
-  /clear    - Clear conversation history
-  /model    - Show or change the AI model
-  /exit     - Exit the session
-
-> What's the best way to handle errors in async JavaScript?
-
-[Copilot explains try/catch, .catch(), and error boundaries]
-
-> Show me an example with fetch()
-
-[Copilot builds on the previous context to show a fetch example]
-
-> /exit
 ```
 
 **Key insight**: Interactive mode maintains context. Each message builds on previous ones, just like a real conversation.
@@ -249,10 +227,12 @@ Available commands:
 ```bash
 copilot
 
-# In the session:
-> Write a function that greets someone by name
-> Now make it return the greeting instead of printing it
-> Add a default name of "World" if no name is given
+> Review @samples/book-app-project/utils.py and suggest improvements
+
+> Add type hints to all functions
+
+> Make the error handling more robust
+
 > /exit
 ```
 
@@ -262,68 +242,70 @@ Notice how each prompt builds on the previous answer. You're having a conversati
 
 ### Mode 2: Plan Mode
 
-**Best for**: Complex tasks where you want to review the approach before execution
+<img src="images/plan-mode.png" alt="Plan Mode - Like planning a route before a trip using GPS" width="250"/>
 
-Plan mode shows you a step-by-step plan before writing any code. Use the `/plan` command or press **Shift+Tab** to toggle Plan Mode:
+**Best for**: Complex tasks where you want to review the approach before execution. Similar to planning a route before a trip using GPS.
+
+Plan mode helps you create a step-by-step plan before writing any code. Use the `/plan` command or press **Shift+Tab** to toggle Plan Mode:
 
 > 💡 **Tip**: **Shift+Tab** is a keyboard shortcut that toggles between regular mode and plan mode. Press it anytime during an interactive session to switch modes without typing a command.
 
 ```bash
 copilot
 
-> /plan Create a simple todo list program
+> /plan Add a "mark as read" command to the book app
 ```
 
-**Plan mode output:**
+**Plan mode output:** (your output may differ)
 
 ```
 📋 Implementation Plan
 
-Step 1: Create the data structure
-  - Array to store todo items
-  - Each item has: id, text, completed status
+Step 1: Update the command handler in book_app.py
+  - Add new elif branch for "mark" command
+  - Create handle_mark_as_read() function
 
-Step 2: Implement core functions
-  - addTodo(text) - Add a new item
-  - completeTodo(id) - Mark item as done
-  - listTodos() - Show all items
+Step 2: Implement the handler function
+  - Prompt user for book title
+  - Call collection.mark_as_read(title)
+  - Display success/failure message
 
-Step 3: Add display formatting
-  - Show ✓ for completed items
-  - Show numbered list
+Step 3: Update help text
+  - Add "mark" to available commands list
+  - Document the command usage
+
+Step 4: Test the flow
+  - Add a book
+  - Mark it as read
+  - Verify status changes in list output
 
 Proceed with implementation? [Y/n]
 ```
 
-**Key insight**: Plan mode lets you review and modify the approach before any code is written. You see exactly what Copilot will do before it does it.
+**Key insight**: Plan mode lets you review and modify the approach before any code is written. Once a plan is complete, you can even tell Copilot to save it to a file for later reference. For example, "Save this plan to `mark_as_read_plan.md`" would create a markdown file with the plan details.
 
-> 💡 **Want something more complex?** Try: `/plan Create a REST API for a blog` - Plan mode scales from simple scripts to full applications.
+> 💡 **Want something more complex?** Try: `/plan Add search and filter capabilities to the book app`. Plan mode scales from simple features to full applications.
 
 ---
 
 ### Mode 3: Programmatic Mode
 
-**Best for**: Automation, scripts, CI/CD, single-shot commands
+<img src="images/programmatic-mode.png" alt="Programmatic Mode - Like using a drive-through for a quick order" width="250"/>
+
+**Best for**: Automation, scripts, CI/CD, single-shot commands. Like using a drive-through for a quick order without needing to talk to a waiter.
 
 Use the `-p` flag for one-time commands that don't need interaction:
 
 ```bash
+# Analyze code
+copilot -p "List all functions in @samples/book-app-project/book_app.py"
+
 # Generate code
 copilot -p "Write a function that checks if a number is even or odd"
 
-# Explain something
-copilot -p "Explain what a for loop does"
-
 # Get quick help
-copilot -p "How do I read a file in Python?"
+copilot -p "How do I read a JSON file in Python?"
 ```
-
-<details>
-<summary>🎬 See it in action!</summary>
-
-![Programmatic Mode Demo](images/luhn-algorithm-demo.gif)
-
-</details>
 
 **Key insight**: Programmatic mode gives you a quick answer and exits. No conversation, just input → output.
 
@@ -340,7 +322,7 @@ COMMIT_MSG=$(copilot -p "Generate a commit message for: $(git diff --staged)")
 git commit -m "$COMMIT_MSG"
 
 # Review a file
-copilot -p "Review @myfile.js for issues"
+copilot -p "Review @myfile.py for issues"
 ```
 
 </details>
@@ -433,13 +415,13 @@ copilot
 > !git status
 # Runs git status directly, bypassing the AI
 
-> !npm test
-# Runs npm test directly
+> !python -m pytest tests/
+# Runs pytest directly
 ```
 
 ### The /delegate Command
 
-The `/delegate` command hands off tasks to the Copilot coding agent on GitHub:
+The `/delegate` command hands off tasks to the [Copilot coding agent on GitHub](https://docs.github.com/copilot/using-github-copilot/using-copilot-coding-agent-to-work-on-tasks). This is a powerful way to get work done in the cloud without leaving your terminal.
 
 ```bash
 copilot
@@ -470,11 +452,11 @@ copilot
 ```bash
 copilot
 
-> I'm building a Node.js API. What's the best way to structure the project?
+> Review @samples/book-app-project/book_app.py - what could be improved?
 
-> I want to use TypeScript. How does that change the structure?
+> Refactor the if/elif chain into a more maintainable structure
 
-> Create the initial folder structure and package.json for me
+> Add type hints to all the handler functions
 
 > /exit
 ```
@@ -484,7 +466,7 @@ copilot
 ```bash
 copilot
 
-> /plan Add user authentication with JWT to my Express app
+> /plan Add a search feature to the book app that can find books by title or author
 
 # Review the plan
 # Approve or modify
@@ -495,10 +477,10 @@ copilot
 
 ```bash
 
-# Review all JavaScript files in src/
-for file in src/*.js; do
+# Review all Python files in the book app
+for file in samples/book-app-project/*.py; do
   echo "Reviewing $file..."
-  copilot -p "Quick security review of @$file - critical issues only"
+  copilot -p "Quick code quality review of @$file - critical issues only"
 done
 ```
 
@@ -508,13 +490,11 @@ done
 
 After completing the demos, try these variations:
 
-1. **Interactive Challenge**: Start `copilot` and build a function that validates email addresses. Ask for improvements 3 times in a row.
+1. **Interactive Challenge**: Start `copilot` and explore the book app. Ask about `@samples/book-app-project/books.py` and request improvements 3 times in a row.
 
-2. **Plan Mode Challenge**: Run `/plan Create a REST API for a todo list using [Your_Language/Framework]`. Read the plan carefully - does it make sense?
+2. **Plan Mode Challenge**: Run `/plan Add rating and review features to the book app`. Read the plan carefully. Does it make sense?
 
-3. **Programmatic Challenge**: Run `copilot -p "Write a regex that matches phone numbers in format (XXX) XXX-XXXX"`. Did it work on the first try?
-
-**Self-Check**: You understand the three modes when you can explain when NOT to use interactive mode (hint: one-off questions are faster with `-p`).
+3. **Programmatic Challenge**: Run `copilot -p "List all functions in @samples/book-app-project/book_app.py and describe what each does"`. Did it work on the first try?
 
 ---
 
@@ -543,8 +523,8 @@ After completing the demos, try these variations:
 
 **Common issues:**
 - If Copilot asks clarifying questions, just answer them naturally
-- Use `/clear` if you want to start over
 - The context carries forward, so each prompt builds on the previous
+- Use `/clear` if you want to start over
 
 </details>
 
@@ -585,10 +565,10 @@ Try this same task in all three modes:
 
 ## Key Takeaways
 
-1. **Interactive mode** is for exploration and iteration - context carries forward
-2. **Plan mode** is for complex tasks - review before implementation
-3. **Programmatic mode** is for automation - no interaction needed
-4. **Four essential commands** (`/help`, `/clear`, `/plan`, `/exit`) cover most daily use
+1. **Interactive mode** is for exploration and iteration - context carries forward. It's like having a conversation with someone who remembers what you've said up to that point.
+2. **Plan mode** is normally for more involved tasks. Review before implementation.
+3. **Programmatic mode** is for automation. No interaction needed.
+4. **Four essential commands** (`/help`, `/clear`, `/plan`, `/exit`) cover most daily use.
 
 > 📋 **Quick Reference**: See the [Command Cheat Sheet](../QUICK-REFERENCE.md) for a complete list of commands and shortcuts.
 

@@ -45,12 +45,12 @@ Agent Skills are folders containing instructions, scripts, and resources that Co
 ```bash
 copilot
 
-> Review src/api/users.js for security issues
-# Copilot detects this matches your "security-audit" skill
-# and automatically applies its [OWASP](../GLOSSARY.md#owasp) checklist
+> Review books.py for code quality issues
+# Copilot detects this matches your "code-review" skill
+# and automatically applies its Python quality checklist
 
-> Generate tests for the login function
-# Copilot loads your "generate-tests" skill
+> Generate tests for the BookCollection class
+# Copilot loads your "pytest-gen" skill
 # and applies your preferred test structure
 
 > What are the code quality issues in this file?
@@ -75,7 +75,7 @@ While auto-triggering is the primary way skills work, you can also **invoke skil
 ```bash
 # Invoke a skill directly by name with your prompt
 > /generate-tests Create tests for the user authentication module
-> /code-review Check src/utils.js for security issues
+> /code-review Check books.py for code quality issues
 > /security-audit Review the API endpoints
 ```
 
@@ -193,9 +193,9 @@ copilot
 Or you write a long prompt every time:
 
 ```bash
-> Review this code checking for SQL injection, XSS, hardcoded secrets,
-> missing error handling, functions over 50 lines, console.log statements,
-> and make sure all async operations have try/catch blocks...
+> Review this code checking for bare except clauses, missing type hints,
+> mutable default arguments, missing context managers for file I/O,
+> functions over 50 lines, print statements in production code...
 ```
 
 Time: **30+ seconds** to type. Consistency: **varies by memory**.
@@ -207,35 +207,44 @@ With a `code-review` skill installed, just ask naturally:
 ```bash
 copilot
 
-> Review the authentication code for issues
+> Review the book collection code for issues
 ```
 
 **What happens behind the scenes**:
 1. Copilot sees "review" and "issues" in your prompt
 2. Checks skill descriptions, finds your `code-review` skill matches
-3. Automatically loads your team's 15-point checklist
+3. Automatically loads your team's Python quality checklist
 4. Applies all checks without you listing them
 
 **Output**:
 ```
-Code Review: src/auth/login.js
+Code Review: books.py
 
-[CRITICAL] SQL Injection (line 23)
-  Query uses string concatenation
-  Fix: Use parameterized queries
+[CRITICAL] Bare except clause (line 23)
+  Catching all exceptions hides bugs
+  Fix: Catch specific exceptions like FileNotFoundError
 
-[HIGH] Missing rate limiting
-  Login endpoint has no rate limiting
-  Fix: Add express-rate-limit middleware
+[HIGH] Missing type hints (line 45)
+  Public function lacks type annotations
+  Fix: Add type hints: def load_books(self) -> List[Book]:
 
-[MEDIUM] Console.log in production code (line 45)
-  Debug statement should be removed
+[MEDIUM] Print statement in production code (line 67)
+  Debug statement should be removed or use logging
 
-✅ Error handling: All async operations have try/catch
+✅ Context managers: File I/O uses proper with statements
 ✅ Function length: All functions under 50 lines
 ```
 
 **The difference**: Your team's standards are applied automatically, every time, without typing them out.
+
+<details>
+<summary>🎬 See skill auto-triggering in action!</summary>
+
+![Skill Trigger Demo](images/skill-trigger-demo.gif)
+
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+
+</details>
 
 ---
 
@@ -259,11 +268,12 @@ PR Review: feature/user-auth
 ## Security ✅
 - No hardcoded secrets
 - Input validation present
-- Parameterized queries used
+- No bare except clauses
 
 ## Code Quality ⚠️
-- [WARN] console.log on line 45 - remove before merge
+- [WARN] print statement on line 45 - remove before merge
 - [WARN] TODO on line 78 missing issue reference
+- [WARN] Missing type hints on public functions
 
 ## Testing ✅
 - New tests added
@@ -298,28 +308,13 @@ description: Use for security reviews, vulnerability scanning,
 Skills and agents work together. The agent provides expertise, the skill provides specific instructions:
 
 ```bash
-# Start with a backend agent
-copilot --agent backend
+# Start with a python-reviewer agent
+copilot --agent python-reviewer
 
-> Review the API endpoints for issues
-# Backend agent's Node.js/Express expertise combines
+> Review the book app for issues
+# python-reviewer agent's expertise combines
 # with your code-review skill's checklist
 ```
-
----
-
-## Skill Locations
-
-Skills are discovered from multiple locations. Project-specific skills take priority over global ones:
-
-| Location | Scope | Use Case |
-|----------|-------|----------|
-| `.github/skills/` | Project | Team standards, shared via git |
-| `.claude/skills/` | Project | Claude Code compatible skills |
-| `~/.copilot/skills/` | Global | Personal skills across all projects |
-| `~/.claude/skills/` | Global | Claude Code personal skills |
-
-**Pro tip**: Create project-specific skills in `.github/skills/` to share them with your team via git. They'll be version-controlled and available to everyone who clones the repo.
 
 ---
 
@@ -360,7 +355,9 @@ Location: ~/.copilot/skills/security-audit/
 <details>
 <summary>See it in action!</summary>
 
-![Skills List Demo](images/skills-list-demo.gif)
+![List Skills Demo](images/list-skills-demo.gif)
+
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
 
 </details>
 
@@ -392,7 +389,7 @@ Each skill lives in its own folder with a `SKILL.md` file. You can optionally in
 └── my-skill/
     ├── SKILL.md           # Required: Skill definition and instructions
     ├── examples/          # Optional: Example files Copilot can reference
-    │   └── sample.ts
+    │   └── sample.py
     └── scripts/           # Optional: Scripts the skill can use
         └── validate.sh
 ```
@@ -501,7 +498,7 @@ EOF
 # Test your skill (skills load automatically based on your prompt)
 copilot
 
-> @samples/src/api/ Check this code for security vulnerabilities
+> @samples/book-app-project/ Check this code for security vulnerabilities
 # Copilot detects "security vulnerabilities" matches your skill
 # and automatically applies its OWASP checklist
 ```
@@ -512,42 +509,43 @@ copilot
 
 Here are two examples showing different skill patterns. More examples are available in [samples/skills/](../samples/skills/).
 
-### Example 1: Test Generation Skill
+### Example 1: pytest Test Generation Skill
 
-A skill that ensures consistent test structure across your codebase:
+A skill that ensures consistent pytest structure across your codebase:
 
 ```bash
 # Create skill
-mkdir -p ~/.copilot/skills/generate-tests
+mkdir -p ~/.copilot/skills/pytest-gen
 
-cat > ~/.copilot/skills/generate-tests/SKILL.md << 'EOF'
+cat > ~/.copilot/skills/pytest-gen/SKILL.md << 'EOF'
 ---
-name: generate-tests
-description: Generate comprehensive unit tests with edge cases
+name: pytest-gen
+description: Generate comprehensive pytest tests with fixtures and edge cases
 ---
 
-# Test Generation
+# pytest Test Generation
 
-Generate unit tests that include:
+Generate pytest tests that include:
 
 ## Test Structure
-- Use describe/it blocks (Jest style)
+- Use pytest conventions (test_ prefix)
 - One assertion per test when possible
 - Clear test names describing expected behavior
+- Use fixtures for setup/teardown
 
 ## Coverage
 - Happy path scenarios
-- Edge cases: null, undefined, empty strings
+- Edge cases: None, empty strings, empty lists
 - Boundary values
-- Error scenarios
+- Error scenarios with pytest.raises()
 
-## Mocking
-- Mock external dependencies
-- Mock API calls with realistic responses
-- Mock database operations
+## Fixtures
+- Use @pytest.fixture for reusable test data
+- Use tmpdir/tmp_path for file operations
+- Mock external dependencies with pytest-mock
 
 ## Output
-Provide complete, runnable test file.
+Provide complete, runnable test file with proper imports.
 EOF
 ```
 
@@ -571,13 +569,14 @@ Review code changes against team standards:
 ## Security Checklist
 - [ ] No hardcoded secrets or API keys
 - [ ] Input validation on all user data
-- [ ] SQL queries use parameterized statements
+- [ ] No bare except clauses
 - [ ] No sensitive data in logs
 
 ## Code Quality
 - [ ] Functions under 50 lines
-- [ ] No console.log/print statements
-- [ ] Error handling for all async operations
+- [ ] No print statements in production code
+- [ ] Type hints on public functions
+- [ ] Context managers for file I/O
 - [ ] No TODOs without issue references
 
 ## Testing
@@ -605,11 +604,11 @@ EOF
 After completing the demos, try these variations:
 
 1. **Skill Creation Challenge**: Create a `quick-review` skill that does a 3-point checklist:
-   - Security issues
-   - Missing error handling
+   - Bare except clauses
+   - Missing type hints
    - Unclear variable names
 
-   Test it by asking: "Do a quick review of userService.js"
+   Test it by asking: "Do a quick review of books.py"
 
 2. **Skill Comparison**: Time yourself writing a detailed security review prompt manually. Then just ask "Check for security issues in this file" and let your security-audit skill load automatically. How much time did the skill save?
 
@@ -637,9 +636,9 @@ After completing the demos, try these variations:
 <summary>💡 Hints (click to expand)</summary>
 
 **Not sure what to automate?** Here are beginner-friendly skill ideas:
+- **pytest-gen**: Generate consistent pytest tests
+- **code-review**: Check code against Python best practices
 - **commit-message**: Generate consistent commit messages
-- **code-review**: Check code against your team's standards
-- **readme-generator**: Create README files for new projects
 
 **Starter template** - Create `~/.copilot/skills/commit-message/SKILL.md`:
 
@@ -750,10 +749,10 @@ copilot
 3. **Compare with/without**: Try the same prompt with `--no-custom-instructions` to see the difference:
    ```bash
    # With skills
-   copilot -p "Review @file.js for security issues"
+   copilot -p "Review @file.py for security issues"
 
    # Without skills (baseline comparison)
-   copilot -p "Review @file.js for security issues" --no-custom-instructions
+   copilot -p "Review @file.py for security issues" --no-custom-instructions
    ```
 4. **Check for specific checks**: If your skill includes specific checks (like "functions over 50 lines"), see if those appear in the output
 

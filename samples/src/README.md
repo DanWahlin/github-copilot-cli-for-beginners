@@ -1,6 +1,8 @@
-# Sample Source Code
+# Sample Source Code (Legacy - Optional Reference)
 
-This folder contains sample source files used in the course examples, particularly in Chapter 02 (Context and Conversations). These are only samples and not intended to be a full running application.
+> **Note**: The primary sample for this course is the **Python book collection app** in `../book-app-project/`. These JS/React files are from an earlier version of the course and are kept as optional extra reference material for learners who want JS examples.
+
+This folder contains sample source files. These are only samples and not intended to be a full running application.
 
 ## Structure
 

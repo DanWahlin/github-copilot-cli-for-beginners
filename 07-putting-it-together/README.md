@@ -21,59 +21,59 @@ By the end of this chapter, you'll be able to:
 
 ## Idea to Merged PR in One Session
 
-This is the culmination of everything you've learned. Traditional development of a feature like "user favorites" takes 1-2 days. Watch what happens when you combine all your tools:
+This is the culmination of everything you've learned. Traditional development of a feature like "list unread books" takes hours. Watch what happens when you combine all your tools:
 
 ```bash
 copilot
 
-> I need to add a "favorites" feature for our React + Node.js app.
-> Users can add items to favorites, view their list, and remove items.
+> I need to add a "list unread" command to the book app that shows only
+> books where read is False. What files need to change?
 
 # Copilot creates high-level plan...
 
-# SWITCH TO BACKEND AGENT
+# SWITCH TO PYTHON-REVIEWER AGENT
 > /agent
-# Select "backend"
+# Select "python-reviewer"
 
-> Design the favorites API:
-> - Database schema
-> - REST endpoints
-> - Authorization rules
+> @samples/book-app-project/books.py Design a get_unread_books method.
+> What's the best approach?
 
-# Backend agent produces:
-# - PostgreSQL schema with foreign keys
-# - POST/GET/DELETE endpoints
-# - JWT ownership validation
+# Python-reviewer agent produces:
+# - Method signature and return type
+# - Filter implementation using list comprehension
+# - Edge case handling for empty collections
 
-# SWITCH TO FRONTEND AGENT
+# SWITCH TO PYTEST-HELPER AGENT
 > /agent
-# Select "frontend"
+# Select "pytest-helper"
 
-> Design React components for favorites:
-> - FavoriteButton (toggle on any item)
-> - FavoritesList (user's favorites page)
-> - FavoritesPage (route component)
+> @samples/book-app-project/tests/test_books.py Design test cases for
+> filtering unread books.
 
-# Frontend agent produces:
-# - TypeScript components with proper interfaces
-# - Optimistic updates for instant feedback
-# - Accessibility: keyboard nav, ARIA labels
+# Pytest-helper agent produces:
+# - Test cases for empty collections
+# - Test cases with mixed read/unread books
+# - Test cases with all books read
 
 # IMPLEMENT
-> Implement the backend API
-> Implement the frontend components
+> Add a get_unread_books method to BookCollection in books.py
+> Add a "list unread" command option in book_app.py
+> Update the help text in the show_help function
 
-# TEST (using your custom skill from Chapter 05, or just ask naturally)
-> Generate comprehensive tests for the favorites feature
+# TEST
+> Generate comprehensive tests for the new feature
 
 # SHIP
-> Create a pull request with title "Feature: Add user favorites"
+> /review
+> Create a pull request titled "Feature: Add list unread books command"
 ```
 
 <details>
 <summary>🎬 See it in action!</summary>
 
 ![Full Review Demo](images/full-review-demo.gif)
+
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
 
 </details>
 
@@ -103,40 +103,29 @@ That's what this chapter teaches: conducting your tools into a unified workflow.
 
 ## Start Here: Minimal Workflow (No Custom Setup Required)
 
-**This is the most important section.** You can build complete features using just the built-in features from Chapters 01-03:
+**This is the most important section.** The ["Idea to Merged PR"](#idea-to-merged-pr-in-one-session) example above uses agents and MCP for maximum power. But you can achieve the same result using just built-in features from Chapters 01-03:
 
-```bash
-copilot
-
-# 1. Understand the task
-> I need to add input validation to the login form. What's the best approach?
-
-# 2. Review existing code
-> @samples/src/auth/login.js What validation does this currently have?
-
-# 3. Plan the implementation
-> /plan Add email format validation and password strength checking
-
-# 4. Implement (after reviewing the plan)
-> Add email format validation using a regex pattern
-
-# 5. Generate tests
-> @samples/src/auth/login.js Generate Jest tests for the validation logic
-
-# 6. Review your changes
-> /review
-
-# 7. Generate commit message
-copilot -p "Generate commit message for: $(git diff --staged)"
+```
+1. Understand   →  Describe requirements, review existing code with @
+2. Plan         →  Use /plan to outline the approach
+3. Implement    →  Build the feature in interactive mode
+4. Test         →  Generate tests with a prompt
+5. Review       →  Use /review to check your changes
+6. Ship         →  Generate commit message with -p
 ```
 
-**This workflow uses only:**
-- Interactive mode (Chapter 01)
-- The `@` syntax for context (Chapter 02)
-- Built-in `/plan` and `/review` commands (Chapters 01 & 03)
-- Programmatic mode for commit messages (Chapter 01)
+**This uses only:** Interactive mode (Ch 01), `@` syntax (Ch 02), `/plan` and `/review` (Ch 01 & 03), and `-p` mode (Ch 01).
 
 **That's a complete feature workflow!** Everything below shows how to enhance this with agents, skills, and MCP - but you're already productive without them.
+
+<details>
+<summary>🎬 See the minimal workflow in action!</summary>
+
+![Minimal Workflow Demo](images/minimal-workflow-demo.gif)
+
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+
+</details>
 
 ---
 
@@ -177,12 +166,12 @@ The ["Idea to Merged PR"](#idea-to-merged-pr-in-one-session) example at the top 
 | Phase | What You Do | Tools Used |
 |-------|-------------|------------|
 | 1. **Understand** | Describe requirements, check existing code | Interactive mode, `@` syntax |
-| 2. **Design** | Switch to specialized agents for frontend/backend design | `/agent` |
+| 2. **Design** | Switch to specialized agents for design and test planning | `/agent` (python-reviewer, pytest-helper) |
 | 3. **Implement** | Build the feature with agent guidance | Interactive mode |
 | 4. **Test** | Generate comprehensive tests | Skills (auto-triggered) |
 | 5. **Ship** | Create PR with descriptive summary | MCP (GitHub) |
 
-Adapt the prompts to your tech stack - the phased approach works whether you're building in React, Angular, Python, or anything else.
+Adapt the prompts to your tech stack - the phased approach works whether you're building in Python, JavaScript, Go, or anything else.
 
 ---
 
@@ -194,37 +183,38 @@ Real-world bug fixing with full tool integration:
 copilot
 
 # PHASE 1: Understand the bug from GitHub (MCP provides this)
-> Get the details of issue #87
+> Get the details of issue #1
 
-# Learn: "Users report that search returns no results when
-# query contains special characters like & or +"
+# Learn: "find_by_author doesn't work with partial names"
 
 # PHASE 2: Find related code
-> Search for "search" in src/api/
-> Show me src/api/search.js
+> @samples/book-app-project/books.py Show me the find_by_author method
 
 # PHASE 3: Get expert analysis
 > /agent
-# Select "backend"
+# Select "python-reviewer"
 
-> Analyze this search endpoint for issues with special character handling
+> Analyze this method for issues with partial name matching
 
-# Agent identifies: Query string not being URL encoded
+# Agent identifies: Method uses exact equality instead of substring matching
 
 # PHASE 4: Research best practice
-> What are the best practices for JavaScript URL encoding?
+> What are the best practices for Python case-insensitive string matching?
 
 # PHASE 5: Fix with agent guidance
-> Implement the fix using encodeURIComponent
+> Implement the fix using lowercase comparison and 'in' operator
 
 # PHASE 6: Generate tests
-> Generate tests for the search endpoint with special characters
-> Include test cases: "test&value", "test+value", "test value"
+> /agent
+# Select "pytest-helper"
+
+> Generate pytest tests for find_by_author with partial matches
+> Include test cases: partial name, case variations, no matches
 
 # PHASE 7: Commit and PR
 > Generate a commit message for this fix
 
-> Create a pull request linking to issue #87
+> Create a pull request linking to issue #1
 ```
 
 ---
@@ -243,8 +233,8 @@ Set up automated code review on your commits:
 cat > .git/hooks/pre-commit << 'EOF'
 #!/bin/bash
 
-# Get staged files (JavaScript/TypeScript only)
-STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|jsx|tsx)$')
+# Get staged files (Python files only)
+STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.py$')
 
 if [ -n "$STAGED" ]; then
   echo "Running Copilot review on staged files..."
@@ -280,14 +270,14 @@ chmod +x .git/hooks/pre-commit
 Now every commit gets a quick security review:
 
 ```bash
-git add src/api/users.js
-git commit -m "Update user endpoint"
+git add samples/book-app-project/books.py
+git commit -m "Update book collection methods"
 
 # Output:
 # Running Copilot review on staged files...
-# Reviewing src/api/users.js...
-# Critical issues found in src/api/users.js:
-# - Line 23: SQL injection vulnerability
+# Reviewing samples/book-app-project/books.py...
+# Critical issues found in samples/book-app-project/books.py:
+# - Line 15: File path injection vulnerability in load_from_file
 #
 # Fix the issue and try again.
 ```
@@ -296,33 +286,43 @@ git commit -m "Update user endpoint"
 
 ## Workflow 4: Multi-Agent Feature Planning
 
-For features that touch both frontend and backend, use multiple agents:
+For features that require design and testing, use multiple agents:
 
 ```bash
 copilot
 
-> I need to add a "contact us" form to my application
+> I need to add an "export to CSV" feature to the book app
 
-# Get UI design from frontend agent
+# Get design from python-reviewer agent
 > /agent
-# Select "frontend"
+# Select "python-reviewer"
 
-> Design a contact form component:
-> - Name, email, and message fields
-> - Validation and error display
-> - Submit button with loading state
+> Design the export feature:
+> - File format and structure
+> - Error handling for file I/O
+> - Edge cases (empty collection, special characters)
 
-# Get API design from backend agent
+# Python-reviewer agent produces:
+# - CSV structure with headers
+# - Using csv.DictWriter for safety
+# - Exception handling recommendations
+
+# Get test design from pytest-helper agent
 > /agent
-# Select "backend"
+# Select "pytest-helper"
 
-> Design the contact form API:
-> - What endpoint do we need?
-> - How should we validate input?
-> - How should we handle errors?
+> Design test cases for the CSV export feature:
+> - What should we test?
+> - What fixtures do we need?
+> - What edge cases should we cover?
+
+# Pytest-helper agent produces:
+# - Test cases for successful export
+# - Test cases for empty collections
+# - Test cases for file write errors
 
 # Synthesize into implementation plan
-> Create a step-by-step implementation plan that connects the form to the API
+> Create a step-by-step implementation plan for the export feature
 ```
 
 ---
@@ -338,16 +338,16 @@ copilot
 > Give me an overview of this project structure
 
 # Understand dependencies
-> @package.json What does this project do and what are the main dependencies?
+> @samples/book-app-project/book_app.py What does this application do?
 
 # Understand architecture
-> @samples/src/ Explain the high-level architecture of this codebase
+> @samples/book-app-project/ Explain the high-level architecture of this codebase
 
 # Find the entry point
 > Where does the application start? Show me the main entry point.
 
 # Understand key flows
-> Walk me through how a user request flows from API to database
+> Walk me through how adding a book flows through the code
 
 # Check for issues to work on
 > List open issues labeled "good first issue"
@@ -391,13 +391,13 @@ Always gather context before asking for analysis:
 
 ```bash
 # Good: One feature per session
-> /rename favorites-feature
-# Work on favorites
+> /rename list-unread-feature
+# Work on list unread
 > /exit
 
 copilot
-> /rename notifications-feature
-# Work on notifications
+> /rename export-csv-feature
+# Work on CSV export
 > /exit
 
 # Less effective: Everything in one long session
@@ -412,10 +412,11 @@ Document your workflows so you can repeat them:
 
 1. Get issue details from GitHub
 2. Search for related code
-3. Switch to backend agent for analysis
+3. Switch to python-reviewer agent for analysis
 4. Implement fix
-5. Generate tests (skill auto-triggers)
-6. Create PR
+5. Switch to pytest-helper agent for test design
+6. Generate tests
+7. Create PR
 ```
 
 ---
@@ -451,14 +452,14 @@ For teams with existing CI/CD pipelines, you can automate Copilot reviews on eve
 
 After completing the demos, try these variations:
 
-1. **End-to-End Challenge**: Pick a small feature (e.g., "add dark mode toggle" or "add user avatar upload"). Use the full workflow:
+1. **End-to-End Challenge**: Pick a small feature (e.g., "list unread books" or "export to CSV"). Use the full workflow:
    - Plan with `/plan`
-   - Design with agents
+   - Design with agents (python-reviewer, pytest-helper)
    - Implement
    - Generate tests
    - Create PR
 
-2. **Automation Challenge**: Set up the pre-commit hook from the Code Review Automation workflow. Make a commit with an intentional SQL injection. Does it get blocked?
+2. **Automation Challenge**: Set up the pre-commit hook from the Code Review Automation workflow. Make a commit with an intentional file path vulnerability. Does it get blocked?
 
 3. **Your Production Workflow**: Design your own workflow for a common task you do. Write it down as a checklist. What parts could be automated with skills, agents, or hooks?
 
@@ -470,47 +471,34 @@ After completing the demos, try these variations:
 
 ### Main Challenge: End-to-End Feature
 
-Build a complete feature using what you've learned:
+Build the "list unread books" feature using what you've learned:
 
-1. Choose a simple feature (suggestions: "Add a 404 page", "Add a back-to-top button", or "Add a simple contact form")
-2. Gather context about your codebase with `@`
+1. Start Copilot and gather context about the book app
+2. Gather context about existing methods with `@samples/book-app-project/books.py`
 3. Plan your implementation with `/plan`
-4. Implement the feature
-5. Generate tests
-6. Review with `/review`
-7. Generate a commit message
+4. Implement the `get_unread_books()` method in `books.py`
+5. Add the "list unread" command to `book_app.py` and update the help text
+6. Generate tests with `@samples/book-app-project/books.py`
+7. Review with `/review`
+8. Generate a commit message
 
 Document your workflow as you go.
 
-**Success criteria**: You've completed a feature from idea to commit using Copilot CLI.
+**Success criteria**: You've completed the feature from idea to commit using Copilot CLI.
 
-> 💡 **Bonus**: If you have agents set up, try using `/agent` to get specialized help during design and implementation.
+> 💡 **Bonus**: If you have agents set up, try using `/agent` to switch to `python-reviewer` for design help and `pytest-helper` for test planning.
 
 <details>
 <summary>💡 Hints (click to expand)</summary>
 
-**Guided walkthrough using "Add a back-to-top button":**
+**Follow the pattern from the ["Idea to Merged PR"](#idea-to-merged-pr-in-one-session) example** at the top of this chapter. The key steps are:
 
-```bash
-# STEP 1: Start and gather context
-copilot
-> @samples/src/ What UI framework does this project use?
-
-# STEP 2: Plan the feature
-> /plan Add a "back to top" button that appears when the user scrolls down
-
-# STEP 3: Implement (after reviewing the plan)
-> Implement the back-to-top button component
-
-# STEP 4: Generate tests
-> Generate tests for the back-to-top button
-
-# STEP 5: Review
-> /review
-
-# STEP 6: Generate commit message
-copilot -p "Generate commit message for: $(git diff --staged)"
-```
+1. Gather context with `@samples/book-app-project/books.py`
+2. Plan with `/plan`
+3. Implement the method and command handler
+4. Generate tests
+5. Review with `/review`
+6. Generate commit message with `-p`
 
 **The key is practicing the full workflow** from idea → context → plan → implement → test → commit. The specific feature doesn't matter.
 

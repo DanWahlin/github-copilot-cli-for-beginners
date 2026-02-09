@@ -1,10 +1,10 @@
 ![Chapter 04: Agents and Custom Instructions](images/chapter-header.png)
 
-> **What if you could hire a frontend expert, backend expert, and security expert... all in one tool?**
+> **What if you could hire a Python code reviewer, testing expert, and security reviewer... all in one tool?**
 
 In Chapter 03, you mastered the essential workflows: code review, refactoring, debugging, test generation, and git integration. Those skills make you highly productive with GitHub Copilot CLI. Now, let's take it further.
 
-In this chapter, you'll transform Copilot from a generalist into a team of specialists. You'll create agents with deep domain expertise: a frontend expert who automatically adds accessibility and TypeScript, a backend specialist who enforces security best practices, and more. You'll see how the same prompt produces dramatically better results when a specialist handles it, and learn to orchestrate multiple agents collaborating on a single feature.
+In this chapter, you'll transform Copilot from a generalist into a team of specialists. You'll create agents with deep domain expertise: a Python code reviewer who automatically adds type hints and follows PEP 8, a testing specialist who knows pytest best practices, and more. You'll see how the same prompt produces dramatically better results when a specialist handles it, and learn to orchestrate multiple agents collaborating on a single feature.
 
 ## Learning Objectives
 
@@ -27,7 +27,7 @@ By the end of this chapter, you'll be able to:
 1. **Try a built-in agent right now:**
    ```bash
    copilot
-   > /plan Add user authentication to my Express app
+   > /plan Add input validation for book year in the book app
    ```
    This invokes the Plan agent to create a step-by-step implementation plan.
 
@@ -78,14 +78,14 @@ GitHub Copilot CLI includes four built-in agents:
 copilot
 
 # Invoke the Plan agent to create an implementation plan
-> /plan Add user authentication to my Express app
+> /plan Add input validation for book year in the book app
 
 # Invoke the Code-review agent on your changes
 > /review
 
 # Explore and Task agents are invoked automatically when relevant:
 > Run the test suite        # Uses Task agent
-> Explore how auth works    # Uses Explore agent
+> Explore how book data is loaded    # Uses Explore agent
 ```
 
 **Key insight**: You directly invoke Plan and Code-review with slash commands. Explore and Task work behind the scenes. Copilot uses them automatically when appropriate.
@@ -178,36 +178,36 @@ That's it! The YAML frontmatter (between `---` markers) provides metadata, and t
 
 ### A More Complete Example
 
-Once you're comfortable, here's a more comprehensive agent. Create `~/.copilot/agents/frontend.agent.md`:
+Once you're comfortable, here's a more comprehensive agent. Create `~/.copilot/agents/python-reviewer.agent.md`:
 
 ```markdown
 ---
-name: frontend
-description: Frontend development specialist for React and TypeScript projects
+name: python-reviewer
+description: Python code quality specialist for reviewing Python projects
 tools: ["read", "edit", "search", "execute"]
 ---
 
-# Frontend Agent
+# Python Code Reviewer
 
-You are a frontend development specialist with expertise in React, TypeScript, and modern CSS.
+You are a Python specialist focused on code quality and best practices.
 
 **Your focus areas:**
-- Component architecture using atomic design (organizing components from small to large: atoms → molecules → organisms)
-- Performance optimization (lazy loading, memoization)
-- Accessibility ([WCAG](../GLOSSARY.md#wcag) 2.1 AA compliance - Web Content Accessibility Guidelines)
-- Responsive design patterns
+- Code quality (PEP 8, type hints, docstrings)
+- Performance optimization (list comprehensions, generators)
+- Error handling (proper exception handling)
+- Maintainability (DRY principles, clear naming)
 
 **Code style requirements:**
-- Use functional components with hooks
-- TypeScript strict mode
-- CSS modules (no inline styles)
-- All components must have PropTypes or TypeScript interfaces
+- Use Python 3.10+ features (dataclasses, type hints, pattern matching)
+- Follow PEP 8 naming conventions
+- Use context managers for file I/O
+- All functions must have type hints and docstrings
 
 **When reviewing code, always check:**
-- Bundle size impact
-- Render performance
-- Keyboard navigation
-- Screen reader compatibility
+- Missing type hints on function signatures
+- Mutable default arguments
+- Proper error handling (no bare except)
+- Input validation completeness
 ```
 
 ### Agent YAML Properties
@@ -240,13 +240,13 @@ copilot
 > /agent
 
 # Start with a specific agent
-copilot --agent frontend
+copilot --agent python-reviewer
 
-# The frontend agent knows to:
-# - Use React functional components
-# - Add ARIA labels for accessibility
-# - Consider mobile-first responsive design
-# - Use CSS modules for styling
+# The python-reviewer agent knows to:
+# - Add type hints to all functions
+# - Follow PEP 8 naming conventions
+# - Use proper error handling patterns
+# - Validate input data
 ```
 
 ---
@@ -257,73 +257,72 @@ Create separate agent files for different specialties. Here are examples for a c
 
 > 💡 **Note for beginners**: The examples below are templates. **Replace the specific technologies with whatever your project uses.** The important thing is the *structure* of the agent, not the specific technologies mentioned.
 
-**`~/.copilot/agents/frontend.agent.md`**:
+**`~/.copilot/agents/python-reviewer.agent.md`**:
 
 ```markdown
 ---
-name: frontend
-description: Frontend specialist with focus on accessibility and performance
+name: python-reviewer
+description: Python code quality specialist for reviewing Python projects
 tools: ["read", "edit", "search"]
 ---
 
-# Frontend Agent
+# Python Code Reviewer
 
-You are a frontend specialist for this project.
+You are a Python specialist focused on code quality and best practices.
 
 **Code standards:**
-- Use functional components with hooks
-- Add accessibility attributes (ARIA labels, keyboard navigation)
-- Handle loading and error states
-- Keep components focused and small
+- Use Python 3.10+ features (dataclasses, type hints)
+- Follow PEP 8 naming conventions
+- Proper error handling (no bare except)
+- Use context managers for file I/O
 
 **Always check for:**
-- Missing accessibility attributes
-- Performance issues (unnecessary re-renders)
-- Responsive design considerations
+- Missing type hints on function signatures
+- Mutable default arguments
+- Input validation completeness
 ```
 
-**`~/.copilot/agents/backend.agent.md`**:
+**`~/.copilot/agents/pytest-helper.agent.md`**:
 
 ```markdown
 ---
-name: backend
-description: Backend API specialist with security focus
+name: pytest-helper
+description: Testing specialist for Python projects using pytest
 tools: ["read", "edit", "search", "execute"]
 ---
 
-# Backend Agent
+# Pytest Testing Specialist
 
-You are a backend API specialist for this project.
+You are a testing expert focused on pytest best practices.
+
+**Testing philosophy:**
+- Test behavior, not implementation
+- Use descriptive test names: test_<what>_<condition>_<expected>
+- Use fixtures for shared setup
+- Always test: happy path, edge cases, error cases
 
 **Code standards:**
-- Use async/await for all async operations
-- Validate all input data
-- Use parameterized queries (never concatenate SQL)
-- Return consistent response formats
-
-**Security checklist:**
-- Input sanitization on all endpoints
-- Rate limiting on public routes
-- Proper error handling (don't leak sensitive info)
+- Use pytest fixtures instead of setup/teardown
+- Parametrize tests for multiple scenarios
+- Use clear assertion messages
+- Mock external dependencies properly
 ```
 
-**`~/.copilot/agents/testing.agent.md`**:
+**`~/.copilot/agents/hello-world.agent.md`**:
 
 ```markdown
 ---
-name: testing
-description: Testing specialist for comprehensive test coverage
+name: hello-world
+description: Minimal example agent for learning
 ---
 
-# Testing Agent
+# Hello World Agent
 
-You are a testing specialist focused on quality assurance.
+You are a friendly assistant who always says hello.
 
-**Testing philosophy:**
-- Test behavior, not implementation details
-- Include edge cases and error scenarios
-- Mock external dependencies
-- Write clear test descriptions
+**Your behavior:**
+- Start responses with a greeting
+- Keep explanations simple
 ```
 
 ---
@@ -337,98 +336,79 @@ This is where agents prove their value. Watch the difference:
 ```bash
 copilot
 
-> Create a form component for user registration
+> Add a function to search books by year range in the book app
 ```
 
 **Generic output**:
-```jsx
-function RegistrationForm() {
-  return (
-    <form>
-      <input type="text" name="username" />
-      <input type="email" name="email" />
-      <input type="password" name="password" />
-      <button type="submit">Register</button>
-    </form>
-  );
-}
+```python
+def search_by_year_range(books, start_year, end_year):
+    results = []
+    for book in books:
+        if book['year'] >= start_year and book['year'] <= end_year:
+            results.append(book)
+    return results
 ```
 
 Basic. Works. But missing a lot.
 
 ---
 
-### With the Frontend Agent
+### With the Python Reviewer Agent
 
 ```bash
 copilot
 
 > /agent
-# Select "frontend"
+# Select "python-reviewer"
 
-> Create a form component for user registration
+> Add a function to search books by year range in the book app
 ```
 
 **Specialist output**:
-```tsx
-interface RegistrationFormProps {
-  onSubmit: (data: UserRegistrationData) => Promise<void>;
-  initialValues?: Partial<UserRegistrationData>;
-}
+```python
+from typing import List, Dict, Any
 
-export const RegistrationForm: React.FC<RegistrationFormProps> = ({
-  onSubmit,
-  initialValues
-}) => {
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+def search_by_year_range(
+    books: List[Dict[str, Any]],
+    start_year: int,
+    end_year: int
+) -> List[Dict[str, Any]]:
+    """
+    Search for books within a specified year range.
 
-  // Form validation with real-time feedback
-  const validateField = useCallback((field: string, value: string) => { ... });
+    Args:
+        books: List of book dictionaries
+        start_year: Starting year (inclusive)
+        end_year: Ending year (inclusive)
 
-  return (
-    <form
-      onSubmit={handleSubmit}
-      aria-labelledby="registration-heading"
-      noValidate
-    >
-      <h2 id="registration-heading" className={styles.visuallyHidden}>
-        Create Account
-      </h2>
+    Returns:
+        List of books published within the year range
 
-      <FormField
-        label="Username"
-        name="username"
-        required
-        aria-describedby="username-requirements"
-        error={errors.username}
-      />
-      <span id="username-requirements" className={styles.hint}>
-        3-20 characters, letters and numbers only
-      </span>
+    Raises:
+        ValueError: If start_year is greater than end_year
+        TypeError: If year values are not integers
+    """
+    if not isinstance(start_year, int) or not isinstance(end_year, int):
+        raise TypeError("Year values must be integers")
 
-      {/* ... proper TypeScript, accessibility, error handling ... */}
+    if start_year > end_year:
+        raise ValueError(f"Start year ({start_year}) cannot be greater than end year ({end_year})")
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        aria-busy={isSubmitting}
-      >
-        {isSubmitting ? 'Creating Account...' : 'Register'}
-      </button>
-    </form>
-  );
-};
+    return [
+        book for book in books
+        if isinstance(book.get('year'), int)
+        and start_year <= book['year'] <= end_year
+    ]
 ```
 
-**What the frontend agent automatically includes**:
-- ✅ TypeScript interfaces with strict typing
-- ✅ ARIA labels for screen readers
-- ✅ Keyboard navigation support
-- ✅ Loading states with aria-busy
-- ✅ Real-time validation
-- ✅ CSS modules (no inline styles)
-- ✅ Error boundaries consideration
+**What the python-reviewer agent automatically includes**:
+- ✅ Type hints on all parameters and return values
+- ✅ Comprehensive docstring with Args/Returns/Raises
+- ✅ Input validation with proper error handling
+- ✅ List comprehension for better performance
+- ✅ Edge case handling (missing/invalid year values)
+- ✅ PEP 8 compliant formatting
+- ✅ Defensive programming practices
 
 **The difference**: Same prompt, dramatically better output. The agent brings expertise you'd forget to ask for.
 
@@ -443,28 +423,23 @@ The real power comes when specialists work together on a feature.
 ```bash
 copilot
 
-> I need to add a "contact form" feature. Users can submit their name, email, and message.
+> I want to add a "search by year range" feature to the book app
 
-# Get backend architecture first
+# Use python-reviewer for design
 > /agent
-# Select "backend"
+# Select "python-reviewer"
 
-> Design the contact form API:
-> - What data should we store?
-> - What endpoint do we need?
-> - How do we validate the input?
+> @samples/book-app-project/books.py Design a find_by_year_range method. What's the best approach?
 
-# Now get the UI from the frontend specialist
+# Switch to pytest-helper for test design
 > /agent
-# Select "frontend"
+# Select "pytest-helper"
 
-> Design the contact form component:
-> - Form fields and validation
-> - Submit button with loading state
-> - Success/error feedback
+> @samples/book-app-project/tests/test_books.py Design test cases for a find_by_year_range method.
+> What edge cases should we cover?
 
 # Synthesize both designs
-> Create an implementation plan that connects the frontend form to the backend API.
+> Create an implementation plan that includes the method implementation and comprehensive tests.
 ```
 
 **The key insight**: You're the architect directing specialists. They handle the details, you handle the vision.
@@ -476,22 +451,25 @@ copilot
 ### Single Agent Tasks
 
 ```bash
-# Start Copilot with the frontend agent
-copilot --agent frontend
+# Start Copilot with the python-reviewer agent
+copilot --agent python-reviewer
 
-> Create a user profile card component that displays:
-> - Avatar image
-> - User name and title
-> - Contact button
-> - Social links
+> Create a function to filter books by genre in the book app.
+> It should:
+> - Accept a list of books and a genre
+> - Return matching books
+> - Handle case-insensitive searches
+> - Validate inputs
 
-# The frontend agent applies all its specialized standards
+# The python-reviewer agent applies all its specialized standards
 ```
 
 <details>
 <summary>🎬 See it in action!</summary>
 
-![Security Expert Demo](images/security-expert-demo.gif)
+![Python Reviewer Demo](images/python-reviewer-demo.gif)
+
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
 
 </details>
 
@@ -500,22 +478,17 @@ copilot --agent frontend
 ```bash
 copilot
 
-> I need to add a "favorites" feature where users can save items.
+> I need to add a "favorites" feature to the book app where users can mark books as favorites.
 
-# Switch to frontend agent for UI design
+# Switch to python-reviewer agent for implementation design
 > /agent
-# Select "frontend" from the list
-> Design the UI components for favorites
+# Select "python-reviewer" from the list
+> Design the methods needed for managing favorite books
 
-# Switch to backend agent for API
+# Switch to pytest-helper agent for testing
 > /agent
-# Select "backend"
-> Design the API endpoints for favorites
-
-# Switch to testing agent
-> /agent
-# Select "testing"
-> Generate tests for the favorites feature
+# Select "pytest-helper"
+> Design comprehensive tests for the favorites feature
 ```
 
 ### Agent as Tools
@@ -581,20 +554,24 @@ Create an `AGENTS.md` file in your repository root. This is the recommended appr
 ```markdown
 # Project Instructions
 
+## Project Context
+This is a Python CLI book management application.
+
 ## Code Style
-- Use TypeScript strict mode
-- Prefer functional components in React
-- Use async/await over callbacks
+- Use Python 3.10+ features (dataclasses, type hints)
+- Follow PEP 8 naming conventions
+- Use pytest for all testing
+- Handle all file I/O with context managers
 
 ## Security Requirements
-- Always use parameterized queries
-- Sanitize all user input
-- Never log sensitive data
+- Validate all user input
+- Use proper exception handling
+- Never expose sensitive file paths in error messages
 
 ## Testing Standards
 - Minimum 80% coverage for new code
-- Use Jest for unit tests
-- Use Playwright for E2E tests
+- Use pytest fixtures for shared setup
+- Test happy path, edge cases, and error conditions
 ```
 
 ### Custom Instruction Files (.instructions.md)
@@ -604,39 +581,43 @@ For more granular control, create instruction files in `.github/instructions/`:
 ```
 .github/
 └── instructions/
-    ├── typescript-standards.instructions.md
+    ├── python-standards.instructions.md
     ├── security-checklist.instructions.md
     └── api-design.instructions.md
 ```
 
-**Example: `.github/instructions/typescript-standards.instructions.md`**
+**Example: `.github/instructions/python-standards.instructions.md`**
+
+> 💡 **Note**: Instruction files work with any language. This example uses Python to match our course project, but you can create similar files for TypeScript, Go, Rust, or any technology your team uses.
 
 ```markdown
-# TypeScript Standards
+# Python Standards
 
-Apply these standards to all TypeScript files in this project.
+Apply these standards to all Python files in this project.
 
 ## Type Safety
-- Enable strict mode in tsconfig.json
-- Avoid `any` type; use `unknown` when type is truly unknown
-- Use type guards for runtime type checking
-- Prefer interfaces over type aliases for object shapes
+- Add type hints to all function signatures
+- Use `Optional[T]` for parameters that can be None
+- Use `typing` module for complex types (List, Dict, Tuple)
+- Prefer dataclasses for structured data
 
 ## Naming Conventions
-- PascalCase for types, interfaces, and classes
-- camelCase for variables, functions, and methods
+- snake_case for functions, methods, and variables
+- PascalCase for classes
 - SCREAMING_SNAKE_CASE for constants
-- Prefix interfaces with `I` only when needed to distinguish from classes
+- Prefix private methods with underscore
 
 ## Error Handling
-- Use custom error classes extending Error
-- Always include error codes for API errors
-- Type catch blocks with `unknown`, then narrow
+- Use specific exception types (ValueError, TypeError, etc.)
+- Never use bare `except:` clauses
+- Include descriptive error messages
+- Use context managers for resource cleanup
 
-## Async Patterns
-- Use async/await over .then() chains
-- Handle all promise rejections
-- Use Promise.all for concurrent operations
+## Code Quality
+- Follow PEP 8 style guidelines
+- Keep functions under 50 lines
+- Use list comprehensions where readable
+- Add docstrings with Args/Returns/Raises sections
 ```
 
 **Finding community instruction files**: Browse [github/awesome-copilot](https://github.com/github/awesome-copilot) for pre-made instruction files covering .NET, Angular, Azure, Python, Docker, and many more technologies.
@@ -659,17 +640,17 @@ After completing the demos, try these variations:
    ```bash
    # Without agent
    copilot
-   > Create a login form component
+   > Add a function to find books by author in the book app
 
-   # With frontend agent
+   # With python-reviewer agent
    copilot
    > /agent
-   # Select "frontend" from the list
-   > Create a login form component
+   # Select "python-reviewer" from the list
+   > Add a function to find books by author in the book app
    ```
    Compare the outputs. What did the agent add that generic Copilot missed?
 
-2. **Multi-Agent Challenge**: Design a "user profile" feature using backend agent for API, frontend agent for UI. Can you synthesize them into one implementation plan?
+2. **Multi-Agent Challenge**: Design a "book rating" feature using python-reviewer agent for implementation, pytest-helper agent for testing. Can you synthesize them into one implementation plan?
 
 3. **Create Your Own Agent**: Create a simple agent file at `~/.copilot/agents/my-agent.agent.md` with just 5 lines of instructions. Test it with `/agent` and select "my-agent".
 
@@ -728,32 +709,32 @@ EOF
 
 # Now use them
 copilot --agent reviewer
-> Review @samples/src/utils/helpers.js
+> Review @samples/book-app-project/books.py
 
 # Or switch agents
 copilot
 > /agent
 # Select "documentor"
-> Document @samples/src/utils/helpers.js
+> Document @samples/book-app-project/books.py
 ```
 
 ### Example 2: Agent-Driven Feature Development
 
 ```bash
 
-# Start with frontend expertise
-copilot --agent frontend
+# Start with python-reviewer expertise
+copilot --agent python-reviewer
 
-> I need a comment system for blog posts. Users can add, edit, and delete their own comments.
-> Design the comment UI components
+> I need to add a book rating system. Users can rate books from 1-5 stars.
+> Design the methods and data structures needed
 
-# Switch to backend for API design
+# Switch to pytest-helper for testing
 > /agent
-# Select "backend"
-> Design the comments API endpoints and database schema
+# Select "pytest-helper"
+> Design comprehensive tests for the rating system
 
 # Let Copilot synthesize everything
-> Create an implementation plan that combines the UI and API designs
+> Create an implementation plan that includes both the implementation and tests
 ```
 
 ---
@@ -764,13 +745,13 @@ Ready-to-use agent templates are available in the [samples/agents/](../samples/a
 
 | File | Description |
 |------|-------------|
-| `hello-world.agent.md` | Minimal example (11 lines) - start here |
-| `code-reviewer.agent.md` | Code review specialist with severity levels |
-| `frontend.agent.md` | React/TypeScript frontend expert |
+| `hello-world.agent.md` | Minimal example - start here |
+| `python-reviewer.agent.md` | Python code quality reviewer |
+| `pytest-helper.agent.md` | Pytest testing specialist |
 
 ```bash
 # Quick install: copy an agent to your personal folder
-cp samples/agents/code-reviewer.agent.md ~/.copilot/agents/
+cp samples/agents/python-reviewer.agent.md ~/.copilot/agents/
 ```
 
 For more community agents, see [github/awesome-copilot](https://github.com/github/awesome-copilot)
@@ -804,25 +785,27 @@ name: project-team
 description: A team of specialized agents for this project
 ---
 
-## Frontend
+## Python Reviewer
 
-You are a frontend specialist focused on React and accessibility.
-
-**Standards:**
-- Use functional components with hooks
-- Follow WCAG 2.1 AA accessibility guidelines
-- Keep components under 150 lines
-
-## Backend
-
-You are a backend specialist focused on Node.js APIs.
+You are a Python specialist focused on code quality and best practices.
 
 **Standards:**
-- Use async/await (no callbacks)
-- Validate all inputs
-- Return consistent JSON response formats
+- Use Python 3.10+ features (dataclasses, type hints)
+- Follow PEP 8 naming conventions
+- Add comprehensive docstrings
+- Use proper error handling
 
-## Reviewer
+## Pytest Helper
+
+You are a testing specialist focused on pytest best practices.
+
+**Standards:**
+- Test behavior, not implementation
+- Use descriptive test names
+- Use fixtures for shared setup
+- Parametrize tests for multiple scenarios
+
+## Code Reviewer
 
 You analyze code without making changes.
 
@@ -836,8 +819,8 @@ You analyze code without making changes.
 ```bash
 copilot
 > /agent
-# Select "Frontend" from the list
-> Create a button component with proper accessibility
+# Select "Python Reviewer" from the list
+> Add a function to search books by title in @samples/book-app-project/books.py
 ```
 
 **Tip:** The `description` field in the YAML frontmatter is required for agents to work.
@@ -864,7 +847,7 @@ Test each instruction file on real code in your project.
 |---------|--------------|-----|
 | Missing `description` in agent frontmatter | Agent won't load or won't be discoverable | Always include `description:` in YAML frontmatter |
 | Wrong file location for agents | Agent not found when you try to use it | Place in `~/.copilot/agents/` (personal) or `.github/agents/` (project) |
-| Using `.md` instead of `.agent.md` | File may not be recognized as an agent | Name files like `frontend.agent.md` |
+| Using `.md` instead of `.agent.md` | File may not be recognized as an agent | Name files like `python-reviewer.agent.md` |
 | Overly long agent prompts | May hit the 30,000 character limit | Keep agent definitions focused; use skills for detailed instructions |
 
 ### Troubleshooting

@@ -51,23 +51,23 @@ Similarly, developers have workflows for different tasks. GitHub Copilot CLI enh
 ```bash
 copilot
 
-> Review @samples/src/api/users.js for code quality
+> Review @samples/book-app-project/book_app.py for code quality
 ```
 
-### Security-Focused Review
+### Input Validation Review
 
 ```bash
 copilot
 
-> Review @samples/src/auth/login.js for security vulnerabilities. Check for: SQL injection, XSS, CSRF, insecure authentication, and sensitive data exposure
+> Review @samples/book-app-project/utils.py for input validation issues. Check for: missing validation, error handling gaps, and edge cases
 ```
 
-### Performance Review
+### Cross-File Project Review
 
 ```bash
 copilot
 
-> Review @samples/src/services/userService.js for performance issues. Look for: unnecessary loops, memory leaks, inefficient algorithms, and blocking operations
+> @samples/book-app-project/ Review this entire project. Create a markdown checklist of issues found, categorized by severity
 ```
 
 ### Interactive Code Review
@@ -75,16 +75,16 @@ copilot
 ```bash
 copilot
 
-> @samples/src/api/users.js Review this file for:
-> - Security vulnerabilities
-> - Performance issues
+> @samples/book-app-project/book_app.py Review this file for:
+> - Input validation
+> - Error handling
 > - Code style and best practices
 
 # Copilot provides detailed review
 
-> The SQL injection on line 23 - show me the fix
+> The user input handling - are there any edge cases I'm missing?
 
-# Copilot shows the parameterized query fix
+# Copilot shows potential issues with empty strings, special characters
 
 > Create a checklist of all issues found, prioritized by severity
 
@@ -96,9 +96,9 @@ copilot
 ```bash
 copilot
 
-> Review @samples/src/api/ and create a markdown checklist of issues found, categorized by:
-> - Critical (security vulnerabilities)
-> - High (bugs, data corruption risks)
+> Review @samples/book-app-project/ and create a markdown checklist of issues found, categorized by:
+> - Critical (data loss risks, crashes)
+> - High (bugs, incorrect behavior)
 > - Medium (performance, maintainability)
 > - Low (style, minor improvements)
 ```
@@ -115,7 +115,7 @@ Before using the `/review` command, you need to understand two types of changes 
 ```bash
 # Quick reference
 git status           # Shows both staged and unstaged
-git add file.js      # Stage a file for commit
+git add file.py      # Stage a file for commit
 git diff             # Shows unstaged changes
 git diff --staged    # Shows staged changes
 ```
@@ -143,27 +143,25 @@ copilot
 
 ### Simple Refactoring
 
-Start with straightforward improvements. Try these on the sample file:
+Start with straightforward improvements. Try these on the book app:
 
 ```bash
 copilot
 
-> @samples/src/refactor-me.js Rename the variable 'x' to something more descriptive
-> @samples/src/refactor-me.js The processOrder function is too long. Split it into smaller functions.
-> @samples/src/refactor-me.js Remove any unused variables
+> @samples/book-app-project/book_app.py The command handling uses if/elif chains. Refactor it to use a dictionary dispatch pattern.
+> @samples/book-app-project/utils.py Add type hints to all functions
+> @samples/book-app-project/book_app.py Extract the book display logic into utils.py for better separation of concerns
 ```
 
-> 💡 **New to refactoring?** Start with simple requests like renaming variables or removing duplication before tackling complex transformations.
+> 💡 **New to refactoring?** Start with simple requests like adding type hints or improving variable names before tackling complex transformations.
 
-### Callback to Async/Await
+### Separate Concerns
 
 ```bash
 copilot
 
-> @samples/src/services/userService.js This file uses callbacks. Refactor to async/await while:
-> - Maintaining the same function signatures
-> - Preserving error handling behavior
-> - Adding TypeScript types
+> @samples/book-app-project/utils.py @samples/book-app-project/book_app.py
+> The utils.py file has print statements mixed with logic. Refactor to separate display functions from data processing.
 ```
 
 <details>
@@ -171,27 +169,29 @@ copilot
 
 ![Refactor Demo](images/refactor-demo.gif)
 
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+
 </details>
 
-### Extract Duplication
+### Improve Error Handling
 
 ```bash
 copilot
 
-> @samples/src/services/userService.js @samples/src/services/productService.js
-> These files have duplicated error handling. Extract a common error handler.
+> @samples/book-app-project/utils.py @samples/book-app-project/books.py
+> These files have inconsistent error handling. Suggest a unified approach using custom exceptions.
 ```
 
-### Modernize Legacy Code
+### Add Documentation
 
 ```bash
 copilot
 
-> @samples/src/services/userService.js Modernize this code:
-> - Convert var to const/let
-> - Use arrow functions where appropriate
-> - Replace .then() chains with async/await
-> - Add JSDoc comments
+> @samples/book-app-project/books.py Add comprehensive docstrings to all methods:
+> - Include parameter types and descriptions
+> - Document return values
+> - Note any exceptions raised
+> - Add usage examples
 ```
 
 ### Safe Refactoring with Tests
@@ -199,11 +199,11 @@ copilot
 ```bash
 copilot
 
-> @samples/src/utils/helpers.js Before refactoring, generate tests for current behavior
+> @samples/book-app-project/books.py Before refactoring, generate tests for current behavior
 
 # Get tests first
 
-> Now refactor the module to use date-fns instead of moment.js
+> Now refactor the BookCollection class to use a context manager for file operations
 
 # Refactor with confidence - tests verify behavior is preserved
 ```
@@ -214,33 +214,33 @@ copilot
 
 ### Simple Debugging
 
-Start by describing what's wrong. Here are common debugging patterns you can try with the sample files:
+Start by describing what's wrong. Here are common debugging patterns you can try with the buggy book app:
 
 ```bash
 copilot
 
 # Pattern: "Expected X but got Y"
-> @samples/buggy-code/js/userService.js The login function should reject invalid users, but it's not. Why?
-
-# Pattern: "Error message + location"
-> @samples/src/utils/helpers.js I'm getting "undefined is not a function" when calling formatDate. What's wrong?
+> @samples/book-app-buggy/books_buggy.py Users report that searching for "The Hobbit" returns no results even though it's in the data. Debug why.
 
 # Pattern: "Unexpected behavior"
-> @samples/buggy-code/js/paymentProcessor.js The total calculation seems wrong. Help me find why.
+> @samples/book-app-buggy/book_app_buggy.py When I remove a book that doesn't exist, the app says it was removed. Help me find why.
+
+# Pattern: "Wrong results"
+> @samples/book-app-buggy/books_buggy.py When I mark one book as read, ALL books get marked. What's the bug?
 ```
 
 > 💡 **Debugging tip**: Describe the *symptom* (what you see) and the *expectation* (what should happen). Copilot figures out the rest.
 
 ### The "Bug Detective" - AI Finds RELATED Bugs
 
-This is where context-aware debugging shines. Try this scenario with a payments file:
+This is where context-aware debugging shines. Try this scenario with the buggy book app:
 
 ```bash
 copilot
 
-> @samples/buggy-code/js/paymentProcessor.js
+> @samples/book-app-buggy/books_buggy.py
 >
-> Users report that $10.20 + $5.10 sometimes shows as $15.299999999999998
+> Users report: "Finding books by author name doesn't work for partial names"
 > Debug why this happens
 ```
 
@@ -249,25 +249,38 @@ copilot
 
 ![Fix Bug Demo](images/fix-bug-demo.gif)
 
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+
 </details>
 
 **What Copilot does**:
 ```
-Root Cause: Floating-point arithmetic issue in JavaScript.
+Root Cause: Line 80 uses exact match (==) instead of partial match (in).
 
-Line 15: const total = amount1 + amount2
-JavaScript represents numbers as 64-bit floating point, which can't
-precisely represent some decimal values.
+Line 80: return [b for b in self.books if b.author == author]
 
-Fix: Use integer cents internally, convert for display only:
-- Store amounts as cents (1020, 510)
-- Calculate: 1020 + 510 = 1530
-- Display: (1530 / 100).toFixed(2) = "$15.30"
+The find_by_author function requires an exact match. Searching for "Tolkien"
+won't find books by "J.R.R. Tolkien".
+
+Fix: Change to case-insensitive partial match:
+return [b for b in self.books if author.lower() in b.author.lower()]
 ```
 
 **Why this matters**: Copilot reads the whole file, understands the context of your bug report, and gives you a specific fix with a clear explanation.
 
-> 💡 **Bonus**: Because Copilot analyzes the entire file, it often discovers *other* issues you didn't ask about. Try it - you might be surprised what else it finds!
+> 💡 **Bonus**: Because Copilot analyzes the entire file, it often discovers *other* issues you didn't ask about. For example, while fixing the author search, Copilot might also notice the case-sensitivity bug in `find_book_by_title`!
+
+### Real-World Security Sidebar
+
+While debugging your own code is important, understanding security vulnerabilities in production applications is critical. Try this example:
+
+```bash
+copilot
+
+> @samples/buggy-code/python/user_service.py Find all security vulnerabilities in this Python user service
+```
+
+This file demonstrates real-world security patterns you'll encounter in production apps.
 
 > 💡 **Common security terms you'll encounter:**
 > - **SQL Injection**: When user input is put directly into a database query, allowing attackers to run malicious commands
@@ -283,10 +296,10 @@ Fix: Use integer cents internally, convert for display only:
 copilot
 
 > I'm getting this error:
-> TypeError: Cannot read property 'map' of undefined
->     at Header (samples/src/components/Header.jsx:15:23)
+> AttributeError: 'NoneType' object has no attribute 'title'
+>     at show_books (book_app.py:19)
 >
-> @samples/src/components/Header.jsx Explain why and how to fix it
+> @samples/book-app-project/book_app.py Explain why and how to fix it
 ```
 
 ### Debugging with Test Case
@@ -294,10 +307,8 @@ copilot
 ```bash
 copilot
 
-> @samples/buggy-code/js/paymentProcessor.js This endpoint returns 500 errors for this input:
-> {"amount": -100, "currency": "USD"}
->
-> Debug this: explain the root cause and provide a fix with input validation
+> @samples/book-app-buggy/books_buggy.py The remove_book function has a bug. When I try to remove "Dune",
+> it also removes "Dune Messiah". Debug this: explain the root cause and provide a fix.
 ```
 
 ### Trace an Issue Through Code
@@ -305,21 +316,18 @@ copilot
 ```bash
 copilot
 
-> Users report that user creation sometimes fails silently.
-> @samples/src/services/userService.js @samples/src/api/users.js @samples/src/utils/helpers.js
-> Trace through the user creation flow and identify where the issue could occur
+> Users report that the book list numbering starts at 0 instead of 1.
+> @samples/book-app-buggy/book_app_buggy.py @samples/book-app-buggy/books_buggy.py
+> Trace through the list display flow and identify where the issue occurs
 ```
 
-### Log Analysis
+### Understanding Data Issues
 
 ```bash
 copilot
 
-> @logs/error.log Analyze these errors and identify:
-> 1. Most common error types
-> 2. Patterns in timing or frequency
-> 3. Likely root causes
-> 4. Suggested fixes
+> @samples/book-app-project/data.json @samples/book-app-project/books.py
+> Sometimes the JSON file gets corrupted and the app crashes. How should we handle this gracefully?
 ```
 
 ---
@@ -338,46 +346,59 @@ Watch what happens when you ask Copilot:
 ```bash
 copilot
 
-> @samples/buggy-code/js/userService.js Generate Jest tests for the login function covering:
-> - Valid login
-> - Invalid password
-> - Non-existent user
-> - null/undefined inputs
-> - SQL injection attempts
-> - Timing attack resistance
+> @samples/book-app-project/books.py Generate comprehensive pytest tests. Include tests for:
+> - Adding books
+> - Removing books
+> - Finding by title
+> - Finding by author
+> - Marking as read
+> - Edge cases with empty data
 ```
 
 **What you get**: 15+ comprehensive tests including:
 
-```javascript
-describe('login', () => {
-  // Happy path
-  test('returns user object for valid credentials', ...);
-  test('generates valid JWT token', ...);
+```python
+class TestBookCollection:
+    # Happy path
+    def test_add_book_creates_new_book(self):
+        ...
+    def test_list_books_returns_all_books(self):
+        ...
 
-  // Authentication failures
-  test('rejects invalid password', ...);
-  test('rejects non-existent user', ...);
-  test('rejects empty password', ...);
-  test('rejects null username', ...);
+    # Find operations
+    def test_find_book_by_title_case_insensitive(self):
+        ...
+    def test_find_book_by_title_returns_none_when_not_found(self):
+        ...
+    def test_find_by_author_partial_match(self):
+        ...
+    def test_find_by_author_case_insensitive(self):
+        ...
 
-  // Security tests
-  test('blocks SQL injection in username', ...);
-  test('blocks SQL injection in password', ...);
-  test('escapes special characters', ...);
+    # Edge cases
+    def test_add_book_with_empty_title(self):
+        ...
+    def test_remove_nonexistent_book(self):
+        ...
+    def test_mark_as_read_nonexistent_book(self):
+        ...
 
-  // Timing attack resistance
-  test('constant-time comparison for passwords', ...);
-  test('same response time for valid vs invalid users', ...);
+    # Data persistence
+    def test_save_books_persists_to_json(self):
+        ...
+    def test_load_books_handles_missing_file(self):
+        ...
+    def test_load_books_handles_corrupted_json(self):
+        ...
 
-  // Edge cases
-  test('handles unicode in password', ...);
-  test('handles very long passwords', ...);
-  test('handles concurrent login attempts', ...);
-});
+    # Special characters
+    def test_add_book_with_unicode_characters(self):
+        ...
+    def test_find_by_author_with_special_characters(self):
+        ...
 ```
 
-**Result**: In 30 seconds, you get security tests that would take an hour to think through and write.
+**Result**: In 30 seconds, you get edge case tests that would take an hour to think through and write.
 
 ---
 
@@ -386,24 +407,25 @@ describe('login', () => {
 ```bash
 copilot
 
-> @samples/src/utils/helpers.js Generate comprehensive unit tests using Jest:
-> - Test all exported functions
-> - Include edge cases: null, undefined, empty strings
-> - Include boundary testing
-> - Include error cases
+> @samples/book-app-project/utils.py Generate comprehensive pytest tests for get_book_details covering:
+> - Valid input
+> - Empty strings
+> - Invalid year formats
+> - Very long titles
+> - Special characters in author names
 ```
 
-### Integration Tests
+### Running Tests
 
 ```bash
 copilot
 
-> @samples/src/api/users.js Generate integration tests using supertest:
-> - Test all endpoints
-> - Test authentication requirements
-> - Test validation errors
-> - Test successful operations
-> - Include setup and teardown
+> How do I run the tests? Show me the pytest command.
+
+# Copilot responds:
+# cd samples/book-app-project && python -m pytest tests/
+# Or for verbose output: python -m pytest tests/ -v
+# To see print statements: python -m pytest tests/ -s
 ```
 
 ### Test for Specific Scenarios
@@ -411,12 +433,12 @@ copilot
 ```bash
 copilot
 
-> @samples/buggy-code/js/paymentProcessor.js Generate tests for these scenarios:
-> - Successful payment
-> - Insufficient funds
-> - Invalid card
-> - Network timeout
-> - Duplicate transaction prevention
+> @samples/book-app-project/books.py Generate tests for these scenarios:
+> - Adding duplicate books (same title and author)
+> - Removing a book by partial title match
+> - Finding books when collection is empty
+> - File permission errors during save
+> - Concurrent access to the book collection
 ```
 
 ### Add Tests to Existing File
@@ -424,12 +446,12 @@ copilot
 ```bash
 copilot
 
-> @samples/src/utils/helpers.js
-> Generate additional tests for the formatCurrency function with edge cases:
-> - Zero amount
-> - Negative numbers
-> - Very large numbers
-> - Invalid inputs
+> @samples/book-app-project/books.py
+> Generate additional tests for the find_by_author function with edge cases:
+> - Author name with hyphens (e.g., "Jean-Paul Sartre")
+> - Author with multiple first names
+> - Empty string as author
+> - Author name with accented characters
 ```
 
 ---
@@ -444,14 +466,14 @@ copilot
 git diff --staged
 
 # Generate commit message using [Conventional Commit](../GLOSSARY.md#conventional-commit) format
-# (structured messages like "feat(auth): add login" or "fix(api): handle null input")
+# (structured messages like "feat(books): add search" or "fix(data): handle empty input")
 copilot -p "Generate a conventional commit message for: $(git diff --staged)"
 
-# Output: "feat(auth): add JWT refresh token rotation
+# Output: "feat(books): add partial author name search
 #
-# - Implement automatic token refresh before expiration
-# - Add refresh token storage in httpOnly cookie
-# - Update auth middleware to handle refresh flow"
+# - Update find_by_author to support partial matches
+# - Add case-insensitive comparison
+# - Improve user experience when searching authors"
 ```
 
 ### Explain Changes
@@ -472,7 +494,7 @@ Include:
 - Summary of changes
 - Why these changes were made
 - Testing done
-- Screenshots needed? (yes/no)"
+- Breaking changes? (yes/no)"
 ```
 
 ### Review Before Push
@@ -529,34 +551,33 @@ Here's a complete workflow for fixing a reported bug:
 # 1. Understand the bug report
 copilot
 
-> Users report: 'Login fails with special characters in password'
-> @samples/src/auth/login.js @samples/src/utils/helpers.js
-> Analyze and identify the likely cause
+> Users report: 'Finding books by author name doesn't work for partial names'
+> @samples/book-app-project/books.py Analyze and identify the likely cause
 
 # 2. Debug the issue (continuing in same session)
-> Based on the analysis, the issue is in password validation.
-> @samples/src/utils/helpers.js Show me the validation logic and explain the issue
+> Based on the analysis, show me the find_by_author function and explain the issue
 
-> Fix the validatePassword function to handle special characters
+> Fix the find_by_author function to handle partial name matches
 
 # 3. Generate tests for the fix
-> @samples/src/utils/helpers.js Generate tests specifically for:
-> - Passwords with special characters (!@#$%^&*)
-> - Passwords with unicode characters
-> - Passwords with spaces
+> @samples/book-app-project/books.py Generate pytest tests specifically for:
+> - Full author name match
+> - Partial author name match
+> - Case-insensitive matching
+> - Author name not found
 
 # 4. Generate commit message
 copilot -p "Generate commit message for: $(git diff --staged)"
 
-# Output: "fix(auth): handle special characters in password validation"
+# Output: "fix(books): support partial author name search"
 ```
 
 ### Bug Fix Workflow Summary
 
 | Step | Action | Copilot Command |
 |------|--------|-----------------|
-| 1 | Understand the bug | `> [describe bug] @relevant-file.js Analyze the likely cause` |
-| 2 | Get detailed analysis | `> Show me line X and explain the issue` |
+| 1 | Understand the bug | `> [describe bug] @relevant-file.py Analyze the likely cause` |
+| 2 | Get detailed analysis | `> Show me the function and explain the issue` |
 | 3 | Implement the fix | `> Fix the [specific issue]` |
 | 4 | Generate tests | `> Generate tests for [specific scenarios]` |
 | 5 | Commit | `copilot -p "Generate commit message for: $(git diff --staged)"` |
@@ -567,11 +588,11 @@ copilot -p "Generate commit message for: $(git diff --staged)"
 
 After completing the demos, try these variations:
 
-1. **Bug Detective Challenge**: Ask Copilot to debug the `getCachedUser` race condition in userService.js. Did it explain why checking `if (!userCache[userId])` is dangerous with async code?
+1. **Bug Detective Challenge**: Ask Copilot to debug the `mark_as_read` function in `samples/book-app-buggy/books_buggy.py`. Did it explain why the function marks ALL books as read instead of just one?
 
-2. **Test Challenge**: Generate tests for the `createUser` function. Count how many edge cases Copilot includes that you wouldn't have thought of.
+2. **Test Challenge**: Generate tests for the `add_book` function in the book app. Count how many edge cases Copilot includes that you wouldn't have thought of.
 
-3. **Commit Message Challenge**: Make any small change to a file, stage it (`git add .`), then run:
+3. **Commit Message Challenge**: Make any small change to a book app file, stage it (`git add .`), then run:
    ```bash
    copilot -p "Generate a conventional commit message for: $(git diff --staged)"
    ```
@@ -583,33 +604,38 @@ After completing the demos, try these variations:
 
 ## Sample Files for Practice
 
-The `samples/buggy-code/` folder contains intentionally buggy code in both JavaScript and Python. Use these to practice the workflows:
+The `samples/book-app-project/` folder contains the main book collection app, while `samples/book-app-buggy/` has intentionally buggy versions. Use these to practice the workflows:
 
-### JavaScript Examples
+### Book App Examples
 
 ```bash
 copilot
 
-# Security audit on user service
-> @samples/buggy-code/js/userService.js Perform a security audit
+# Review the main app
+> @samples/book-app-project/book_app.py Review for code quality and suggest improvements
 
-# Review payment processor
-> @samples/buggy-code/js/paymentProcessor.js Find all bugs
+# Review the data layer
+> @samples/book-app-project/books.py Review for potential bugs and edge cases
+
+# Debug the buggy version
+> @samples/book-app-buggy/books_buggy.py Find all bugs in this file
 ```
 
-### Python Examples
+### Optional Security Exercises
+
+The `samples/buggy-code/` folder contains real-world security examples:
 
 ```bash
 copilot
 
-# Security audit on user service
+# Security audit on user service (demonstrates production security patterns)
 > @samples/buggy-code/python/user_service.py Perform a security audit
 
 # Review payment processor (includes Python-specific issues like pickle, eval, yaml)
 > @samples/buggy-code/python/payment_processor.py Find all bugs
 ```
 
-The Python versions include language-specific vulnerabilities like:
+The Python security examples include language-specific vulnerabilities like:
 - Pickle deserialization attacks
 - `eval()` code injection
 - Insecure `yaml.load()`
@@ -622,11 +648,11 @@ The Python versions include language-specific vulnerabilities like:
 
 ### Main Challenge: Complete Development Workflow
 
-Using one of the sample files (`samples/buggy-code/js/userService.js` or `samples/buggy-code/python/user_service.py`):
+Using the book app (`samples/book-app-project/` and `samples/book-app-buggy/`):
 
-1. **Review**: Run a comprehensive security review
-2. **Identify**: Create a prioritized list of issues
-3. **Fix**: Refactor the most critical issue (SQL injection)
+1. **Review**: Run a comprehensive review of the book app project
+2. **Identify**: Create a prioritized list of issues in the buggy version
+3. **Fix**: Debug and fix the case-sensitivity bug in `find_book_by_title`
 4. **Test**: Generate tests for the fixed code
 5. **Commit**: Generate a proper commit message
 
@@ -641,32 +667,40 @@ Document each step and the Copilot output.
 copilot
 
 # Step 1: Review
-> @samples/buggy-code/js/userService.js Run a comprehensive security review
+> @samples/book-app-project/ Review this entire project for code quality and potential issues
 
 # Step 2: Identify
-> Create a prioritized list of issues. Rank by severity (critical, high, medium, low)
+> @samples/book-app-buggy/books_buggy.py Find all bugs in this file and create a prioritized list. Rank by severity (critical, high, medium, low)
 
 # Step 3: Fix
-> Fix the SQL injection vulnerability. Show me the before and after code.
+> Fix the find_book_by_title function to handle case-insensitive searches. Show me the before and after code.
 
 # Step 4: Test
-> Generate Jest tests for the fixed userService, including tests that would catch SQL injection
+> Generate pytest tests for the fixed find_book_by_title function, including tests for:
+> - Exact case match
+> - Different case variations
+> - Partial matches (should not match)
+> - Non-existent books
 
 # Step 5: Commit
-> Generate a commit message for these security fixes
+> Generate a commit message for this bug fix
 ```
 
-**Expected findings in the sample file:**
-- SQL injection (critical)
-- Missing input validation
-- Hardcoded credentials
-- Missing error handling
+**Expected findings in the buggy file:**
+- Case-sensitive title search (high)
+- File handle leak in save_books (medium)
+- Missing year validation (medium)
+- Incorrect partial match in remove_book (high)
+- Mark all books as read bug (critical)
+- Exact match in find_by_author (high)
 
-**Tip:** If you want to save your fixed file, ask: "Write the fixed code to a new file called userService-fixed.js"
+**Tip:** If you want to save your fixed file, ask: "Write the fixed code to a new file called books_fixed.py"
 
 </details>
 
 ### Bonus Challenge: Create an application with the Copilot CLI
+
+> 💡 **Note**: This GitHub Skills exercise uses **Node.js** (not Python). It's included because the CLI techniques you'll practice - creating issues, generating code, and collaborating from the terminal - apply to any language.
 
 This quick exercise shows developers how to use GitHub Copilot CLI to create issues, generate code, and collaborate from the terminal while building a Node.js calculator app. You will install the CLI, use templates and agents, and practice iterative, command-line driven development in under an hour.
 
@@ -694,10 +728,10 @@ This quick exercise shows developers how to use GitHub Copilot CLI to create iss
 copilot
 
 # Instead of:
-> Review @file.js
+> Review @samples/book-app-project/book_app.py
 
 # Try:
-> Review @file.js for security vulnerabilities, specifically: SQL injection, XSS, and authentication issues
+> Review @samples/book-app-project/book_app.py for input validation, error handling, and edge cases
 ```
 
 **Tests don't match my framework** - Specify the framework:
@@ -705,7 +739,7 @@ copilot
 ```bash
 copilot
 
-> @file.js Generate tests using Mocha and Chai (not Jest)
+> @samples/book-app-project/books.py Generate tests using pytest (not unittest)
 ```
 
 **Refactoring changes behavior** - Ask Copilot to preserve behavior:
@@ -713,7 +747,7 @@ copilot
 ```bash
 copilot
 
-> @file.js Refactor to async/await. IMPORTANT: Maintain identical external behavior - no breaking changes
+> @samples/book-app-project/book_app.py Refactor command handling to use dictionary dispatch. IMPORTANT: Maintain identical external behavior - no breaking changes
 ```
 
 </details>

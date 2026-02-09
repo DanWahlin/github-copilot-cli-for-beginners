@@ -1,13 +1,13 @@
 ![Chapter 00: Quick Start](images/chapter-header.png)
 
-Welcome! In this chapter, you'll get GitHub Copilot CLI (Command Line Interface) installed, authenticated with your GitHub account, and verified that everything works. This is a quick setup chapter. Once you're up and running, the real demos start in Chapter 01!
+Welcome! In this chapter, you'll get GitHub Copilot CLI (Command Line Interface) installed, signed in with your GitHub account, and verified that everything works. This is a quick setup chapter. Once you're up and running, the real demos start in Chapter 01!
 
 ## Learning Objectives
 
 By the end of this chapter, you'll have:
 
 - Installed GitHub Copilot CLI
-- Authenticated with your GitHub account
+- Signed in with your GitHub account
 - Verified it works with a simple test
 
 > ⏱️ **Estimated Time**: ~25 minutes (10 min reading + 15 min hands-on)
@@ -16,11 +16,9 @@ By the end of this chapter, you'll have:
 
 ## Prerequisites
 
-- **GitHub Account** with Copilot access
-  - Students/Teachers: [Free via GitHub Education](https://education.github.com/pack)
-  - Everyone else: [See pricing options](https://github.com/features/copilot/plans)
+- **GitHub Account** with Copilot access. [See subscription options](https://github.com/features/copilot/plans)). Students/Teachers can access copilot [free via GitHub Education](https://education.github.com/pack).
 - **Terminal basics**: Comfortable with commands like `cd` and `ls`
-- **Node.js LTS** (only needed for npm installation - not required for Homebrew, WinGet, or install script)
+- **[Python 3.10+](https://www.python.org/downloads/)**: Used to run the sample book app used throughout this course. If you don't have Python, the Codespaces option below includes it pre-installed.
 
 ### What "Copilot Access" Means
 
@@ -31,7 +29,7 @@ GitHub Copilot CLI requires an active Copilot subscription. You can check your s
 - **Copilot Enterprise** - Through your enterprise
 - **GitHub Education** - Free for verified students/teachers
 
-If you see "You don't have access to GitHub Copilot," you'll need to subscribe or join an organization that provides access.
+If you see "You don't have access to GitHub Copilot," you'll need to use the free option, subscribe to a plan, or join an organization that provides access.
 
 ---
 
@@ -39,13 +37,25 @@ If you see "You don't have access to GitHub Copilot," you'll need to subscribe o
 
 > ⏱️ **Time estimate**: Installation takes 2-5 minutes. Authentication adds another 1-2 minutes.
 
-> 🚀 **Want zero setup?** Use [GitHub Codespaces](https://github.com/codespaces) - Copilot CLI is pre-installed! Just open any repository in a Codespace and run `copilot` to start.
+### Recommended: GitHub Codespaces (Zero Setup)
+
+If you don't want to install any of the prerequisites, you can use GitHub Codespaces, which has the GitHub Copilot CLI ready to go (you'll need to sign in), pre-installs Python 3.13, pytest, and the GitHub CLI.
+
+1. [Fork this repository](https://github.com/github/github-copilot-cli-for-beginners/fork) to your GitHub account
+2. Click **Code** > **Codespaces** > **Create codespace on main**
+3. Wait for the container to build (~2 minutes)
+4. You're ready to go! The terminal will open automatically in the Codespace environment.
+
+> 💡 **Verify in Codespace**: Run `cd samples/book-app-project && python book_app.py help` to confirm Python and the sample app are working.
+
+### Alternative: Local Installation
 
 Choose the method that works for your system:
 
 ### All Platforms (npm)
 
 ```bash
+# If you have Node.js installed, this is a quick way to get the CLI
 npm install -g @github/copilot
 ```
 
@@ -67,15 +77,11 @@ winget install GitHub.Copilot
 curl -fsSL https://gh.io/copilot-install | bash
 ```
 
-### GitHub Codespaces
-
-If you're using GitHub Codespaces, **Copilot CLI is already installed** in the default image. Just run `copilot` to get started.
-
 ---
 
 ## Authentication
 
-Start the CLI and log in:
+Open a terminal window, start the CLI, and sign in using the `/login` command:
 
 ```bash
 copilot
@@ -87,19 +93,21 @@ copilot
 1. Copilot displays a one-time code (like `ABCD-1234`)
 2. Your browser opens to GitHub's device authorization page
 3. Enter the code when prompted
-4. Click "Authorize" to grant Copilot CLI access
-5. Return to your terminal - you're now logged in!
+4. Click "Authorize" to grant GitHub Copilot CLI access
+5. Return to your terminal - you're now signed in!
 
-**Tip**: The login persists across sessions. You only need to do this once unless your token expires or you explicitly log out.
+**Tip**: The sign-in persists across sessions. You only need to do this once unless your token expires or you explicitly sign out.
 
 ---
 
 ## Verify It Works
 
-Run this simple test:
+### Step 1: Test Copilot CLI
 
 ```bash
-copilot -p "Say hello and tell me what you can help with"
+copilot
+> Say hello and tell me what you can help with
+> /exit
 ```
 
 <details>
@@ -107,9 +115,35 @@ copilot -p "Say hello and tell me what you can help with"
 
 ![Hello Demo](images/hello-demo.gif)
 
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+
 </details>
 
 **Expected output**: A friendly response listing Copilot's capabilities.
+
+### Step 2: Run the Sample Book App
+
+This course uses a Python book collection app throughout all chapters. Verify it works:
+
+```bash
+cd samples/book-app-project
+python book_app.py list
+```
+
+**Expected output**: A list of 5 books including "The Hobbit", "1984", and "Dune".
+
+### Step 3: Try Copilot with the Book App
+
+Navigate back to the repository root first (if you ran Step 2):
+
+```bash
+cd ..   # Back to the repository root if needed
+copilot 
+> What does @samples/book-app-project/book_app.py do?
+> /exit
+```
+
+**Expected output**: A summary of the book app's main functions and commands.
 
 If you see an error, check the [troubleshooting section](#troubleshooting) below.
 
@@ -119,7 +153,7 @@ If you see an error, check the [troubleshooting section](#troubleshooting) below
 
 That's it for installation. The real fun starts in Chapter 01, where you'll:
 
-- Watch AI find 8 security bugs in 5 seconds
+- Watch AI review the book app and find code quality issues instantly
 - Learn three different ways to use Copilot
 - Generate working code from plain English
 
@@ -144,7 +178,7 @@ curl -fsSL https://gh.io/copilot-install | bash
 ### "You don't have access to GitHub Copilot"
 
 1. Verify you have a Copilot subscription at [github.com/settings/copilot](https://github.com/settings/copilot)
-2. Check that your organization permits CLI access (if using a work account)
+2. Check that your organization permits CLI access if using a work account
 
 ### "Authentication failed"
 
@@ -161,7 +195,7 @@ Manually visit [github.com/login/device](https://github.com/login/device) and en
 
 ### Token expired
 
-Tokens typically last 8 hours. Simply run `/login` again:
+Simply run `/login` again:
 
 ```bash
 copilot
@@ -177,9 +211,11 @@ copilot
 
 ## Key Takeaways
 
-1. **Multiple installation methods** - Choose what works for your system (Homebrew, WinGet, npm, or install script)
-2. **One-time authentication** - Login persists until token expires
-3. **Quick verification** - Use `-p` flag for instant testing
+1. **A GitHub Codespace is a quick way to get started** - Zero setup with Python, pytest, and GitHub Copilot CLI are all pre-installed
+2. **Multiple installation methods** - Choose what works for your system (Homebrew, WinGet, npm, or install script)
+3. **One-time authentication** - Login persists until token expires
+4. **Quick verification** - Use `-p` flag for instant testing
+5. **The book app works** - You'll use `samples/book-app-project/` throughout the entire course
 
 > 📚 **Official Documentation**: [Install Copilot CLI](https://docs.github.com/copilot/how-tos/copilot-cli/cli-getting-started) for installation options and requirements.
 

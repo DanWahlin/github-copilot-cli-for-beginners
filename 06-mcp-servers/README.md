@@ -114,6 +114,8 @@ Server 'postgres' enabled.
 
 ![MCP Status Demo](images/mcp-status-demo.gif)
 
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+
 </details>
 
 ---
@@ -181,29 +183,22 @@ Once configured, the filesystem MCP provides tools that Copilot can use automati
 ```bash
 copilot
 
-> List all markdown files in the docs folder
+> How many Python files are in the book-app-project directory?
 
-Found 12 markdown files:
-- docs/README.md
-- docs/getting-started.md
-- docs/api/endpoints.md
-...
+Found 3 Python files in samples/book-app-project/:
+- book_app.py
+- books.py
+- utils.py
 
-> What are the file statistics for the src directory?
+> What's the total size of the data.json file?
 
-src/ statistics:
-- Total files: 47
-- JavaScript: 32 files (68%)
-- TypeScript: 10 files (21%)
-- JSON: 5 files (11%)
-- Total lines: 4,230
+samples/book-app-project/data.json: 2.4 KB
 
-> Find all TODO comments in the codebase
+> Find all functions that don't have type hints in the book app
 
-Found 8 TODO comments:
-- src/api/users.js:23 - TODO: Add pagination
-- src/services/auth.js:45 - TODO: Implement refresh tokens
-...
+Found 2 functions without type hints:
+- samples/book-app-project/utils.py:10 - get_user_choice()
+- samples/book-app-project/utils.py:14 - get_book_details()
 ```
 
 ---
@@ -213,6 +208,26 @@ Found 8 TODO comments:
 The GitHub MCP server is **built-in** - if you logged into Copilot (which you did during initial setup), it already works. No configuration needed!
 
 > 💡 **Not working?** Run `/login` to re-authenticate with GitHub.
+
+### Authentication in Dev Containers
+
+If you're using this course in a Codespace or dev container, here's how authentication works:
+
+- **GitHub Codespaces** (recommended): Authentication is automatic. The `gh` CLI inherits your Codespace token. No action needed.
+- **Local dev container (Docker)**: Run `gh auth login` after the container starts, then restart Copilot.
+
+**Troubleshooting authentication:**
+```bash
+# Check if you're authenticated
+gh auth status
+
+# If not, log in
+gh auth login
+
+# Verify GitHub MCP is connected
+copilot
+> /mcp show
+```
 
 ### What You Can Do
 
@@ -229,35 +244,33 @@ The GitHub MCP server is **built-in** - if you logged into Copilot (which you di
 ```bash
 copilot
 
-> List open issues labeled "bug" in this repository
+# Create an issue for book app improvement
+> Create a GitHub issue titled "Add year range search to book app" with
+> description "Users should be able to search for books published in a
+> specific year range"
 
-Open bugs (5):
-#42 - Login fails with special characters (high priority)
-#38 - Dashboard loading slow (medium priority)
-#35 - Email notifications not sending (high priority)
-...
+Created issue #5: Add year range search to book app
+URL: https://github.com/org/repo/issues/5
 
-> Tell me about issue #42
+# Full issue-to-PR workflow
+> What's in issue #1?
 
-Issue #42: Login fails with special characters
-Opened by: jsmith (3 days ago)
-Labels: bug, priority-high
-Assignee: none
+Issue #1: Search by author doesn't work for partial names
+Status: Open
+Labels: bug, enhancement
+Description: Users should be able to search for "King" and find
+"Stephen King". Currently requires exact match.
 
-Description:
-Users report that passwords containing special characters
-like !@#$ fail to authenticate, even though they work
-during registration...
+> @samples/book-app-project/books.py Implement the feature described in issue #1
 
-Comments (2):
-- @devteam: Confirmed. Reproduces with password "test!@#"
-- @security: Likely an encoding issue in the auth endpoint
+[Shows implementation with fuzzy search logic]
 
-> Create a pull request for my current branch with a description
+> Create a pull request for these changes
 
-Created PR #45: Fix special character handling in authentication
+Created PR #6: Add fuzzy author search to book collection
 Base: main
-Head: feature/fix-special-chars
+Head: feature/fuzzy-author-search
+References: #1
 Status: Ready for review
 ```
 
@@ -268,10 +281,10 @@ Status: Ready for review
 Context7 gives Copilot access to up-to-date documentation for popular frameworks and libraries. Instead of relying on training data that might be outdated, Copilot fetches the actual current documentation.
 
 **Supported documentation sources include:**
-- React, Vue, Angular, Svelte
-- Node.js, Express, Fastify
-- TypeScript, JavaScript
+- Django, Flask, FastAPI, SQLAlchemy
 - PostgreSQL, MongoDB, Redis
+- React, Vue, Angular, Node.js
+- TypeScript, JavaScript, Go, Rust
 - And many more...
 
 ### Configuration
@@ -303,33 +316,35 @@ Context7 gives Copilot access to up-to-date documentation for popular frameworks
 ```bash
 copilot
 
-> What's the best practice for useEffect cleanup in React?
+> What's the best practice for database connection management in Python?
 
-From React Documentation:
+From SQLAlchemy Documentation:
 
-## useEffect Cleanup
+## Connection Management
 
-Effects can return a cleanup function that runs before
-the component unmounts or before the effect runs again:
+Use context managers to ensure connections are properly closed:
 
-```jsx
-useEffect(() => {
-  const subscription = props.source.subscribe();
-  return () => {
-    subscription.unsubscribe();
-  };
-}, [props.source]);
+```python
+from sqlalchemy import create_engine
+
+engine = create_engine("sqlite:///books.db")
+
+with engine.connect() as conn:
+    result = conn.execute(text("SELECT * FROM books"))
+    for row in result:
+        print(row)
+# Connection automatically closed when exiting the 'with' block
 ```
 
-Common cleanup scenarios:
-- Unsubscribing from subscriptions
-- Cancelling fetch requests
-- Clearing timeouts/intervals
-- Removing event listeners
+Best practices:
+- Use context managers for automatic cleanup
+- Use connection pooling for production
+- Handle connection errors gracefully
+- Close connections in finally blocks
 
-> How do I implement this in my UserProfile component?
+> How do I apply this to the book app's data persistence?
 
-# Copilot now knows the official React patterns
+# Copilot now knows the official SQLAlchemy patterns
 # and can apply them to your specific code
 ```
 
@@ -381,50 +396,60 @@ This is the moment developers say "I never want to work without this again."
 ```bash
 copilot
 
-> Get the details of GitHub issue #42
+> Get the details of GitHub issue #1
 
-Issue #42: Login fails with special characters in password
+Issue #1: Search by author doesn't work for partial names
 Status: Open
-Priority: High
-Reporter: jsmith (3 days ago)
+Priority: Medium
+Reporter: user123 (2 days ago)
 
 Description:
-Users report that passwords containing special characters like !@#$
-fail to authenticate, even when they worked during registration.
+Users should be able to search for "King" and find books by
+"Stephen King". Currently the search requires exact match of
+the full author name.
 
 Steps to reproduce:
-1. Create account with password "Test!@#123"
-2. Log out
-3. Try to log in - fails with "Invalid credentials"
+1. Run the book app
+2. Search for "King"
+3. No results returned (should find "Stephen King" books)
 
 Comments:
-- @devteam: Confirmed. Issue is in password encoding.
-- @security: High priority - blocking some users from logging in.
+- @reviewer: Good enhancement. Should use fuzzy matching.
+- @contributor: Could use difflib or fuzzywuzzy for this.
 
-> Find the authentication code that handles login
+> Find the code that handles author search
 
-Found: src/auth/login.js
+Found: samples/book-app-project/books.py
 
-[Shows relevant code with the password handling function]
+[Shows the BookCollection.search_by_author() method]
 
-> Based on the issue and the code, what's causing this bug?
+> Based on the issue and the code, what's causing this limitation?
 
 Analysis:
-Line 34 passes the password through encodeURIComponent()
-before hashing. Special characters are encoded differently
-during login vs registration, causing hash mismatch.
+Line 52 uses exact string comparison (author == search_term).
+This requires users to type the full author name exactly.
 
-Fix: Remove encoding or apply consistently in both places.
+Fix: Implement fuzzy matching using difflib or case-insensitive
+substring matching.
 
-> Fix the bug and create a pull request that references issue #42
+> Fix the bug and create a pull request that references issue #1
 
-✓ Created branch: fix/issue-42-special-chars
-✓ Modified: src/auth/login.js (removed duplicate encoding)
-✓ Modified: tests/auth.test.js (added special char test cases)
-✓ Created PR #48: Fix special character handling in authentication
+✓ Created branch: fix/issue-1-fuzzy-author-search
+✓ Modified: samples/book-app-project/books.py (added fuzzy matching)
+✓ Modified: samples/book-app-project/test_books.py (added test cases)
+✓ Created PR #7: Add fuzzy author search to book collection
 
-PR URL: https://github.com/org/repo/pull/48
+PR URL: https://github.com/org/repo/pull/7
 ```
+
+<details>
+<summary>🎬 See the MCP workflow in action!</summary>
+
+![MCP Workflow Demo](images/mcp-workflow-demo.gif)
+
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+
+</details>
 
 **The result**: Issue investigation → root cause analysis → fix implementation → PR creation. **Zero copy-paste. Zero context switching. One terminal session.**
 
@@ -447,29 +472,28 @@ Repository Health Report
 ========================
 
 📝 Technical Debt:
-- TODO comments: 23 (src/api: 12, src/services: 8, src/utils: 3)
-- FIXME comments: 5 (all in src/legacy/)
+- TODO comments: 3 (samples/book-app-project/books.py: 2, utils.py: 1)
+- FIXME comments: 1 (in data validation)
 
-🐛 Open Issues: 12
-- Critical: 2 (#42 auth bug, #39 data loss)
-- High: 4
-- Medium: 5
+🐛 Open Issues: 4
+- High: 1 (#1 fuzzy author search)
+- Medium: 2
 - Low: 1
 
-🔒 Security Issues: 3
-- #42: Authentication bypass (HIGH)
-- #31: XSS in comments (MEDIUM)
-- #28: Rate limiting missing (MEDIUM)
+🧪 Test Coverage:
+- Test files: 0
+- Functions tested: 0/12 (0%)
+- Missing tests: all public functions need coverage
 
 📊 Largest Files:
-1. src/services/orderProcessor.js (847 lines) ⚠️
-2. src/api/users.js (523 lines)
-3. src/utils/validators.js (412 lines)
+1. samples/book-app-project/book_app.py (99 lines)
+2. samples/book-app-project/books.py (89 lines)
+3. samples/book-app-project/utils.py (37 lines)
 
 Recommendations:
-- Address critical issues #42 and #39 immediately
-- Consider splitting orderProcessor.js (>500 lines)
-- 23 TODOs suggest technical debt accumulation
+- Address issue #1 for better user experience
+- Add test coverage for BookCollection methods
+- All files well-sized (<100 lines) - good structure!
 ```
 
 **The result**: Multiple data sources aggregated in 30 seconds. Manual process: 1+ hour of clicking around GitHub, running grep, counting lines.
@@ -488,13 +512,13 @@ The real power comes from combining servers:
 copilot
 
 # Step 1: Understand the issue from GitHub
-> Tell me about issue #42
+> Tell me about issue #1
 
 # Step 2: Find related code
-> Search for "authenticate" in the src directory
+> @samples/book-app-project/books.py Show me the BookCollection class
 
 # Step 3: Get best practices
-> What are the best practices for input sanitization in authentication?
+> What are the Python best practices for input validation?
 
 # Step 4: Synthesize a solution
 > Based on the issue, the code, and best practices, suggest a fix
@@ -508,22 +532,22 @@ copilot
 ```bash
 copilot
 
-> Get the details of issue #42
-# Learn about the bug
+> Get the details of issue #1
+# Learn about the enhancement request
 
-> Show me src/auth/login.js
+> Show me samples/book-app-project/books.py
 # See the relevant code
 
-> What are the best practices for password validation?
+> What are the best practices for fuzzy string matching in Python?
 # Understand the right approach
 
-> Analyze the bug and suggest a fix based on what we found
+> Analyze the current implementation and suggest a fix based on what we found
 
 # Copilot synthesizes information from all three sources
 
 > Implement the fix
 
-> Create a pull request titled "Fix: Handle special characters in password validation"
+> Create a pull request titled "Add fuzzy author search to book collection"
 ```
 
 ---
@@ -593,9 +617,9 @@ After completing the demos, try these variations:
 1. Verify GitHub MCP works (it's built-in): run `copilot` then `List my open PRs`
 2. Set up `mcp-config.json` with the filesystem server
 3. Use MCP to:
-   - List files in your project using the filesystem server
+   - List Python files in the book-app-project using the filesystem server
    - Get information about an issue or PR using the GitHub server
-   - Create a workflow that uses both servers
+   - Create a workflow that uses both servers (e.g., find book app files and create an issue)
 
 **Success criteria**: You can seamlessly access GitHub and filesystem data from within Copilot.
 
@@ -638,7 +662,7 @@ copilot
 > /mcp show
 # Should show filesystem as enabled
 
-> List all JavaScript files in this project
+> List all Python files in the book-app-project directory
 # Uses filesystem MCP
 
 > What issues are assigned to me?

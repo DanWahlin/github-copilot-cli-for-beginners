@@ -22,8 +22,8 @@ By the end of this chapter, you'll be able to:
 
 Imagine explaining a bug to a colleague:
 
-**Without context**: "The login doesn't work."
-**With context**: "Look at `auth/login.js`, especially the `validateToken` function on line 42. It's not handling expired tokens correctly."
+**Without context**: "The book app doesn't work."
+**With context**: "Look at `books.py`, especially the `find_book_by_title` function. It's not doing case-insensitive matching."
 
 The second approach gets better help because your colleague can see exactly what you're talking about.
 
@@ -62,31 +62,33 @@ copilot
 
 > 💡 **Don't have a project handy?** Create a quick test file:
 > ```bash
-> echo "function greet(name) { return 'Hello ' + name; }" > test.js
+> echo "def greet(name): return 'Hello ' + name" > test.py
 > copilot
-> > What does @test.js do?
+> > What does @test.py do?
 > ```
 
 ### Basic @ Patterns
 
 | Pattern | What It Does | Example Use |
 |---------|--------------|-------------|
-| `@file.js` | Reference a single file | `Review @samples/src/index.js` |
-| `@folder/` | Reference all files in a directory | `Review @samples/src/api/` |
-| `@file1.js @file2.js` | Reference multiple files | `Compare @samples/src/auth/login.js @samples/src/auth/register.js` |
+| `@file.py` | Reference a single file | `Review @samples/book-app-project/books.py` |
+| `@folder/` | Reference all files in a directory | `Review @samples/book-app-project/` |
+| `@file1.py @file2.py` | Reference multiple files | `Compare @samples/book-app-project/book_app.py @samples/book-app-project/books.py` |
 
 ### Reference a Single File
 
 ```bash
 copilot
 
-> Explain what @samples/src/utils/helpers.js does
+> Explain what @samples/book-app-project/utils.py does
 ```
 
 <details>
 <summary>🎬 See it in action!</summary>
 
 ![File Context Demo](images/file-context-demo.gif)
+
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
 
 </details>
 
@@ -95,7 +97,7 @@ copilot
 ```bash
 copilot
 
-> Compare @samples/src/auth/login.js and @samples/src/auth/register.js for consistency
+> Compare @samples/book-app-project/book_app.py and @samples/book-app-project/books.py for consistency
 ```
 
 ### Reference an Entire Directory
@@ -103,7 +105,7 @@ copilot
 ```bash
 copilot
 
-> Review all files in @samples/src/api/ for error handling
+> Review all files in @samples/book-app-project/ for error handling
 ```
 
 ---
@@ -117,48 +119,56 @@ This is where context becomes a superpower. Single-file analysis is useful. Cros
 ```bash
 copilot
 
-> @samples/buggy-code/js/userService.js @samples/buggy-code/js/paymentProcessor.js
+> @samples/book-app-project/book_app.py @samples/book-app-project/books.py
 >
-> Find security vulnerabilities that span BOTH files. Look for patterns that are dangerous when these two modules work together.
+> How do these files work together? What's the data flow?
 ```
+
+> 💡 **Advanced Option**: For security-focused cross-file analysis, try the Python security examples:
+> ```bash
+> > @samples/buggy-code/python/user_service.py @samples/buggy-code/python/payment_processor.py
+> > Find security vulnerabilities that span BOTH files
+> ```
 
 <details>
 <summary>🎬 See it in action!</summary>
 
 ![Multi-File Demo](images/multi-file-demo.gif)
 
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+
 </details>
 
 **What Copilot discovers**:
 
 ```
-Cross-Module Security Analysis
-==============================
+Cross-Module Analysis
+=====================
 
-1. SYSTEMATIC SQL INJECTION (Both Files)
-   Both files construct queries with string concatenation.
-   This isn't one bug - it's a codebase-wide pattern.
+1. DATA FLOW PATTERN
+   book_app.py creates BookCollection instance and calls methods
+   books.py defines BookCollection class and manages data persistence
 
-   userService.js:12    "SELECT * FROM users WHERE id = " + userId
-   paymentProcessor.js:28  "SELECT * FROM payments WHERE user = " + id
+   Flow: book_app.py (UI) → books.py (business logic) → data.json (storage)
 
-2. CROSS-MODULE DATA LEAKAGE (Critical)
-   userService.js:34 logs the full user object including password hash
-   paymentProcessor.js:45 logs transaction details referencing user data
+2. DUPLICATE DISPLAY FUNCTIONS
+   book_app.py:9-21    show_books() function
+   utils.py:28-36      print_books() function
 
-   Impact: When these modules interact, password hashes from userService may be exposed in paymentProcessor's transaction logs!
+   Impact: Two nearly identical functions doing the same thing. If you update
+   one (like changing the format), you must remember to update the other.
 
-3. SHARED HARDCODED KEY (Both Files)
-   userService.js:8      const API_KEY = "sk_live_abc123"
-   paymentProcessor.js:5 const API_KEY = "sk_live_abc123"
+3. INCONSISTENT ERROR HANDLING
+   book_app.py handles ValueError from year conversion
+   books.py silently returns None/False on errors
 
-   Same production key hardcoded in two places = organizational issue
+   Pattern: No unified approach to error handling across modules
 ```
 
-**Why this matters**: A single-file review would find SQL injection. Only cross-file analysis reveals:
-- The **systematic nature** of the problem (codebase-wide, not a one-off)
-- **Cross-module data flows** that leak sensitive information
-- **Organizational patterns** suggesting deeper security culture issues
+**Why this matters**: A single-file review would miss the bigger picture. Only cross-file analysis reveals:
+- **Duplicate code** that should be consolidated
+- **Data flow patterns** showing how components interact
+- **Architectural issues** that affect maintainability
 
 ---
 
@@ -169,22 +179,22 @@ New to a project? Skip the hour of reading code:
 ```bash
 copilot
 
-> @samples/buggy-code/
+> @samples/book-app-project/
 >
-> In one paragraph, what does this codebase do and what are its biggest architectural problems?
+> In one paragraph, what does this app do and what are its biggest quality issues?
 ```
 
 **What you get**:
 ```
-This is a simple e-commerce backend with user authentication and payment
-processing. The biggest architectural problems are:
+This is a CLI book collection manager that lets users add, list, remove, and
+search books stored in a JSON file. The biggest quality issues are:
 
-1. No separation of concerns - database queries mixed with business logic
-2. No input validation layer - each function validates (or doesn't) independently
-3. No error handling strategy - some functions throw, some return null, some crash
-4. Security as afterthought - authentication logic duplicated rather than centralized
+1. Duplicate display logic - show_books() and print_books() do the same thing
+2. Inconsistent error handling - some errors raise exceptions, others return False
+3. No input validation - year can be 0, empty strings accepted for title/author
+4. Missing tests - no test coverage for critical functions like find_book_by_title
 
-Priority fix: Add a validation middleware and centralized auth before any new features.
+Priority fix: Consolidate duplicate display functions and add input validation.
 ```
 
 **Result**: What takes an hour of code reading compressed into 10 seconds. You know exactly where to focus.
@@ -198,15 +208,15 @@ Priority fix: Add a validation middleware and centralized auth before any new fe
 ```bash
 copilot
 
-> @samples/src/api/users.js Review this file for security issues
+> @samples/book-app-project/books.py Review this file for potential bugs
 
 # Copilot now has the full file content and can give specific feedback:
-# "Line 23: SQL query is vulnerable to injection..."
-# "Line 45: Password is stored in plain text..."
+# "Line 49: Case-sensitive comparison may miss books..."
+# "Line 29: JSON decode errors are caught but data corruption isn't logged..."
 
-> What about @samples/src/api/auth.js?
+> What about @samples/book-app-project/book_app.py?
 
-# Now reviewing auth.js, but still aware of users.js context
+# Now reviewing book_app.py, but still aware of books.py context
 ```
 
 ### Example 2: Understanding a Codebase
@@ -214,28 +224,37 @@ copilot
 ```bash
 copilot
 
-> @package.json What does this project do?
+> @samples/book-app-project/books.py What does this module do?
 
-# Copilot reads package.json and understands dependencies
+# Copilot reads books.py and understands the BookCollection class
 
-> @samples/src/ Give me an overview of the code structure
+> @samples/book-app-project/ Give me an overview of the code structure
 
 # Copilot scans the directory and summarizes
 
-> How does the authentication flow work?
+> How does the app save and load books?
 
 # Copilot can trace through the code it's already seen
 ```
+
+<details>
+<summary>🎬 See a multi-turn conversation in action!</summary>
+
+![Multi-Turn Demo](images/multi-turn-demo.gif)
+
+*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+
+</details>
 
 ### Example 3: Multi-File Refactoring
 
 ```bash
 copilot
 
-> @samples/src/services/userService.js @samples/src/services/productService.js
-> These services have duplicated error handling. Extract a common pattern.
+> @samples/book-app-project/book_app.py @samples/book-app-project/utils.py
+> I see duplicate display functions: show_books() and print_books(). Help me consolidate these.
 
-# Copilot sees both files and can suggest a shared abstraction
+# Copilot sees both files and can suggest how to merge the duplicate code
 ```
 
 ---
@@ -251,7 +270,7 @@ Every conversation is automatically saved. Just exit normally:
 ```bash
 copilot
 
-> @samples/src/services/ Let's refactor these services to use async/await
+> @samples/book-app-project/ Let's improve error handling across all modules
 
 [... do some work ...]
 
@@ -280,21 +299,21 @@ copilot --resume abc123
 Imagine this workflow across multiple days:
 
 ```bash
-# Monday: Start security audit
+# Monday: Start book app review
 copilot
 
-> /rename security-audit
-> @samples/buggy-code/js/userService.js
-> Review and number all security issues
+> /rename book-app-review
+> @samples/book-app-project/books.py
+> Review and number all code quality issues
 
-Security Issues Found:
-1. SQL Injection (line 12) - CRITICAL
-2. XSS vulnerability (line 34) - HIGH
-3. Hardcoded API key (line 8) - HIGH
-4. Weak password comparison (line 56) - MEDIUM
-5. Missing rate limiting - MEDIUM
+Quality Issues Found:
+1. Duplicate display functions (book_app.py & utils.py) - MEDIUM
+2. No input validation for empty strings - MEDIUM
+3. Year can be 0 or negative - LOW
+4. No type hints on all functions - LOW
+5. Missing error logging - LOW
 
-> Fix issue #1 (SQL injection)
+> Fix issue #1 (duplicate functions)
 # Work on the fix...
 
 > /exit
@@ -304,15 +323,15 @@ Security Issues Found:
 # Wednesday: Resume exactly where you left off
 copilot --continue
 
-> What issues remain unfixed from our security audit?
+> What issues remain unfixed from our book app review?
 
-Remaining issues from our security-audit session:
-2. XSS vulnerability (line 34) - HIGH
-3. Hardcoded API key (line 8) - HIGH
-4. Weak password comparison (line 56) - MEDIUM
-5. Missing rate limiting - MEDIUM
+Remaining issues from our book-app-review session:
+2. No input validation for empty strings - MEDIUM
+3. Year can be 0 or negative - LOW
+4. No type hints on all functions - LOW
+5. Missing error logging - LOW
 
-Issue #1 (SQL injection) was fixed on Monday.
+Issue #1 (duplicate functions) was fixed on Monday.
 
 > Let's tackle issue #2 next
 ```
@@ -343,14 +362,14 @@ For power users, Copilot supports glob patterns and image references:
 
 | Pattern | What It Does |
 |---------|--------------|
-| `@folder/*.js` | All .js files in folder |
-| `@**/*.test.js` | Recursive glob - find all test files anywhere |
+| `@folder/*.py` | All .py files in folder |
+| `@**/test_*.py` | Recursive glob - find all test files anywhere |
 | `@image.png` | Image file for UI review |
 
 ```bash
 copilot
 
-> Find all TODO comments in @samples/src/**/*.js
+> Find all TODO comments in @samples/book-app-project/**/*.py
 ```
 
 ---
@@ -410,26 +429,26 @@ The magic happens when you have multi-turn conversations that build on each othe
 ```bash
 copilot
 
-> @samples/src/components/Button.jsx Review this React component
+> @samples/book-app-project/books.py Review the BookCollection class
 
-Copilot: "The component looks good, but I notice:
-1. No PropTypes or TypeScript types
-2. No accessibility attributes
-3. Could benefit from CSS-in-JS or CSS modules"
+Copilot: "The class looks functional, but I notice:
+1. Missing type hints on some methods
+2. No validation for empty title/author
+3. Could benefit from better error handling"
 
-> Add TypeScript types
+> Add type hints to all methods
 
-Copilot: "Here's the component with TypeScript..."
+Copilot: "Here's the class with complete type hints..."
 [Shows typed version]
 
-> Now add accessibility attributes
+> Now improve error handling
 
-Copilot: "Building on the typed version, here's accessibility..."
-[Adds aria-label, role, keyboard handlers]
+Copilot: "Building on the typed version, here's improved error handling..."
+[Adds validation and proper exceptions]
 
 > Generate tests for this final version
 
-Copilot: "Based on the component with types and accessibility..."
+Copilot: "Based on the class with types and error handling..."
 [Generates comprehensive tests]
 ```
 
@@ -462,7 +481,7 @@ Context usage: 120,000 / 128,000 tokens (94%)
 
 # Warning: Approaching context limit
 
-> @another-large-file.js
+> @another-large-file.py
 
 Context limit reached. Older context will be summarized.
 ```
@@ -487,13 +506,13 @@ Context limit reached. Older context will be summarized.
 |-----------|--------|-----|
 | Starting new topic | `/clear` | Removes irrelevant context |
 | Long conversation | `/compact` | Summarizes history, frees tokens |
-| Need specific file | `@file.js` not `@folder/` | Loads only what you need |
+| Need specific file | `@file.py` not `@folder/` | Loads only what you need |
 | Hitting limits | Start new session | Fresh 128K context |
 | Multiple topics | Use `/rename` per topic | Easy to resume right session |
 
 ### Best Practices for Large Codebases
 
-1. **Be specific**: `@samples/src/auth/login.js` instead of `@samples/src/`
+1. **Be specific**: `@samples/book-app-project/books.py` instead of `@samples/book-app-project/`
 2. **Clear between topics**: Use `/clear` when switching focus
 3. **Use `/compact`**: Summarize conversation to free up context
 4. **Use multiple sessions**: One session per feature or topic
@@ -514,8 +533,9 @@ Not all files are equal when it comes to context. Here's how to choose wisely:
 | Very Large (1000+ lines) | 15,000+ tokens | Consider splitting or targeting sections |
 
 **Concrete examples:**
-- A typical React component (200 lines) ≈ 3,000 tokens
-- A Node.js API file (400 lines) ≈ 6,000 tokens
+- The book app's 4 Python files combined ≈ 2,000-3,000 tokens
+- A typical Python module (200 lines) ≈ 3,000 tokens
+- A Flask API file (400 lines) ≈ 6,000 tokens
 - Your package.json ≈ 200-500 tokens
 - A short prompt + response ≈ 500-1,500 tokens
 
@@ -524,14 +544,14 @@ Not all files are equal when it comes to context. Here's how to choose wisely:
 ### What to Include vs. Exclude
 
 **High value** (include these):
-- Entry points (`index.js`, `main.py`, `app.ts`)
+- Entry points (`book_app.py`, `main.py`, `app.py`)
 - The specific files you're asking about
 - Files directly imported by your target file
-- Configuration files (`package.json`, `tsconfig.json`)
-- Type definitions or interfaces
+- Configuration files (`requirements.txt`, `pyproject.toml`)
+- Data models or dataclasses
 
 **Lower value** (consider excluding):
-- Generated files (`*.min.js`, bundled output)
+- Generated files (compiled output, bundled assets)
 - Node modules or vendor directories
 - Large data files or fixtures
 - Files unrelated to your question
@@ -540,18 +560,18 @@ Not all files are equal when it comes to context. Here's how to choose wisely:
 
 ```
 Less specific ────────────────────────► More specific
-@samples/src/                                   @samples/src/auth/login.js:23-45
+@samples/book-app-project/                      @samples/book-app-project/books.py:47-52
      │                                       │
      └─ Scans everything                     └─ Just what you need
         (uses more context)                      (preserves context)
 ```
 
-**When to go broad** (`@samples/src/`):
+**When to go broad** (`@samples/book-app-project/`):
 - Initial codebase exploration
 - Finding patterns across many files
 - Architecture reviews
 
-**When to go specific** (`@samples/src/auth/login.js`):
+**When to go specific** (`@samples/book-app-project/books.py`):
 - Debugging a particular issue
 - Code review of a specific file
 - Asking about a single function
@@ -565,13 +585,13 @@ copilot
 > @package.json What frameworks does this project use?
 
 # Step 2: Narrow based on answer
-> @samples/src/api/ Show me the API structure
+> @samples/book-app-project/ Show me the project structure
 
 # Step 3: Focus on what matters
-> @samples/src/api/users.js Review this specific endpoint
+> @samples/book-app-project/books.py Review the BookCollection class
 
 # Step 4: Add related files only as needed
-> @samples/src/api/users.js @samples/src/models/User.js How does this endpoint use the User model?
+> @samples/book-app-project/book_app.py @samples/book-app-project/books.py How does the CLI use the BookCollection?
 ```
 
 This staged approach keeps context focused and efficient.
@@ -615,34 +635,34 @@ The course includes sample files you can review directly. Start copilot and run 
 ```bash
 copilot
 
-> @samples/src/ Give me a security and code quality review of this project
+> @samples/book-app-project/ Give me a code quality review of this project
 
 # Copilot will identify issues like:
-# - SQL injection vulnerability
-# - Weak email validation
-# - Missing error handling
+# - Duplicate display functions
+# - Missing input validation
+# - Inconsistent error handling
 ```
 
-> 💡 **Want to try with your own files?** Create a small project (`mkdir -p my-project/src`), add some code files, then use `@my-project/src/` to review them. You can ask copilot to create sample code for you if you'd like!
+> 💡 **Want to try with your own files?** Create a small Python project (`mkdir -p my-project/src`), add some .py files, then use `@my-project/src/` to review them. You can ask copilot to create sample code for you if you'd like!
 
 ### Example 2: Session Workflow
 
 ```bash
 copilot
 
-> /rename project-review
-> @samples/src/index.js Let's fix the SQL injection vulnerability
+> /rename book-app-review
+> @samples/book-app-project/books.py Let's add input validation for empty titles
 
-[Copilot suggests parameterized queries]
+[Copilot suggests validation approach]
 
 > Implement that fix
-> Now update @samples/src/utils.js to have proper email validation
+> Now consolidate the duplicate display functions in @samples/book-app-project/
 > /exit
 
 # Later - resume where you left off
 copilot --continue
 
-> Generate tests for the fixes we made
+> Generate tests for the changes we made
 ```
 
 ---
@@ -651,11 +671,11 @@ copilot --continue
 
 After completing the demos, try these variations:
 
-1. **Cross-File Challenge**: Run the same security analysis but with Python files:
+1. **Cross-File Challenge**: Analyze how book_app.py and books.py work together:
    ```bash
    copilot
-   > @samples/buggy-code/python/user_service.py @samples/buggy-code/python/payment_processor.py
-   > Find issues that appear in BOTH files
+   > @samples/book-app-project/book_app.py @samples/book-app-project/books.py
+   > What's the relationship between these files? Are there any code smells?
    ```
 
 2. **Session Challenge**: Start a session, name it with `/rename my-first-session`, work on something, exit with `/exit`, then run `copilot --continue`. Does it remember what you were doing?
@@ -670,10 +690,10 @@ After completing the demos, try these variations:
 
 ### Main Challenge: Multi-File Review
 
-1. Clone or create a project with at least 3 source files
+1. Clone or create a Python project with at least 3 source files
 2. Start an interactive session
 3. Use `@` to review each file individually
-4. Ask Copilot to find patterns across all files: "What patterns are repeated across @samples/src/?"
+4. Ask Copilot to find patterns across all files: "What patterns are repeated across @samples/book-app-project/?"
 5. Ask for a refactoring suggestion that affects multiple files
 6. Rename the session: `/rename review-session`
 7. Exit, then resume with `copilot --continue` and continue where you left off
@@ -687,16 +707,16 @@ After completing the demos, try these variations:
 ```bash
 cd /path/to/github-copilot-cli-for-beginners
 copilot
-> @samples/buggy-code/js/ Review these files for common issues
+> @samples/book-app-project/ Review these files for code quality issues
 > What patterns do you see across these files?
-> /rename buggy-code-review
+> /rename book-app-quality-review
 > /exit
 ```
 
 Then resume with: `copilot --continue`
 
 **Useful commands:**
-- `@file.js` - Reference a single file
+- `@file.py` - Reference a single file
 - `@folder/` - Reference all files in a folder (note the trailing `/`)
 - `/context` - Check how much context you're using
 - `/rename <name>` - Name your session for easy resuming
@@ -720,7 +740,7 @@ Then resume with: `copilot --continue`
 
 | Mistake | What Happens | Fix |
 |---------|--------------|-----|
-| Forgetting `@` before filenames | Copilot treats "src/index.js" as plain text | Use `@samples/src/index.js` to reference files |
+| Forgetting `@` before filenames | Copilot treats "books.py" as plain text | Use `@samples/book-app-project/books.py` to reference files |
 | Expecting sessions to persist automatically | Starting `copilot` fresh loses all previous context | Use `--continue` (last session) or `--resume` (pick a session) |
 | Referencing files outside current directory | "Permission denied" or "File not found" errors | Use `/add-dir /path/to/directory` to grant access |
 | Not using `/clear` when switching topics | Old context confuses responses about the new topic | Run `/clear` before starting a different task |
@@ -736,7 +756,7 @@ ls   # List files
 # Then start copilot and use relative paths
 copilot
 
-> Review @samples/src/index.js
+> Review @samples/book-app-project/books.py
 ```
 
 **"Permission denied"** - Add the directory to your allowed list:

@@ -11,84 +11,28 @@
   },
   "demos": [
     {
-      "chapter": "00-quick-start",
-      "name": "hello-demo",
-      "description": "Quick Start - First taste",
-      "prompt": "Say hello and tell me what you can help with"
-    },
-    {
       "chapter": "01-setup-and-first-steps",
-      "name": "security-scan-demo",
-      "description": "Security Scan in 5 Seconds",
-      "prompt": "Review @samples/buggy-code/js/userService.js for security vulnerabilities"
-    },
-    {
-      "chapter": "01-setup-and-first-steps",
-      "name": "explain-code-demo",
-      "description": "Explain Confusing Code",
-      "prompt": "Explain this in simple terms: const debounce = (fn, ms) => { let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); }; }"
-    },
-    {
-      "chapter": "01-setup-and-first-steps",
-      "name": "generate-script-demo",
-      "description": "Generate Working Code",
-      "prompt": "Write a bash script that finds all files over 100MB and lists them by size"
-    },
-    {
-      "chapter": "01-setup-and-first-steps",
-      "name": "luhn-algorithm-demo",
-      "description": "Generate Algorithm Code",
-      "prompt": "Write a Python function to validate credit card numbers using the Luhn algorithm"
-    },
-    {
-      "chapter": "02-context-conversations",
-      "name": "file-context-demo",
-      "description": "File Context with @",
-      "prompt": "What does @samples/buggy-code/js/userService.js do? Summarize briefly."
-    },
-    {
-      "chapter": "02-context-conversations",
-      "name": "multi-file-demo",
-      "description": "Multi-file Context",
-      "prompt": "Compare @samples/buggy-code/js/userService.js and @samples/buggy-code/js/paymentProcessor.js - which has more critical bugs?"
+      "name": "setup-and-first-steps-demo",
+      "description": "Clone the course repository (if you haven't already) demo",
+      "prompt": "List all functions in @samples/book-app-project/book_app.py"
     },
     {
       "chapter": "03-development-workflows",
-      "name": "fix-bug-demo",
-      "description": "Fix a Bug",
-      "prompt": "Show me how to fix the SQL injection in @samples/buggy-code/js/userService.js line 13"
-    },
-    {
-      "chapter": "03-development-workflows",
-      "name": "refactor-demo",
-      "description": "Refactor Code",
-      "prompt": "Refactor @samples/buggy-code/js/userService.js to use parameterized queries instead of string concatenation"
-    },
-    {
-      "chapter": "04-agents-custom-instructions",
-      "name": "security-expert-demo",
-      "description": "Security Expert Agent",
-      "prompt": "As a security expert, prioritize the vulnerabilities in @samples/buggy-code/js/paymentProcessor.js by risk level"
+      "name": "development-workflows-demo",
+      "description": "Copilot provides detailed review demo",
+      "prompt": "Generate a conventional commit message for: $(git diff --staged)"
     },
     {
       "chapter": "05-skills",
-      "name": "list-skills-demo",
-      "description": "Available Skills",
-      "prompt": "What slash commands and skills are available? List the main ones.",
-      "responseWait": 15
+      "name": "skills-demo",
+      "description": "Copilot detects this matches your \"code-review\" skill demo",
+      "prompt": "Review @file.py for security issues"
     },
     {
-      "chapter": "06-mcp-servers",
-      "name": "mcp-status-demo",
-      "description": "MCP Server Status",
-      "prompt": "What MCP servers and tools are connected? List them.",
-      "responseWait": 15
-    },
-    {
-      "chapter": "07-advanced-workflows",
-      "name": "full-review-demo",
-      "description": "Full Codebase Review",
-      "prompt": "Review @samples/buggy-code/js/ for all security issues. Prioritize by severity."
+      "chapter": "07-putting-it-together",
+      "name": "putting-it-together-demo",
+      "description": "Copilot creates high-level plan... demo",
+      "prompt": "Generate commit message for: $(git diff --staged)"
     }
   ]
 }
