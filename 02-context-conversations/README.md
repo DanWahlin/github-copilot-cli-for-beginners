@@ -605,19 +605,6 @@ This staged approach keeps context focused and efficient.
 
 ---
 
-## Permission Patterns
-
-By default, Copilot can access files in your current directory. For files elsewhere, use `/add-dir` to grant access or `--allow-all-paths` to disable restrictions entirely.
-
-```bash
-# Quick example: add another directory
-copilot --add-dir /path/to/other/project
-```
-
-> 📖 **Learn more**: See [Additional Context Features](../appendices/additional-context.md#permission-patterns) for multi-directory workflows, automation flags, and common scenarios.
-
----
-
 ## Working with Images
 
 You can include images in your conversations using the `@` syntax, or simply **paste from your clipboard** (Cmd+V / Ctrl+V). Copilot can analyze screenshots, mockups, and diagrams to help with UI debugging, design implementation, and error analysis.
@@ -625,7 +612,8 @@ You can include images in your conversations using the `@` syntax, or simply **p
 ```bash
 copilot
 
-> @screenshot.png What's happening in this UI?
+> @screenshot.png What is happening in this UI?
+
 > @mockup.png Write the HTML and CSS to match this design
 ```
 
@@ -637,7 +625,7 @@ copilot
 
 ### Example 1: Full Project Review
 
-The course includes sample files you can review directly. Start copilot and run the prompt show next:
+The course includes sample files you can review directly. Start copilot and run the prompt shown next:
 
 ```bash
 copilot

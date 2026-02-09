@@ -16,7 +16,7 @@ By the end of this chapter, you'll have:
 
 ## Prerequisites
 
-- **GitHub Account** with Copilot access. [See subscription options](https://github.com/features/copilot/plans)). Students/Teachers can access Copilot Pro for [free via GitHub Education](https://education.github.com/pack).
+- **GitHub Account** with Copilot access. [See subscription options](https://github.com/features/copilot/plans). Students/Teachers can access Copilot Pro for [free via GitHub Education](https://education.github.com/pack).
 - **Terminal basics**: Comfortable with commands like `cd` and `ls`
 - **[Python 3.10+](https://www.python.org/downloads/)**: Used to run the sample book app used throughout this course. If you don't have Python, the Codespaces option below includes it pre-installed.
 
@@ -127,7 +127,7 @@ copilot
 
 ### Step 2: Run the Sample Book App
 
-We have provided a sample app that we explore and improve throughout the course using the CLI *(You can see the code for this in /samples/book_app_project)*. Check that the *Python book collection terminal app* works before you get started:
+The course provides a sample app that you'll explore and improve throughout the course using the CLI *(You can see the code for this in /samples/book-app-project)*. Check that the *Python book collection terminal app* works before you get started. Run `python` or `python3` depending on your system.
 
 ```bash
 cd samples/book-app-project
@@ -215,11 +215,10 @@ copilot
 
 ## Key Takeaways
 
-1. **A GitHub Codespace is a quick way to get started** - Zero setup with Python, pytest, and GitHub Copilot CLI are all pre-installed
+1. **A GitHub Codespace is a quick way to get started** - Python, pytest, and GitHub Copilot CLI are all pre-installed so you can jump right into the demos
 2. **Multiple installation methods** - Choose what works for your system (Homebrew, WinGet, npm, or install script)
 3. **One-time authentication** - Login persists until token expires
-4. **Quick verification** - Use `-p` flag for instant testing
-5. **The book app works** - You'll use `samples/book-app-project/` throughout the entire course
+4. **The book app works** - You'll use `samples/book-app-project` throughout the entire course
 
 > 📚 **Official Documentation**: [Install Copilot CLI](https://docs.github.com/copilot/how-tos/copilot-cli/cli-getting-started) for installation options and requirements.
 

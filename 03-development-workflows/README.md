@@ -29,7 +29,7 @@ Similarly, developers have workflows for different tasks. GitHub Copilot CLI enh
 
 ## Choose Your Own Adventure
 
-This chapter covers five workflows that developers typically use. However, you don't need to read them all at once! Each workflow is self-contained in a collapsible section below. Pick the ones that match what you need and that fits best with your current project. You can always come back and explore the others later.
+This chapter covers five workflows that developers typically use. **However, you don't need to read them all at once!** Each workflow is self-contained in a collapsible section below. Pick the ones that match what you need and that fits best with your current project. You can always come back and explore the others later.
 
 <img src="images/five-workflows-swimlane.png" alt="Five Development Workflows: Code Review, Refactoring, Debugging, Test Generation, and Git Integration shown as horizontal swimlanes" width="800"/>
 
@@ -531,7 +531,7 @@ copilot
 
 ### Generate Commit Messages
 
-This example uses the `-p` inline prompt flag with shell command substitution (`$(...)`) to pipe `git diff` output directly into Copilot for a one-shot commit message.
+This example uses the `-p` inline prompt flag with shell command substitution to pipe `git diff` output directly into Copilot for a one-shot commit message. The `$(...)` syntax runs the command inside the parentheses and inserts its output into the outer command.
 
 ```bash
 

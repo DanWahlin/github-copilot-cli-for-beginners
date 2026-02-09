@@ -10,7 +10,7 @@ This chapter is where the magic starts! You'll experience firsthand why develope
 
 By the end of this chapter, you'll be able to:
 
-- Experience why developers call this "having a senior engineer on speed dial"
+- Experience the productivity boost GitHub Copilot CLI provides through hands-on demos
 - Choose the right mode (Interactive, Plan, or Programmatic) for any task
 - Use slash commands to control your sessions
 
@@ -57,7 +57,7 @@ Now let's see why developers are calling this "having a senior engineer on speed
 The course includes sample files with intentional code quality issues. Let's review one:
 
 ```bash
-# Clone the course repository (if you haven't already)
+# Clone the course repository if you're working locally and haven't already
 git clone https://github.com/github/github-copilot-cli-for-beginners
 cd github-copilot-cli-for-beginners
 
