@@ -62,12 +62,6 @@ copilot
 
 > **Ready-to-use templates**: Check out the [samples/skills](../samples/skills/) folder for copy-paste skills you can use immediately.
 
-### Coming from Chapter 04? Agents vs Skills
-
-If you just learned about agents: **agents are who helps you** (expertise), **skills are what procedure they follow** (consistency). You can combine both for maximum power!
-
-> 📖 For a detailed comparison table, see [Preview: Agents vs Skills](../04-agents-custom-instructions/README.md#preview-agents-vs-skills) in Chapter 04.
-
 ### Direct Slash Command Invocation
 
 While auto-triggering is the primary way skills work, you can also **invoke skills directly** using their name as a slash command:
@@ -82,9 +76,9 @@ While auto-triggering is the primary way skills work, you can also **invoke skil
 This gives you explicit control when you want to ensure a specific skill is used.
 
 > 📝 **Skills vs Agents Invocation**: Don't confuse skill invocation with agent invocation:
-> - **Skills**: `/skill-name <prompt>` — e.g., `/code-review Check this file`
+> - **Skills**: `/skill-name <prompt>`, e.g., `/code-review Check this file`
 > - **Agents**: `/agent` (select from list) or `copilot --agent <name>` (command line)
-> 
+>
 > If you have both a skill and an agent with the same name (e.g., "code-reviewer"), typing `/code-reviewer` invokes the **skill**, not the agent.
 
 ### How Do I Know a Skill Was Used?
@@ -113,65 +107,6 @@ You can ask Copilot directly:
 **Quick rule**: Use agents for broad expertise, skills for specific task instructions, and MCP for external data.
 
 > 📚 **Learn More**: See the official [About Agent Skills](https://docs.github.com/copilot/concepts/agents/about-agent-skills) documentation for the complete reference on skill formats and best practices.
-
----
-
-## Finding and Using Community Skills
-
-### Using Plugins to Install Skills
-
-> 💡 **What are plugins?** Plugins are installable packages that can bundle skills, agents, and MCP server configurations together. Think of them as "app store" extensions for Copilot CLI.
-
-The `/plugin` command lets you browse and install these packages:
-
-```bash
-copilot
-
-> /plugin list
-# Shows installed plugins
-
-> /plugin marketplace
-# Browse available plugins
-
-> /plugin install <plugin-name>
-# Install a plugin from the marketplace
-```
-
-Plugins can bundle multiple capabilities together - a single plugin might include related skills, agents, and MCP server configurations that work together.
-
-### Community Skill Repositories
-
-Pre-made skills are also available from community repositories:
-
-- **[github/awesome-copilot](https://github.com/github/awesome-copilot)** - Official GitHub Copilot resources including skills documentation and examples
-
-### Installing a Community Skill Manually
-
-To use a community skill without the plugin system, copy its folder to your skills directory:
-
-```bash
-# Clone the awesome-copilot repository
-git clone https://github.com/github/awesome-copilot.git /tmp/awesome-copilot
-
-# Copy a specific skill to your skills directory
-cp -r /tmp/awesome-copilot/skills/code-review ~/.copilot/skills/
-
-# Or for project-specific use
-cp -r /tmp/awesome-copilot/skills/code-review .github/skills/
-```
-
-### How Copilot Finds Skills
-
-Copilot automatically scans these locations for skills:
-
-| Location | Scope |
-|----------|-------|
-| `.github/skills/` | Project-specific (shared with team via git) |
-| `.claude/skills/` | Project-specific (Claude Code compatible) |
-| `~/.copilot/skills/` | Global (your personal skills) |
-| `~/.claude/skills/` | Global (Claude Code compatible) |
-
-> 💡 **Cross-Platform**: If you've already set up skills for Claude Code in `.claude/skills/`, Copilot picks them up automatically!
 
 ---
 
@@ -244,7 +179,7 @@ Code Review: books.py
 
 ![Skill Trigger Demo](images/skill-trigger-demo.gif)
 
-*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+*Demo output varies. Your model, tools, and responses will differ from what's shown here.*
 
 </details>
 
@@ -290,101 +225,22 @@ PR Review: feature/user-auth
 
 ---
 
-## Writing Good Skill Descriptions
-
-The `description` field in your SKILL.md is crucial! It's how Copilot decides whether to load your skill:
-
-```markdown
----
-name: security-audit
-description: Use for security reviews, vulnerability scanning,
-  checking for SQL injection, XSS, authentication issues,
-  OWASP Top 10 vulnerabilities, and security best practices
----
-```
-
-> 💡 **Tip**: Include keywords that match how you naturally ask questions. If you say "security review," include "security review" in the description.
-
-### Combining Skills with Agents
-
-Skills and agents work together. The agent provides expertise, the skill provides specific instructions:
-
-```bash
-# Start with a python-reviewer agent
-copilot --agent python-reviewer
-
-> Review the book app for issues
-# python-reviewer agent's expertise combines
-# with your code-review skill's checklist
-```
-
----
-
-## Managing Skills with the `/skills` Command
-
-Use the `/skills` command to manage your installed skills:
-
-| Command | What It Does |
-|---------|--------------|
-| `/skills list` | Show all installed skills |
-| `/skills info <name>` | Get details about a specific skill |
-| `/skills add <name>` | Enable a skill (from a repository or marketplace) |
-| `/skills remove <name>` | Disable or uninstall a skill |
-| `/skills reload` | Reload skills after editing SKILL.md files |
-
-> 💡 **Remember**: You don't need to "activate" skills for each prompt. Once installed, skills are **automatically triggered** when your prompt matches their description. These commands are for managing which skills are available, not for using them.
-
-### Example: View Your Skills
-
-```bash
-copilot
-
-> /skills list
-
-Available skills:
-- security-audit: Security-focused code review checking OWASP Top 10
-- generate-tests: Generate comprehensive unit tests with edge cases
-- code-review: Team-standard code review checklist
-...
-
-> /skills info security-audit
-
-Name: security-audit
-Description: Security-focused code review checking OWASP Top 10 vulnerabilities
-Location: ~/.copilot/skills/security-audit/
-```
-
----
-
-<details>
-<summary>See it in action!</summary>
-
-![List Skills Demo](images/list-skills-demo.gif)
-
-*Demo output varies — your model, tools, and responses will differ from what's shown here.*
-
-</details>
-
----
-
-### When to Use /skills reload
-
-After creating or editing a skill's SKILL.md file, run `/skills reload` to pick up the changes without restarting Copilot:
-
-```bash
-# Edit your skill file
-# Then in Copilot:
-> /skills reload
-Skills reloaded successfully.
-```
-
-> 💡 **Good to know**: Skills remain effective even after using `/compact` to summarize your conversation history. No need to reload after compacting.
-
----
-
 ## Creating Custom Skills
 
 Skills are stored in `~/.copilot/skills/` (global) or `.github/skills/` (project-specific).
+
+### How Copilot Finds Skills
+
+Copilot automatically scans these locations for skills:
+
+| Location | Scope |
+|----------|-------|
+| `.github/skills/` | Project-specific (shared with team via git) |
+| `.claude/skills/` | Project-specific (Claude Code compatible) |
+| `~/.copilot/skills/` | Global (your personal skills) |
+| `~/.claude/skills/` | Global (Claude Code compatible) |
+
+> 💡 **Cross-Platform**: If you've already set up skills for Claude Code in `.claude/skills/`, Copilot picks them up automatically!
 
 ### Skill Structure
 
@@ -509,18 +365,64 @@ copilot
 # and automatically applies its OWASP checklist
 ```
 
+**Expected output** (your results will vary):
+
+```
+Security Audit: book-app-project
+
+[HIGH] Hardcoded file path (book_app.py, line 12)
+  File path is hardcoded rather than configurable
+  Fix: Use environment variable or config file
+
+[MEDIUM] No input validation (book_app.py, line 34)
+  User input passed directly to function without sanitization
+  Fix: Add input validation before processing
+
+✅ No SQL injection found
+✅ No hardcoded credentials found
+```
+
+---
+
+## Writing Good Skill Descriptions
+
+The `description` field in your SKILL.md is crucial! It's how Copilot decides whether to load your skill:
+
+```markdown
+---
+name: security-audit
+description: Use for security reviews, vulnerability scanning,
+  checking for SQL injection, XSS, authentication issues,
+  OWASP Top 10 vulnerabilities, and security best practices
+---
+```
+
+> 💡 **Tip**: Include keywords that match how you naturally ask questions. If you say "security review," include "security review" in the description.
+
+### Combining Skills with Agents
+
+Skills and agents work together. The agent provides expertise, the skill provides specific instructions:
+
+```bash
+# Start with a python-reviewer agent
+copilot --agent python-reviewer
+
+> Review the book app for issues
+# python-reviewer agent's expertise combines
+# with your code-review skill's checklist
+```
+
 ---
 
 ## Hands-On Examples
 
-Here are two examples showing different skill patterns. More examples are available in [samples/skills/](../samples/skills/).
+Here are two more skills showing different patterns. Follow the same `mkdir` + `cat` workflow from "Creating Your First Skill" above. More examples are available in [samples/skills/](../samples/skills/).
 
 ### Example 1: pytest Test Generation Skill
 
 A skill that ensures consistent pytest structure across your codebase:
 
 ```bash
-# Create skill
 mkdir -p ~/.copilot/skills/pytest-gen
 
 cat > ~/.copilot/skills/pytest-gen/SKILL.md << 'EOF'
@@ -605,6 +507,114 @@ EOF
 
 ---
 
+## Managing Skills with the `/skills` Command
+
+Use the `/skills` command to manage your installed skills:
+
+| Command | What It Does |
+|---------|--------------|
+| `/skills list` | Show all installed skills |
+| `/skills info <name>` | Get details about a specific skill |
+| `/skills add <name>` | Enable a skill (from a repository or marketplace) |
+| `/skills remove <name>` | Disable or uninstall a skill |
+| `/skills reload` | Reload skills after editing SKILL.md files |
+
+> 💡 **Remember**: You don't need to "activate" skills for each prompt. Once installed, skills are **automatically triggered** when your prompt matches their description. These commands are for managing which skills are available, not for using them.
+
+### Example: View Your Skills
+
+```bash
+copilot
+
+> /skills list
+
+Available skills:
+- security-audit: Security-focused code review checking OWASP Top 10
+- generate-tests: Generate comprehensive unit tests with edge cases
+- code-review: Team-standard code review checklist
+...
+
+> /skills info security-audit
+
+Name: security-audit
+Description: Security-focused code review checking OWASP Top 10 vulnerabilities
+Location: ~/.copilot/skills/security-audit/
+```
+
+---
+
+<details>
+<summary>See it in action!</summary>
+
+![List Skills Demo](images/list-skills-demo.gif)
+
+*Demo output varies. Your model, tools, and responses will differ from what's shown here.*
+
+</details>
+
+---
+
+### When to Use /skills reload
+
+After creating or editing a skill's SKILL.md file, run `/skills reload` to pick up the changes without restarting Copilot:
+
+```bash
+# Edit your skill file
+# Then in Copilot:
+> /skills reload
+Skills reloaded successfully.
+```
+
+> 💡 **Good to know**: Skills remain effective even after using `/compact` to summarize your conversation history. No need to reload after compacting.
+
+---
+
+## Finding and Using Community Skills
+
+### Using Plugins to Install Skills
+
+> 💡 **What are plugins?** Plugins are installable packages that can bundle skills, agents, and MCP server configurations together. Think of them as "app store" extensions for Copilot CLI.
+
+The `/plugin` command lets you browse and install these packages:
+
+```bash
+copilot
+
+> /plugin list
+# Shows installed plugins
+
+> /plugin marketplace
+# Browse available plugins
+
+> /plugin install <plugin-name>
+# Install a plugin from the marketplace
+```
+
+Plugins can bundle multiple capabilities together - a single plugin might include related skills, agents, and MCP server configurations that work together.
+
+### Community Skill Repositories
+
+Pre-made skills are also available from community repositories:
+
+- **[github/awesome-copilot](https://github.com/github/awesome-copilot)** - Official GitHub Copilot resources including skills documentation and examples
+
+### Installing a Community Skill Manually
+
+To use a community skill without the plugin system, copy its folder to your skills directory:
+
+```bash
+# Clone the awesome-copilot repository
+git clone https://github.com/github/awesome-copilot.git /tmp/awesome-copilot
+
+# Copy a specific skill to your skills directory
+cp -r /tmp/awesome-copilot/skills/code-review ~/.copilot/skills/
+
+# Or for project-specific use
+cp -r /tmp/awesome-copilot/skills/code-review .github/skills/
+```
+
+---
+
 ## 🎯 Try It Yourself
 
 After completing the demos, try these variations:
@@ -628,7 +638,7 @@ After completing the demos, try these variations:
 
 ### Main Challenge: Build a Book Summary Skill
 
-The hands-on examples created `pytest-gen` and `pr-review` skills. Now practice creating a completely different kind of skill — one for generating formatted output from data:
+The hands-on examples created `pytest-gen` and `pr-review` skills. Now practice creating a completely different kind of skill: one for generating formatted output from data.
 
 1. List your current skills: `ls ~/.copilot/skills/`
 2. Create a `book-summary` skill at `~/.copilot/skills/book-summary/SKILL.md` that generates a formatted markdown summary of the book collection
@@ -644,7 +654,7 @@ The hands-on examples created `pytest-gen` and `pr-review` skills. Now practice 
 <details>
 <summary>💡 Hints (click to expand)</summary>
 
-**Starter template** — Create `~/.copilot/skills/book-summary/SKILL.md`:
+**Starter template**: Create `~/.copilot/skills/book-summary/SKILL.md`:
 
 ```markdown
 ---
