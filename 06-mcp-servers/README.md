@@ -763,7 +763,7 @@ As the plugin ecosystem grows, this will become another way to extend Copilot's 
 6. **Manage servers** with the `/mcp` command
 7. **Plugins** provide another way to extend Copilot (emerging feature)
 
-> 📋 **Quick Reference**: See the [Command Cheat Sheet](../QUICK-REFERENCE.md) for a complete list of commands and shortcuts.
+> 📋 **Quick Reference**: See the [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference) for a complete list of commands and shortcuts.
 
 ---
 

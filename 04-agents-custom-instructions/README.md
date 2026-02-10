@@ -905,7 +905,7 @@ copilot  # This loads custom instructions by default
 5. **Instruction files** (`.instructions.md`) encode team standards for automatic application
 6. **Consistent output** comes from well-defined agent instructions
 
-> 📋 **Quick Reference**: See the [Command Cheat Sheet](../QUICK-REFERENCE.md) for a complete list of commands and shortcuts.
+> 📋 **Quick Reference**: See the [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference) for a complete list of commands and shortcuts.
 
 ---
 

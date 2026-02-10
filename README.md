@@ -83,11 +83,9 @@ Each chapter follows the same pattern:
 
 **Code examples are runnable.** Every copilot text block in this course can be copied and run in your terminal.
 
-## Quick Reference Card
+## GitHub Copilot CLI Command Reference
 
-Need a cheat sheet? The **[Quick Reference Card](./QUICK-REFERENCE.md)** has all commands, syntax, and workflows on one page.
-
-A PDF version is also available: [QUICK-REFERENCE.pdf](./QUICK-REFERENCE.pdf)
+The **[GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference)** has all commands, syntax, and workflows on one page.
 
 ## Getting Help
 
@@ -100,12 +98,4 @@ A PDF version is also available: [QUICK-REFERENCE.pdf](./QUICK-REFERENCE.pdf)
 Ready? Let's see what GitHub Copilot CLI can do!
 
 **[Begin with Chapter 00: Quick Start →](./00-quick-start/README.md)**
-
----
-
-## Glossary
-
-Quick reference for technical terms used throughout this course. Don't worry about memorizing these now, refer to it as needed.
-
-**[View Full Glossary →](./GLOSSARY.md)**
 

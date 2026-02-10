@@ -580,7 +580,7 @@ Your learning doesn't stop here:
 4. **Automate repetition**: Hooks and scripts multiply your effectiveness
 5. **Document workflows**: Shareable patterns benefit the whole team
 
-> 📋 **Quick Reference**: See the [Command Cheat Sheet](../QUICK-REFERENCE.md) for a complete list of commands and shortcuts.
+> 📋 **Quick Reference**: See the [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference) for a complete list of commands and shortcuts.
 
 ---
 

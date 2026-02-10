@@ -600,7 +600,7 @@ The examples used `/plan` for a search feature and `-p` for batch reviews. Now t
 3. **Programmatic mode** is for automation. No interaction needed.
 4. **Four essential commands** (`/help`, `/clear`, `/plan`, `/exit`) cover most daily use.
 
-> 📋 **Quick Reference**: See the [Command Cheat Sheet](../QUICK-REFERENCE.md) for a complete list of commands and shortcuts.
+> 📋 **Quick Reference**: See the [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference) for a complete list of commands and shortcuts.
 
 ---
 

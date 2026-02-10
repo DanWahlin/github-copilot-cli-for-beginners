@@ -789,7 +789,7 @@ copilot
 5. **Cross-platform**: Same skill format works in GitHub Copilot CLI, VS Code, and Claude Code
 6. **Description is key**: Write descriptions that match how you naturally ask questions
 
-> 📋 **Quick Reference**: See the [Command Cheat Sheet](../QUICK-REFERENCE.md) for a complete list of commands and shortcuts.
+> 📋 **Quick Reference**: See the [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference) for a complete list of commands and shortcuts.
 
 ---
 
