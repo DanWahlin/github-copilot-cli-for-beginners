@@ -6,7 +6,7 @@
 
 # GitHub Copilot CLI for Beginners
 
-> **Learn to supercharge your development workflow with AI-powered command-line assistance.**
+> **✨ Learn to supercharge your development workflow with AI-powered command-line assistance.**
 
 GitHub Copilot CLI brings AI assistance directly to your terminal. Instead of switching to a browser or code editor, you can ask questions, review code, generate tests, and debug issues without leaving your command line.
 
