@@ -20,17 +20,17 @@ By the end of this chapter, you'll be able to:
 
 ## 🧩 Real-World Analogy: Working with a Colleague
 
-Imagine explaining a bug to a colleague:
-
-**Without context**: "The book app doesn't work."
-**With context**: "Look at `books.py`, especially the `find_book_by_title` function. It's not doing case-insensitive matching."
-
-The second approach gets better help because your colleague can see exactly what you're talking about.
-
-GitHub Copilot CLI works the same way - *The `@` syntax is how you point Copilot at specific files, giving it the context it needs to help effectively.*
-
 <img src="images/colleague-context-analogy.png" alt="Context Makes the Difference - Without vs With Context" width="800"/>
 
+*Just like your colleagues, Copilot CLI isn't a mind reader. Providing more informaiton helps humans and Copilot alike provide targetted support!*
+
+Imagine explaining a bug to a colleague:
+
+> **Without context**: "The book app doesn't work."
+
+> **With context**: "Look at `books.py`, especially the `find_book_by_title` function. It's not doing case-insensitive matching."
+
+To privde context to Copilot CLI use *the `@` syntax* to point Copilot at specific files.
 
 ---
 
