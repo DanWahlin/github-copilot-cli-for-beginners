@@ -18,7 +18,7 @@ By the end of this chapter, you'll be able to:
 
 ---
 
-# Your First Copilot Experience
+# Your First Copilot CLI Experience
 
 <img src="images/first-copilot-experience.png" alt="Developer sitting at a desk with code on the monitor and glowing particles representing AI assistance" width="800"/>
 
