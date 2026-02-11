@@ -21,6 +21,37 @@ const { readdirSync, statSync, existsSync, readFileSync, renameSync, writeFileSy
 const { join, relative, dirname } = require('path');
 
 const rootDir = join(__dirname, '..');
+const copilotConfigPath = join(require('os').homedir(), '.copilot', 'config.json');
+
+// Ensure on-air mode is enabled so recordings don't show model names or quota
+function enableOnAirMode() {
+  try {
+    const config = JSON.parse(readFileSync(copilotConfigPath, 'utf8'));
+    if (!config.on_air_mode) {
+      config.on_air_mode = true;
+      writeFileSync(copilotConfigPath, JSON.stringify(config, null, 2) + '\n');
+      console.log('🔴 On-air mode: enabled (was off)');
+      return false; // was off, we turned it on
+    }
+    console.log('🔴 On-air mode: already enabled');
+    return true; // was already on
+  } catch (e) {
+    console.warn('⚠ Could not read copilot config, on-air mode not verified');
+    return null;
+  }
+}
+
+// Restore on-air mode to its original state
+function restoreOnAirMode(wasAlreadyOn) {
+  if (wasAlreadyOn === false) {
+    try {
+      const config = JSON.parse(readFileSync(copilotConfigPath, 'utf8'));
+      config.on_air_mode = false;
+      writeFileSync(copilotConfigPath, JSON.stringify(config, null, 2) + '\n');
+      console.log('🔴 On-air mode: restored to off');
+    } catch (e) { /* ignore */ }
+  }
+}
 
 // Parse CLI args
 const args = process.argv.slice(2);
@@ -162,6 +193,10 @@ async function main() {
   console.log(`Concurrency: ${concurrency}`);
   console.log('');
 
+  // Enable on-air mode before recording
+  const wasAlreadyOn = enableOnAirMode();
+  console.log('');
+
   const tapeFiles = findTapeFiles(rootDir, chapters);
 
   if (tapeFiles.length === 0) {
@@ -187,6 +222,7 @@ async function main() {
   const results = await runWithConcurrency(tasks, concurrency);
 
   cleanupCopilotWrapper();
+  restoreOnAirMode(wasAlreadyOn);
 
   const succeeded = results.filter(r => r.success).length;
   const failedResults = results.filter(r => !r.success);
@@ -205,5 +241,6 @@ async function main() {
 main().catch(e => {
   console.error(e);
   cleanupCopilotWrapper();
+  restoreOnAirMode(false); // restore on-air to off on error
   process.exit(1);
 });
