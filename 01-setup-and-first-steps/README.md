@@ -20,6 +20,8 @@ By the end of this chapter, you'll be able to:
 
 # Your First Copilot Experience
 
+<img src="images/first-copilot-experience.png" alt="Developer sitting at a desk with code on the monitor and glowing particles representing AI assistance" width="800"/>
+
 Jump right in and see what Copilot CLI can do.
 
 ---
@@ -186,6 +188,8 @@ When you're done exploring, exit the session:
 ---
 
 # Modes and Commands
+
+<img src="images/modes-and-commands.png" alt="Futuristic control panel with glowing screens, dials, and equalizers representing Copilot CLI modes and commands" width="800"/>
 
 You've just seen what Copilot CLI can do. Now let's understand *how* to use these capabilities effectively. The key is knowing which of the three interaction modes to use for different situations.
 
@@ -464,6 +468,8 @@ copilot
 ---
 
 # Practice
+
+<img src="../images/practice.png" alt="Warm desk setup with monitor showing code, lamp, coffee cup, and headphones ready for hands-on practice" width="800"/>
 
 Time to put what you've learned into action.
 

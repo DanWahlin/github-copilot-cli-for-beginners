@@ -108,6 +108,8 @@ That's what this chapter teaches: conducting your tools into a unified workflow.
 
 # Combined Workflows
 
+<img src="images/combined-workflows.png" alt="People assembling a colorful giant jigsaw puzzle with gears, representing how agents, skills, and MCP combine into unified workflows" width="800"/>
+
 From minimal to advanced, these workflows show how to combine everything you've learned.
 
 ---
@@ -467,6 +469,8 @@ For teams with existing CI/CD pipelines, you can automate Copilot reviews on eve
 ---
 
 # Practice
+
+<img src="../images/practice.png" alt="Warm desk setup with monitor showing code, lamp, coffee cup, and headphones ready for hands-on practice" width="800"/>
 
 Put the complete workflow into practice.
 

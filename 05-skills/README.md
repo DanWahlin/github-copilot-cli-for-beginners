@@ -37,6 +37,8 @@ A general-purpose drill is useful, but specialized attachments make it powerful.
 
 # How Skills Work
 
+<img src="images/how-skills-work.png" alt="Glowing RPG-style skill icons connected by light trails on a starfield background representing Copilot skills" width="800"/>
+
 Learn what skills are, why they matter, and how they differ from agents and MCP.
 
 ---
@@ -238,6 +240,8 @@ PR Review: feature/user-auth
 ---
 
 # Creating and Managing Skills
+
+<img src="images/creating-managing-skills.png" alt="Human and robotic hands building a wall of glowing LEGO-like blocks representing skill creation and management" width="800"/>
 
 Build your own skills, manage them with `/skills`, and find community skills.
 
@@ -542,6 +546,8 @@ cp -r /tmp/awesome-copilot/skills/code-review ~/.copilot/skills/
 ---
 
 # Practice
+
+<img src="../images/practice.png" alt="Warm desk setup with monitor showing code, lamp, coffee cup, and headphones ready for hands-on practice" width="800"/>
 
 Apply what you've learned by building and testing your own skills.
 

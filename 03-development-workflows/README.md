@@ -30,6 +30,8 @@ Similarly, developers have workflows for different tasks. GitHub Copilot CLI enh
 
 # The Five Workflows
 
+<img src="images/five-workflows.png" alt="Five glowing neon icons representing code review, testing, debugging, refactoring, and git integration workflows" width="800"/>
+
 Each workflow below is self-contained. Pick the ones that match your current needs, or work through them all.
 
 ---
@@ -716,6 +718,8 @@ copilot -p "Generate commit message for: $(git diff --staged)"
 ---
 
 # Practice
+
+<img src="../images/practice.png" alt="Warm desk setup with monitor showing code, lamp, coffee cup, and headphones ready for hands-on practice" width="800"/>
 
 Now it's your turn to apply these workflows.
 

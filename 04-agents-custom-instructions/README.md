@@ -40,6 +40,8 @@ Set up the instructions once, then reuse them whenever you need that specialty; 
 
 # Using Agents
 
+<img src="images/using-agents.png" alt="Four colorful AI robots standing together, each with different tools representing specialized agent capabilities" width="800"/>
+
 Get started with built-in and custom agents right away.
 
 ---
@@ -167,6 +169,8 @@ Where is the Task Agent in this? It works behind the scenes to manage and track 
 <br>
 
 # Creating Custom Agents
+
+<img src="images/creating-custom-agents.png" alt="Robot being assembled on a workbench surrounded by components and tools representing custom agent creation" width="800"/>
 
 > 💡 **This section is optional.** The built-in agents (`/plan`, `/review`) are powerful enough for most workflows. Create custom agents when you need specialized expertise that's consistently applied across your work.
 
@@ -680,6 +684,8 @@ copilot --no-custom-instructions
 ---
 
 # Practice
+
+<img src="../images/practice.png" alt="Warm desk setup with monitor showing code, lamp, coffee cup, and headphones ready for hands-on practice" width="800"/>
 
 Create your own agents and see them in action.
 

@@ -44,6 +44,8 @@ Without extensions, your browser is still useful, but with them, it becomes a po
 
 # Quick Start: MCP in 30 Seconds
 
+<img src="images/quick-start-mcp.png" alt="Power cable connecting with bright electrical spark surrounded by floating tech icons representing MCP server connections" width="800"/>
+
 Let's see MCP in action right now, before configuring anything.
 
 ---
@@ -118,6 +120,8 @@ MCP makes Copilot aware of your actual development environment.
 ---
 
 # Configuring MCP Servers
+
+<img src="images/configuring-mcp-servers.png" alt="Hands adjusting knobs and sliders on a professional audio mixing board representing MCP server configuration" width="800"/>
 
 Now that you've seen MCP in action, let's set up additional servers. This section covers the configuration file format and how to add new servers.
 
@@ -637,6 +641,8 @@ Recommendations:
 ---
 
 # Practice
+
+<img src="../images/practice.png" alt="Warm desk setup with monitor showing code, lamp, coffee cup, and headphones ready for hands-on practice" width="800"/>
 
 **🎉 You now know the essentials!** You understand MCP, you've seen how to configure servers, and you've seen real workflows in action. Now it's time to try it yourself.
 

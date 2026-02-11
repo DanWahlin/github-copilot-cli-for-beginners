@@ -36,6 +36,8 @@ GitHub Copilot CLI works the same way - *The `@` syntax is how you point Copilot
 
 # Essential: Basic Context
 
+<img src="images/essential-basic-context.png" alt="Glowing code blocks connected by light trails representing how context flows through Copilot conversations" width="800"/>
+
 This section covers everything you need to work effectively with context. Master these basics first.
 
 ---
@@ -363,6 +365,8 @@ No re-explaining. No re-reading files. Just continue working.
 
 # Optional: Going Deeper
 
+<img src="images/optional-going-deeper.png" alt="Abstract crystal cave in blue and purple tones representing deeper exploration of context concepts" width="800"/>
+
 > 💡 **For beginners**: The sections below are optional. Return to these once you're comfortable with the basics above. You can be very productive with just the basic @ syntax and session management covered earlier.
 
 ---
@@ -626,6 +630,8 @@ copilot
 ---
 
 # Practice
+
+<img src="../images/practice.png" alt="Warm desk setup with monitor showing code, lamp, coffee cup, and headphones ready for hands-on practice" width="800"/>
 
 Time to apply your context and session management skills.
 
