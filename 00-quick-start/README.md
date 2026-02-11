@@ -96,6 +96,10 @@ copilot
 4. Click "Authorize" to grant GitHub Copilot CLI access
 5. Return to your terminal - you're now signed in!
 
+<img src="images/auth-device-flow.png" alt="Device Authorization Flow - showing the 5-step process from terminal login to signed-in confirmation" width="800"/>
+
+*The device authorization flow: your terminal generates a code, you verify it in the browser, and Copilot is authenticated.*
+
 **Tip**: The sign-in persists across sessions. You only need to do this once unless your token expires or you explicitly sign out.
 
 ---

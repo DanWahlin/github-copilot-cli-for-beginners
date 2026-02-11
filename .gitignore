@@ -39,6 +39,11 @@ output.json
 *~
 .DS_Store
 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
 # Testing
 coverage/
 .nyc_output/

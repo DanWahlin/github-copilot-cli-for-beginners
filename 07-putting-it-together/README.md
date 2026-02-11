@@ -15,15 +15,16 @@ By the end of this chapter, you'll be able to:
 - Set up basic automation with hooks
 - Apply best practices for professional development
 
-> ⏱️ **Estimated Time**: ~60 minutes (20 min reading + 40 min hands-on)
+> ⏱️ **Estimated Time**: ~90 minutes (25 min reading + 65 min hands-on)
 
 ---
 
 ## Idea to Merged PR in One Session
 
-This is the culmination of everything you've learned. Traditional development of a feature like "list unread books" takes hours. Watch what happens when you combine all your tools:
+This is the culmination of everything you've learned. Traditional development of a feature like "list unread books" means switching between your editor, terminal, test runner, and GitHub UI — plus losing context each time you switch. Watch what happens when you combine all your tools in one terminal session:
 
 ```bash
+# Start Copilot in interactive mode
 copilot
 
 > I need to add a "list unread" command to the book app that shows only
@@ -81,7 +82,7 @@ copilot
 
 ---
 
-**Traditional approach**: 1-2 days of context-switching between tools
+**Traditional approach**: Switching between editor, terminal, test runner, docs, and GitHub UI — losing context each time
 
 **The key insight**: You directed specialists like an architect. They handled the details. You handled the vision.
 
@@ -247,6 +248,8 @@ if [ -n "$STAGED" ]; then
     echo "Reviewing $file..."
 
     # Use timeout to prevent hanging (60 seconds per file)
+    # --allow-all auto-approves file reads/writes so the hook can run unattended.
+    # Only use this in automated scripts — in interactive sessions, let Copilot ask for permission.
     REVIEW=$(timeout 60 copilot --allow-all -p "Quick security review of @$file - critical issues only" 2>/dev/null)
 
     # Check if timeout occurred
@@ -333,29 +336,34 @@ copilot
 
 ## Workflow 5: Onboarding to a New Codebase
 
-When joining a new project:
+When joining a new project, combine context, agents, and MCP to ramp up fast:
 
 ```bash
+# Start Copilot in interactive mode
 copilot
 
-# Understand project structure
-> Give me an overview of this project structure
-
-# Understand dependencies
-> @samples/book-app-project/book_app.py What does this application do?
-
-# Understand architecture
+# PHASE 1: Get the big picture with context
 > @samples/book-app-project/ Explain the high-level architecture of this codebase
 
-# Find the entry point
-> Where does the application start? Show me the main entry point.
+# PHASE 2: Understand a specific flow
+> @samples/book-app-project/book_app.py Walk me through what happens
+> when a user runs "python book_app.py add"
 
-# Understand key flows
-> Walk me through how adding a book flows through the code
+# PHASE 3: Get expert analysis with an agent
+> /agent
+# Select "python-reviewer"
 
-# Check for issues to work on
+> @samples/book-app-project/books.py Are there any design issues,
+> missing error handling, or improvements you'd recommend?
+
+# PHASE 4: Find something to work on (MCP provides GitHub access)
 > List open issues labeled "good first issue"
+
+# PHASE 5: Start contributing
+> Pick the simplest open issue and outline a plan to fix it
 ```
+
+This workflow combines `@` context (Ch 02), agents (Ch 04), and MCP (Ch 06) into a single onboarding session — exactly the integration pattern from earlier in this chapter.
 
 ---
 

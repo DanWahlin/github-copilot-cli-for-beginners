@@ -303,6 +303,10 @@ copilot --resume abc123
 
 ### Pick Up Where You Left Off
 
+<img src="images/session-persistence-timeline.png" alt="Timeline showing how GitHub Copilot CLI sessions persist across days - start on Monday, resume on Wednesday with full context restored" width="800"/>
+
+*Sessions auto-save when you exit. Resume days later with full context — files, issues, and progress all remembered.*
+
 Imagine this workflow across multiple days:
 
 ```bash

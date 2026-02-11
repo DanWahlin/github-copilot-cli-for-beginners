@@ -150,6 +150,10 @@ copilot
 3. Automatically loads your team's quality checklist
 4. Applies all checks without you listing them
 
+<img src="images/skill-auto-discovery-flow.png" alt="How Skills Auto-Trigger - 4-step flow showing how Copilot automatically matches your prompt to the right skill" width="800"/>
+
+*Just ask naturally. Copilot matches your prompt to the right skill and applies it automatically.*
+
 **Output**:
 ```
 ## Code Review: books.py
