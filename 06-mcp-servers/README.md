@@ -18,7 +18,7 @@ By the end of this chapter, you'll be able to:
 - Use MCP-powered workflows with the book app project
 - Know when and how to build a custom MCP server (optional)
 
-> ⏱️ **Estimated Time**: ~45 minutes (20 min reading + 25 min hands-on). GitHub MCP works out of the box; configuring additional servers takes ~10-15 minutes.
+> ⏱️ **Estimated Time**: ~50 minutes (15 min reading + 35 min hands-on)
 
 ---
 

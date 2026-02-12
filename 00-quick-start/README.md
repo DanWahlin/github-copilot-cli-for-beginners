@@ -10,7 +10,7 @@ By the end of this chapter, you'll have:
 - Signed in with your GitHub account
 - Verified it works with a simple test
 
-> ⏱️ **Estimated Time**: ~25 minutes (10 min reading + 15 min hands-on)
+> ⏱️ **Estimated Time**: ~10 minutes (5 min reading + 5 min hands-on)
 
 ---
 
@@ -18,7 +18,6 @@ By the end of this chapter, you'll have:
 
 - **GitHub Account** with Copilot access. [See subscription options](https://github.com/features/copilot/plans). Students/Teachers can access Copilot Pro for [free via GitHub Education](https://education.github.com/pack).
 - **Terminal basics**: Comfortable with commands like `cd` and `ls`
-- **[Python 3.10+](https://www.python.org/downloads/)**: Used to run the sample book app used throughout this course. If you don't have Python, the Codespaces option below includes it pre-installed.
 
 ### What "Copilot Access" Means
 
@@ -51,6 +50,8 @@ If you don't want to install any of the prerequisites, you can use GitHub Codesp
 ### Alternative: Local Installation
 
 > 💡 **Not sure which to pick?** Use `npm` if you have Node.js installed. Otherwise, choose the option that matches your system.
+
+> 💡 **Python required for demos**: The course uses a Python sample app. If you're working locally, install [Python 3.10+](https://www.python.org/downloads/) before starting the demos.
 
 Choose the method that works for your system:
 

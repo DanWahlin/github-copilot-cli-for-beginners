@@ -35,8 +35,7 @@ Before starting, ensure you have:
 
 - **GitHub account**: [Create one free](https://github.com/signup)<br>
 - **GitHub Copilot access**: [Free offering](https://github.com/features/copilot/plans), [Monthly subscription](https://github.com/features/copilot/plans), or [Free for students/teachers](https://education.github.com/pack)<br>
-- **Terminal basics**: Comfortable with `cd`, `ls`, running commands<br>
-- **Python 3.10+**: For running the sample book app (pre-installed in Codespaces)
+- **Terminal basics**: Comfortable with `cd`, `ls`, running commands
 
 ## 🤖 Understanding the GitHub Copilot Family
 

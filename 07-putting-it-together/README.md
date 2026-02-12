@@ -15,7 +15,7 @@ By the end of this chapter, you'll be able to:
 - Set up basic automation with hooks
 - Apply best practices for professional development
 
-> ⏱️ **Estimated Time**: ~90 minutes (25 min reading + 65 min hands-on)
+> ⏱️ **Estimated Time**: ~75 minutes (15 min reading + 60 min hands-on)
 
 ---
 

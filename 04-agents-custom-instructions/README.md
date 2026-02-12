@@ -16,7 +16,7 @@ By the end of this chapter, you'll be able to:
 - Switch between agents using `/agent` and `--agent`
 - Write custom instruction files for project-specific standards
 
-> ⏱️ **Estimated Time**: ~60 minutes (25 min reading + 35 min hands-on)
+> ⏱️ **Estimated Time**: ~55 minutes (20 min reading + 35 min hands-on)
 
 ---
 

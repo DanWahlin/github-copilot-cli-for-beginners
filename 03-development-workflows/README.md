@@ -14,7 +14,7 @@ By the end of this chapter, you'll be able to:
 - Generate tests automatically
 - Integrate Copilot CLI with your git workflow
 
-> ⏱️ **Estimated Time**: ~55 minutes (20 min reading + 35 min hands-on)
+> ⏱️ **Estimated Time**: ~60 minutes (15 min reading + 45 min hands-on)
 
 ---
 
