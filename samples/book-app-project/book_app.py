@@ -50,6 +50,11 @@ def handle_remove():
     print("\nBook removed if it existed.\n")
 
 
+def handle_list_unread():
+    books = collection.get_unread_books()
+    show_books(books)
+
+
 def handle_find():
     print("\nFind Books by Author\n")
 
@@ -65,6 +70,7 @@ Book Collection Helper
 
 Commands:
   list     - Show all books
+  unread   - Show unread books
   add      - Add a new book
   remove   - Remove a book by title
   find     - Find books by author
@@ -79,6 +85,7 @@ def main():
 
     commands = {
         "list": handle_list,
+        "unread": handle_list_unread,
         "add": handle_add,
         "remove": handle_remove,
         "find": handle_find,
