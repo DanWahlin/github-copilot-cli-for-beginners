@@ -243,15 +243,15 @@ PR Review: feature/user-auth
 
 ---
 
-# Creating and Managing Skills
+# Creating Custom Skills
 
 <img src="images/creating-managing-skills.png" alt="Human and robotic hands building a wall of glowing LEGO-like blocks representing skill creation and management" width="800"/>
 
-Build your own skills, manage them with `/skills`, and find community skills.
+Build your own skills from SKILL.md files.
 
 ---
 
-## Creating Custom Skills
+## Skill Locations
 
 Skills are stored in `.github/skills/` (project-specific) or `~/.copilot/skills/` (user level).
 
@@ -433,6 +433,12 @@ copilot --agent code-reviewer
 # code-reviewer agent's expertise combines
 # with your code-review skill's checklist
 ```
+
+---
+
+# Managing and Sharing Skills
+
+Discover installed skills, find community skills, and share your own.
 
 ---
 
