@@ -38,23 +38,16 @@ Without extensions, your browser is still useful, but with them, it becomes a po
 
 ***MCP servers connect Copilot to the outside world: GitHub, repositories, documentation, and more***
 
-
 > 💡 **Key insight**: Without MCP, Copilot can only see files you explicitly share with `@`. With MCP, it can proactively explore your project, check your GitHub repo, and look up documentation, all automatically.
 
-
-
 ---
-
-# Quick Start: MCP in 30 Seconds
 
 <img src="images/quick-start-mcp.png" alt="Power cable connecting with bright electrical spark surrounded by floating tech icons representing MCP server connections" width="800"/>
 
+# Quick Start: MCP in 30 Seconds
+
+## Get started with the built-in GitHub MCP server
 Let's see MCP in action right now, before configuring anything.
-
----
-
-## 🚀 Use the Built-in GitHub MCP
-
 The GitHub MCP server is included by default. Try this:
 
 ```bash
@@ -307,9 +300,15 @@ Save this as `~/.copilot/mcp-config.json` for global access or `.copilot/mcp-con
 
 ---
 
-## 🔧 Using Your MCP Servers
+# Using MCP Servers
 
-Now that you have MCP servers configured, let's see what they can do. **Pick a server to explore, or work through them in order.**
+Now that you have MCP servers configured, let's see what they can do.
+
+---
+
+## 🔧 Server Usage Examples
+
+**Pick a server to explore, or work through them in order.**
 
 | I want to try... | Jump to |
 |---|---|
