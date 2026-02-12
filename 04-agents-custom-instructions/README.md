@@ -174,15 +174,6 @@ copilot
 
 To change to a different agent, or to return to default mode, use the `/agent` command again.
 
-<details>
-<summary>🎬 See it in action!</summary>
-<!-- TODO -->
-❌ TODO see it in action - add a gif
-
-*Demo output varies - your model, tools, and responses will differ from what's shown here.*
-</details> 
-
-
 ### Programmatic mode
 
 Launch straight into a new session with an agent.
@@ -395,20 +386,7 @@ Think of it this way: agents are specialists you call on, and instruction files 
 
 You already know the two main locations (see [Where to put agent files](#where-to-put-agent-files) above). Use this decision tree to choose:
 
-<!-- TODO: Replace decision tree with a visual diagram -->
-
-```
-Are you just experimenting?
-    └─ YES → Create `my-agent.agent.md` in your current folder
-    └─ NO ↓
-
-Will your team use this agent?
-    └─ YES → Create in `.github/agents/` (gets version controlled)
-    └─ NO ↓
-
-Do you want this agent everywhere?
-    └─ YES → Create in `~/.copilot/agents/` (your personal agents)
-```
+<img src="images/agent-file-placement-decision-tree.png" alt="Decision tree for where to put agent files: experimenting → current folder, team use → .github/agents/, everywhere → ~/.copilot/agents/" width="800"/>
 
 **Start simple:** Create a single `*.agent.md` file in your project folder. Move it to a permanent location once you're happy with it.
 

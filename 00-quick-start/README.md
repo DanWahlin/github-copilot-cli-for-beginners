@@ -145,7 +145,7 @@ python book_app.py list
 Navigate back to the repository root first (if you ran Step 2):
 
 ```bash
-cd ..   # Back to the repository root if needed
+cd ../..   # Back to the repository root if needed
 copilot 
 > What does @samples/book-app-project/book_app.py do?
 > /exit

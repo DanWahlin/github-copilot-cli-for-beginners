@@ -226,7 +226,7 @@ Once you're comfortable, try:
 
 ## The Three Modes
 
-### Mode 1: Interactive Mode
+### Mode 1: Interactive Mode (start here)
 
 <img src="images/interactive-mode.png" alt="Interactive Mode - Like talking to a waiter who can answer questions and adjust the order" width="250"/>
 
