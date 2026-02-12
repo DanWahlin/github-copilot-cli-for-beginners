@@ -325,7 +325,7 @@ copilot
 Context usage: 45,000 / 128,000 tokens (35%)
 
 > /clear
-# Wipes context and starts fresh — use when switching topics
+# Wipes context and starts fresh. Use when switching topics
 ```
 
 > 💡 **When to use `/clear`**: If you've been reviewing `books.py` and want to switch to discussing `utils.py`, run `/clear` first. Otherwise stale context from the old topic may confuse responses.
@@ -336,7 +336,7 @@ Context usage: 45,000 / 128,000 tokens (35%)
 
 <img src="images/session-persistence-timeline.png" alt="Timeline showing how GitHub Copilot CLI sessions persist across days - start on Monday, resume on Wednesday with full context restored" width="800"/>
 
-*Sessions auto-save when you exit. Resume days later with full context — files, issues, and progress all remembered.*
+*Sessions auto-save when you exit. Resume days later with full context: files, issues, and progress all remembered.*
 
 Imagine this workflow across multiple days:
 
@@ -388,7 +388,7 @@ No re-explaining. No re-reading files. Just continue working.
 
 ---
 
-**🎉 You now know the essentials!** The `@` syntax, session management (`--continue`/`--resume`/`/rename`), and context commands (`/context`/`/clear`) are enough to be highly productive. Everything below is optional — return to it when you're ready.
+**🎉 You now know the essentials!** The `@` syntax, session management (`--continue`/`--resume`/`/rename`), and context commands (`/context`/`/clear`) are enough to be highly productive. Everything below is optional. Return to it when you're ready.
 
 ---
 
@@ -417,7 +417,7 @@ For power users, Copilot supports wildcard patterns and image references:
 | Pattern | What It Does |
 |---------|--------------|
 | `@folder/*.py` | All .py files in folder |
-| `@**/test_*.py` | Recursive wildcard — find all test files anywhere |
+| `@**/test_*.py` | Recursive wildcard: find all test files anywhere |
 | `@image.png` | Image file for UI review |
 
 ```bash
@@ -499,7 +499,7 @@ Copilot: "Based on the class with types and error handling..."
 [Generates comprehensive tests]
 ```
 
-Notice how each prompt builds on the previous work — this is the power of context.
+Notice how each prompt builds on the previous work. This is the power of context.
 
 </details>
 
@@ -511,11 +511,11 @@ Notice how each prompt builds on the previous work — this is the power of cont
 
 You already know `/context` and `/clear` from the essentials. Here's the deeper picture of how context windows work.
 
-Every AI has a "context window" — the amount of text it can consider at once.
+Every AI has a "context window," which is the amount of text it can consider at once.
 
 <img src="images/context-window-visualization.png" alt="Context Window Visualization" width="800"/>
 
-*The context window is like a desk — it can only hold so much at once. Files, conversation history, and system prompts all take space.*
+*The context window is like a desk: it can only hold so much at once. Files, conversation history, and system prompts all take space.*
 
 #### What Happens at the Limit
 
@@ -683,7 +683,7 @@ Time to apply your context and session management skills.
 
 ---
 
-## 🎯 Try It Yourself
+## ▶️ Try It Yourself
 
 ### Full Project Review
 
@@ -835,6 +835,8 @@ copilot --add-dir /path/to/directory
 </details>
 
 ---
+
+# Summary
 
 ## 🔑 Key Takeaways
 

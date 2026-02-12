@@ -368,7 +368,7 @@ When agents are configured, Copilot can also call them as tools during complex t
 
 ### Naming Your Agents
 
-When you create agent files, the name matters — it's what you'll type after `/agent` or `--agent`, and what your teammates will see in the agent list.
+When you create agent files, the name matters. It's what you'll type after `/agent` or `--agent`, and what your teammates will see in the agent list.
 
 | ✅ Good Names | ❌ Avoid |
 |--------------|----------|
@@ -387,7 +387,7 @@ When you create agent files, the name matters — it's what you'll type after `/
 
 ### Sharing with Your Team
 
-Place agent files in `.github/agents/` and they're version controlled — push to your repo and every team member gets them automatically. But agents are just one type of file Copilot reads from your project. It also supports **instruction files** that apply automatically to every session, without anyone needing to run `/agent`.
+Place agent files in `.github/agents/` and they're version controlled. Push to your repo and every team member gets them automatically. But agents are just one type of file Copilot reads from your project. It also supports **instruction files** that apply automatically to every session, without anyone needing to run `/agent`.
 
 Think of it this way: agents are specialists you call on, and instruction files are team rules that are always active.
 
@@ -412,7 +412,7 @@ Do you want this agent everywhere?
 
 **Start simple:** Create a single `*.agent.md` file in your project folder. Move it to a permanent location once you're happy with it.
 
-Beyond agent files, Copilot also reads **project-level instruction files** automatically — no `/agent` needed. See [Configuring Your Project for Copilot](#configuring-your-project-for-copilot) below for `AGENTS.md`, `.instructions.md`, and `/init`.
+Beyond agent files, Copilot also reads **project-level instruction files** automatically, no `/agent` needed. See [Configuring Your Project for Copilot](#configuring-your-project-for-copilot) below for `AGENTS.md`, `.instructions.md`, and `/init`.
 
 </details>
 
@@ -424,11 +424,11 @@ Beyond agent files, Copilot also reads **project-level instruction files** autom
 
 ## Configuring Your Project for Copilot
 
-Agents are specialists you invoke on demand. **Project configuration files** are different — Copilot reads them automatically in every session to understand your project's conventions, tech stack, and rules. No one needs to run `/agent`; the context is always active for everyone working in the repo.
+Agents are specialists you invoke on demand. **Project configuration files** are different: Copilot reads them automatically in every session to understand your project's conventions, tech stack, and rules. No one needs to run `/agent`; the context is always active for everyone working in the repo.
 
 ### Quick Setup with /init
 
-The fastest way to get started — let Copilot generate configuration files for you:
+The fastest way to get started is to let Copilot generate configuration files for you:
 
 ```bash
 copilot
@@ -450,7 +450,7 @@ Copilot will scan your project and create tailored instruction files. You can ed
 
 ### AGENTS.md
 
-`AGENTS.md` is the recommended format — it's an [open standard](https://agents.md/) that works across Copilot and other AI coding tools. Place it in your repository root and Copilot reads it automatically. This project's own [AGENTS.md](../AGENTS.md) is a working example.
+`AGENTS.md` is the recommended format. It's an [open standard](https://agents.md/) that works across Copilot and other AI coding tools. Place it in your repository root and Copilot reads it automatically. This project's own [AGENTS.md](../AGENTS.md) is a working example.
 
 A typical `AGENTS.md` describes your project context, code style, security requirements, and testing standards. Use `/init` to generate one, or write your own following the pattern in our example file.
 
@@ -549,9 +549,9 @@ Use these names in the `tools` list:
 > 💡 **Note for beginners**: The examples below are templates. **Replace the specific technologies with whatever your project uses.** The important thing is the *structure* of the agent, not the specific technologies mentioned.
 
 This project includes working examples in the [.github/agents/](../.github/agents/) folder:
-- [hello-world.agent.md](../.github/agents/hello-world.agent.md) — Minimal example, start here
-- [python-reviewer.agent.md](../.github/agents/python-reviewer.agent.md) — Python code quality reviewer
-- [pytest-helper.agent.md](../.github/agents/pytest-helper.agent.md) — Pytest testing specialist
+- [hello-world.agent.md](../.github/agents/hello-world.agent.md) - Minimal example, start here
+- [python-reviewer.agent.md](../.github/agents/python-reviewer.agent.md) - Python code quality reviewer
+- [pytest-helper.agent.md](../.github/agents/pytest-helper.agent.md) - Pytest testing specialist
 
 For community agents, see [github/awesome-copilot](https://github.com/github/awesome-copilot).
 
@@ -567,7 +567,7 @@ Create your own agents and see them in action.
 
 ---
 
-## 🎯 Try It Yourself
+## ▶️ Try It Yourself
 
 ```bash
 
@@ -633,7 +633,7 @@ copilot
 
 The hands-on example created `reviewer` and `documentor` agents. Now practice creating and using agents for a different task - improving data validation in the book app:
 
-1. Create 3 agent files (`.agent.md`) tailored to the book app — one per agent, placed in `.github/agents/`
+1. Create 3 agent files (`.agent.md`) tailored to the book app, one per agent, placed in `.github/agents/`
 2. Your agents:
    - **data-validator**: checks `data.json` for missing or malformed data (empty authors, year=0, missing fields)
    - **error-handler**: reviews Python code for inconsistent error handling and suggests a unified approach
@@ -649,7 +649,7 @@ The hands-on example created `reviewer` and `documentor` agents. Now practice cr
 <details>
 <summary>💡 Hints (click to expand)</summary>
 
-**Starter templates** — create one file per agent in `.github/agents/`:
+**Starter templates**: create one file per agent in `.github/agents/`:
 
 `data-validator.agent.md`:
 ```markdown
@@ -710,7 +710,7 @@ copilot
 
 ### Bonus Challenge: Instruction Library
 
-You've built agents you invoke on demand. Now try the other side — **instruction files** that Copilot reads automatically in every session, no `/agent` needed.
+You've built agents you invoke on demand. Now try the other side: **instruction files** that Copilot reads automatically in every session, no `/agent` needed.
 
 Create a `.github/instructions/` folder with at least 3 instruction files:
 - `python-style.instructions.md` for enforcing PEP 8 and type hint conventions
@@ -768,6 +768,8 @@ copilot  # This loads custom instructions by default
 </details>
 
 ---
+
+# Summary
 
 ## 🔑 Key Takeaways
 

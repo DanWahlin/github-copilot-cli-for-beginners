@@ -37,7 +37,7 @@ Individually, each section sounds limited. Together, conducted well, they create
 
 ## Idea to Merged PR in One Session
 
-This is the culmination of everything you've learned. Traditional development of a feature like "list unread books" means switching between your editor, terminal, test runner, and GitHub UI — plus losing context each time you switch. Watch what happens when you combine all your tools in one terminal session:
+This is the culmination of everything you've learned. Traditional development of a feature like "list unread books" means switching between your editor, terminal, test runner, and GitHub UI, losing context each time you switch. Watch what happens when you combine all your tools in one terminal session:
 
 ```bash
 # Start Copilot in interactive mode
@@ -92,13 +92,13 @@ copilot
 
 ![Full Review Demo](images/full-review-demo.gif)
 
-*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+*Demo output varies. Your model, tools, and responses will differ from what's shown here.*
 
 </details>
 
 ---
 
-**Traditional approach**: Switching between editor, terminal, test runner, docs, and GitHub UI — losing context each time
+**Traditional approach**: Switching between editor, terminal, test runner, docs, and GitHub UI, losing context each time
 
 **The key insight**: You directed specialists like an architect. They handled the details. You handled the vision.
 
@@ -134,7 +134,7 @@ From minimal to advanced, these workflows show how to combine everything you've 
 
 ![Minimal Workflow Demo](images/minimal-workflow-demo.gif)
 
-*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+*Demo output varies. Your model, tools, and responses will differ from what's shown here.*
 
 </details>
 
@@ -255,7 +255,7 @@ if [ -n "$STAGED" ]; then
 
     # Use timeout to prevent hanging (60 seconds per file)
     # --allow-all auto-approves file reads/writes so the hook can run unattended.
-    # Only use this in automated scripts — in interactive sessions, let Copilot ask for permission.
+    # Only use this in automated scripts. In interactive sessions, let Copilot ask for permission.
     REVIEW=$(timeout 60 copilot --allow-all -p "Quick security review of @$file - critical issues only" 2>/dev/null)
 
     # Check if timeout occurred
@@ -371,7 +371,7 @@ copilot
 > Pick the simplest open issue and outline a plan to fix it
 ```
 
-This workflow combines `@` context (Ch 02), agents (Ch 04), and MCP (Ch 06) into a single onboarding session — exactly the integration pattern from earlier in this chapter.
+This workflow combines `@` context (Ch 02), agents (Ch 04), and MCP (Ch 06) into a single onboarding session, exactly the integration pattern from earlier in this chapter.
 
 ---
 
@@ -484,7 +484,7 @@ Put the complete workflow into practice.
 
 ---
 
-## 🎯 Try It Yourself
+## ▶️ Try It Yourself
 
 After completing the demos, try these variations:
 
@@ -507,7 +507,7 @@ After completing the demos, try these variations:
 
 ### Main Challenge: End-to-End Feature
 
-The hands-on examples walked through building a "list unread books" feature. Now practice the full workflow on a different feature — **search books by year range**:
+The hands-on examples walked through building a "list unread books" feature. Now practice the full workflow on a different feature: **search books by year range**:
 
 1. Start Copilot and gather context: `@samples/book-app-project/books.py`
 2. Plan with `/plan Add a "search by year" command that lets users find books published between two years`
@@ -567,6 +567,8 @@ Document your workflow as you go.
 </details>
 
 ---
+
+# Summary
 
 ## 🔑 Key Takeaways
 
