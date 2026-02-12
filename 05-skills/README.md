@@ -56,9 +56,9 @@ Learn what skills are, why they matter, and how they differ from agents and MCP.
    ```
    This shows all skills Copilot can find in your project and personal folders.
 
-2. **Look at a real skill file:** Check out our provided [code-review SKILL.md](../.github/skills/code-review/SKILL.md) to see the pattern — it's just YAML frontmatter plus markdown instructions.
+2. **Look at a real skill file:** Check out our provided [code-review SKILL.md](../.github/skills/code-review/SKILL.md) to see the pattern. It's just YAML frontmatter plus markdown instructions.
 
-3. **Understand the core concept:** Skills are task-specific instructions that Copilot loads *automatically* when your prompt matches the skill's description. You don't need to activate them — just ask naturally.
+3. **Understand the core concept:** Skills are task-specific instructions that Copilot loads *automatically* when your prompt matches the skill's description. You don't need to activate them, just ask naturally.
 
 
 ## Understanding Skills
@@ -565,7 +565,7 @@ cp -r /tmp/awesome-copilot/skills/code-review .github/skills/
 cp -r /tmp/awesome-copilot/skills/code-review ~/.copilot/skills/
 ```
 
-> ⚠️ **Review before installing**: Always read a skill's `SKILL.md` before copying it into your project. Skills control what Copilot does — a malicious skill could instruct it to run harmful commands or modify code in unexpected ways.
+> ⚠️ **Review before installing**: Always read a skill's `SKILL.md` before copying it into your project. Skills control what Copilot does, and a malicious skill could instruct it to run harmful commands or modify code in unexpected ways.
 
 ---
 
@@ -577,7 +577,7 @@ Apply what you've learned by building and testing your own skills.
 
 ---
 
-## 🎯 Try It Yourself
+## ▶️ Try It Yourself
 
 ### Build More Skills
 
@@ -831,6 +831,8 @@ Run `/skills reload` after creating or editing skills to ensure changes are pick
 </details>
 
 ---
+
+# Summary
 
 ## 🔑 Key Takeaways
 

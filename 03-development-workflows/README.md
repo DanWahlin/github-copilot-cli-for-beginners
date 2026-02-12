@@ -725,7 +725,7 @@ Now it's your turn to apply these workflows.
 
 ---
 
-## 🎯 Try It Yourself
+## ▶️ Try It Yourself
 
 After completing the demos, try these variations:
 
@@ -849,6 +849,8 @@ copilot
 
 ---
 
+# Summary
+
 ## 🔑 Key Takeaways
 
 <img src="images/specialized-workflows.png" alt="Specialized Workflows for Every Task: Code Review, Refactoring, Debugging, Testing, and Git Integration" width="800"/>
@@ -863,21 +865,7 @@ copilot
 
 ---
 
-## Building Your Personal Workflow
-
-There's no single "right" way to use GitHub Copilot CLI. Here are a few tips as you develop your own patterns:
-
-> 📚 **Official Documentation**: [Copilot CLI best practices](https://docs.github.com/copilot/how-tos/copilot-cli/cli-best-practices) for recommended workflows and tips from GitHub.
-
-- **Start with `/plan`** for anything non-trivial. Refine the plan before execution - a good plan leads to better results.
-- **Save prompts that work well.** When Copilot makes a mistake, note what went wrong. Over time, this becomes your personal playbook.
-- **Experiment freely.** Some developers prefer long, detailed prompts. Others prefer short prompts with follow-ups. Try different approaches and notice what feels natural.
-
-> 💡 **Coming up**: In Chapters 04 and 05, you'll learn how to codify your best practices into custom instructions and skills that Copilot loads automatically.
-
----
-
-## 🎯 Checkpoint: You've Mastered the Essentials
+## ✅ Checkpoint: You've Mastered the Essentials
 
 **Congratulations!** You now have all the core skills to be productive with GitHub Copilot CLI:
 
@@ -888,6 +876,20 @@ There's no single "right" way to use GitHub Copilot CLI. Here are a few tips as 
 | Workflows | Ch 03 | Review code, refactor, debug, generate tests, integrate with git |
 
 Chapters 04-06 cover additional features that add even more power and are worthwhile to learn.
+
+---
+
+## 🛠️ Building Your Personal Workflow
+
+There's no single "right" way to use GitHub Copilot CLI. Here are a few tips as you develop your own patterns:
+
+> 📚 **Official Documentation**: [Copilot CLI best practices](https://docs.github.com/copilot/how-tos/copilot-cli/cli-best-practices) for recommended workflows and tips from GitHub.
+
+- **Start with `/plan`** for anything non-trivial. Refine the plan before execution - a good plan leads to better results.
+- **Save prompts that work well.** When Copilot makes a mistake, note what went wrong. Over time, this becomes your personal playbook.
+- **Experiment freely.** Some developers prefer long, detailed prompts. Others prefer short prompts with follow-ups. Try different approaches and notice what feels natural.
+
+> 💡 **Coming up**: In Chapters 04 and 05, you'll learn how to codify your best practices into custom instructions and skills that Copilot loads automatically.
 
 ---
 

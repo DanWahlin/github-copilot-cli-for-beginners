@@ -475,7 +475,7 @@ Time to put what you've learned into action.
 
 ---
 
-## 🎯 Try It Yourself
+## ▶️ Try It Yourself
 
 ### Interactive Exploration
 
@@ -610,6 +610,8 @@ The examples used `/plan` for a search feature and `-p` for batch reviews. Now t
 </details>
 
 ---
+
+# Summary
 
 ## 🔑 Key Takeaways
 
