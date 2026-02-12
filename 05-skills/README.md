@@ -119,7 +119,7 @@ You can ask Copilot directly:
 
 Skills are just one piece of GitHub Copilot's extensibility model. Here's how they compare to agents and MCP servers.
 
-> *Don't worry about MCP quite yet. We'll cover it in [Chapter 06](../06-mcp/). It's included here so you can see how skills fit into the overall picture.*
+> *Don't worry about MCP quite yet. We'll cover it in [Chapter 06](../06-mcp-servers/). It's included here so you can see how skills fit into the overall picture.*
 
 <img src="images/skills-agents-mcp-comparison.png" alt="Comparison diagram showing the differences between Agents, Skills, and MCP Servers and how they combine into your workflow" width="800"/>
 

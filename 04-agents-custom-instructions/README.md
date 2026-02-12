@@ -183,7 +183,7 @@ To change to a different agent, or to return to default mode, use the `/agent` c
 </details> 
 
 
-### Straight from your terminal
+### Programmatic mode
 
 Launch straight into a new session with an agent.
 
