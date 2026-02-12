@@ -143,7 +143,7 @@ When reviewing code, always check for:
 **This project includes sample agent files in the [.github/agents/](../.github/agents/) folder**. You can write your own, or customize the ones already provided.
 
 <details>
-<summary>📂 See the sample agents we provide</summary>
+<summary>📂 See the sample agents in this course</summary>
 
 | File | Description |
 |------|-------------|
