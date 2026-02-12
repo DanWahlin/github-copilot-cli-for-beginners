@@ -1,11 +1,8 @@
 ![GitHub Copilot CLI for Beginners](./images/copilot-banner.png)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) 
-[![Open project in GitHub Codespaces](https://img.shields.io/badge/Codespaces-Open-blue?style=flat-square&logo=github)](https://codespaces.new/github/github-copilot-cli-for-beginners?hide_repo_select=true&ref=main&quickstart=true) 
-[![Official Copilot CLI documentation](https://img.shields.io/badge/GitHub-CLI_Documentation-00a3ee?style=flat-square&logo=github)](https://docs.github.com/en/copilot/how-tos/copilot-cli)
-[![Join AI Foundry Discord](https://img.shields.io/badge/Discord-AI_Community-blue?style=flat-square&logo=discord&color=5865f2&logoColor=fff)](https://aka.ms/foundry/discord) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) | [![Open project in GitHub Codespaces](https://img.shields.io/badge/Codespaces-Open-blue?style=flat-square&logo=github)](https://codespaces.new/github/github-copilot-cli-for-beginners?hide_repo_select=true&ref=main&quickstart=true) | [![Official Copilot CLI documentation](https://img.shields.io/badge/GitHub-CLI_Documentation-00a3ee?style=flat-square&logo=github)](https://docs.github.com/en/copilot/how-tos/copilot-cli) | [![Join AI Foundry Discord](https://img.shields.io/badge/Discord-AI_Community-blue?style=flat-square&logo=discord&color=5865f2&logoColor=fff)](https://aka.ms/foundry/discord)
 
-🎯 [What You'll Learn](#what-youll-learn) | 🤖 [Copilot Family](#understanding-the-github-copilot-family) | 📚 [Course Structure](#course-structure) | ✅ [Prerequisites](#prerequisites) | 🚀 [Quick Start](#quick-start) | 📋 [Quick Reference](#-github-copilot-cli-command-reference)
+🎯 [What You'll Learn](#what-youll-learn) | ✅ [Prerequisites](#prerequisites) | 🤖 [Copilot Family](#understanding-the-github-copilot-family) | 📚 [Course Structure](#course-structure) | 📋 [Command Reference](#-github-copilot-cli-command-reference)
 
 # GitHub Copilot CLI for Beginners
 
@@ -82,7 +79,7 @@ Each chapter follows the same pattern:
 
 The **[GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference)** has all commands, syntax, and workflows on one page.
 
-## 🆘 Getting Help
+## 🙋 Getting Help
 
 - 🐛 **Found a bug?** [Open an Issue](https://github.com/github/github-copilot-cli-for-beginners/issues)
 - 🤝 **Want to contribute?** PRs welcome!
