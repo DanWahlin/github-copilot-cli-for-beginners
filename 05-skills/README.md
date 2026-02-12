@@ -20,7 +20,11 @@ By the end of this chapter, you'll be able to:
 
 ## 🧩 Real-World Analogy: Power Tools
 
-A general-purpose drill is useful, but specialized attachments make it powerful. Skills work the same way. Just like swapping drill bits for different jobs, you can add skills to Copilot for different tasks:
+A general-purpose drill is useful, but specialized attachments make it powerful. 
+<img src="images/power-tools-analogy.png" alt="Power Tools - Skills Extend Copilot's Capabilities" width="800"/>
+
+
+Skills work the same way. Just like swapping drill bits for different jobs, you can add skills to Copilot for different tasks:
 
 | Skill Attachment | Purpose |
 |------------|---------|
@@ -29,7 +33,7 @@ A general-purpose drill is useful, but specialized attachments make it powerful.
 | `generate-tests` | Create comprehensive pytest tests |
 | `code-review` | Apply team code quality standards |
 
-<img src="images/power-tools-analogy.png" alt="Power Tools - Skills Extend Copilot's Capabilities" width="800"/>
+
 
 *Skills are specialized attachments that extend what Copilot can do*
 
@@ -42,6 +46,20 @@ A general-purpose drill is useful, but specialized attachments make it powerful.
 Learn what skills are, why they matter, and how they differ from agents and MCP.
 
 ---
+
+## *New to skills?* Start Here!
+
+1. **See what skills are already available:**
+   ```bash
+   copilot
+   > /skills list
+   ```
+   This shows all skills Copilot can find in your project and personal folders.
+
+2. **Look at a real skill file:** Check out our provided [code-review SKILL.md](../.github/skills/code-review/SKILL.md) to see the pattern. It's just YAML frontmatter plus markdown instructions.
+
+3. **Understand the core concept:** Skills are task-specific instructions that Copilot loads *automatically* when your prompt matches the skill's description. You don't need to activate them, just ask naturally.
+
 
 ## Understanding Skills
 
@@ -239,15 +257,15 @@ PR Review: feature/user-auth
 
 ---
 
-# Creating and Managing Skills
+# Creating Custom Skills
 
 <img src="images/creating-managing-skills.png" alt="Human and robotic hands building a wall of glowing LEGO-like blocks representing skill creation and management" width="800"/>
 
-Build your own skills, manage them with `/skills`, and find community skills.
+Build your own skills from SKILL.md files.
 
 ---
 
-## Creating Custom Skills
+## Skill Locations
 
 Skills are stored in `.github/skills/` (project-specific) or `~/.copilot/skills/` (user level).
 
@@ -328,6 +346,8 @@ Provide issues as a numbered list with severity:
 > 📖 **Official docs**: [About Agent Skills](https://docs.github.com/copilot/concepts/agents/about-agent-skills)
 
 ### Creating Your First Skill
+
+Let's build a security audit skill that checks for OWASP Top 10 vulnerabilities:
 
 ```bash
 # Create skill directory
@@ -432,6 +452,12 @@ copilot --agent code-reviewer
 
 ---
 
+# Managing and Sharing Skills
+
+Discover installed skills, find community skills, and share your own.
+
+---
+
 ## Managing Skills with the `/skills` Command
 
 Use the `/skills` command to manage your installed skills:
@@ -480,7 +506,7 @@ Description: Security-focused code review checking OWASP Top 10 vulnerabilities
 
 ---
 
-### When to Use /skills reload
+### When to Use `/skills reload`
 
 After creating or editing a skill's SKILL.md file, run `/skills reload` to pick up the changes without restarting Copilot:
 
@@ -526,7 +552,7 @@ Pre-made skills are also available from community repositories:
 
 ### Installing a Community Skill Manually
 
-To use a community skill without the plugin system, copy its folder to your skills directory:
+If you find a skill in a GitHub repository, copy its folder into your skills directory:
 
 ```bash
 # Clone the awesome-copilot repository
@@ -539,6 +565,8 @@ cp -r /tmp/awesome-copilot/skills/code-review .github/skills/
 cp -r /tmp/awesome-copilot/skills/code-review ~/.copilot/skills/
 ```
 
+> ⚠️ **Review before installing**: Always read a skill's `SKILL.md` before copying it into your project. Skills control what Copilot does, and a malicious skill could instruct it to run harmful commands or modify code in unexpected ways.
+
 ---
 
 # Practice
@@ -549,7 +577,7 @@ Apply what you've learned by building and testing your own skills.
 
 ---
 
-## 🎯 Try It Yourself
+## ▶️ Try It Yourself
 
 ### Build More Skills
 
@@ -803,6 +831,8 @@ Run `/skills reload` after creating or editing skills to ensure changes are pick
 </details>
 
 ---
+
+# Summary
 
 ## 🔑 Key Takeaways
 

@@ -20,17 +20,17 @@ By the end of this chapter, you'll be able to:
 
 ## 🧩 Real-World Analogy: Working with a Colleague
 
-Imagine explaining a bug to a colleague:
-
-**Without context**: "The book app doesn't work."
-**With context**: "Look at `books.py`, especially the `find_book_by_title` function. It's not doing case-insensitive matching."
-
-The second approach gets better help because your colleague can see exactly what you're talking about.
-
-GitHub Copilot CLI works the same way - *The `@` syntax is how you point Copilot at specific files, giving it the context it needs to help effectively.*
-
 <img src="images/colleague-context-analogy.png" alt="Context Makes the Difference - Without vs With Context" width="800"/>
 
+*Just like your colleagues, Copilot CLI isn't a mind reader. Providing more informaiton helps humans and Copilot alike provide targetted support!*
+
+Imagine explaining a bug to a colleague:
+
+> **Without context**: "The book app doesn't work."
+
+> **With context**: "Look at `books.py`, especially the `find_book_by_title` function. It's not doing case-insensitive matching."
+
+To privde context to Copilot CLI use *the `@` syntax* to point Copilot at specific files.
 
 ---
 
@@ -303,11 +303,40 @@ copilot --resume
 copilot --resume abc123
 ```
 
+### Organize Your Sessions
+
+Give sessions meaningful names so you can find them later:
+
+```bash
+copilot
+
+> /rename book-app-review
+# Session renamed for easier identification
+```
+
+### Check and Manage Context
+
+As you add files and conversation, Copilot's [context window](../GLOSSARY.md#context-window) fills up. Two commands help you stay in control:
+
+```bash
+copilot
+
+> /context
+Context usage: 45,000 / 128,000 tokens (35%)
+
+> /clear
+# Wipes context and starts fresh. Use when switching topics
+```
+
+> 💡 **When to use `/clear`**: If you've been reviewing `books.py` and want to switch to discussing `utils.py`, run `/clear` first. Otherwise stale context from the old topic may confuse responses.
+
+---
+
 ### Pick Up Where You Left Off
 
 <img src="images/session-persistence-timeline.png" alt="Timeline showing how GitHub Copilot CLI sessions persist across days - start on Monday, resume on Wednesday with full context restored" width="800"/>
 
-*Sessions auto-save when you exit. Resume days later with full context — files, issues, and progress all remembered.*
+*Sessions auto-save when you exit. Resume days later with full context: files, issues, and progress all remembered.*
 
 Imagine this workflow across multiple days:
 
@@ -359,7 +388,7 @@ No re-explaining. No re-reading files. Just continue working.
 
 ---
 
-**🎉 You now know the essentials!** The `@` syntax for referencing files, and `--continue`/`--resume` for session management, are enough to be highly productive. Everything below is optional - return to it when you're ready.
+**🎉 You now know the essentials!** The `@` syntax, session management (`--continue`/`--resume`/`/rename`), and context commands (`/context`/`/clear`) are enough to be highly productive. Everything below is optional. Return to it when you're ready.
 
 ---
 
@@ -367,18 +396,28 @@ No re-explaining. No re-reading files. Just continue working.
 
 <img src="images/optional-going-deeper.png" alt="Abstract crystal cave in blue and purple tones representing deeper exploration of context concepts" width="800"/>
 
-> 💡 **For beginners**: The sections below are optional. Return to these once you're comfortable with the basics above. You can be very productive with just the basic @ syntax and session management covered earlier.
+These topics build on the essentials above. **Pick what interests you, or skip ahead to [Practice](#practice).**
 
----
+| I want to learn about... | Jump to |
+|---|---|
+| Wildcard patterns and advanced session commands | [Additional @ Patterns & Session Commands](#additional-patterns) |
+| Building on context across multiple prompts | [Context-Aware Conversations](#context-aware-conversations) |
+| Token limits and `/compact` | [Understanding Context Windows](#understanding-context-windows) |
+| How to pick the right files to reference | [Choosing What to Reference](#choosing-what-to-reference) |
+| Analyzing screenshots and mockups | [Working with Images](#working-with-images) |
 
-## Additional @ Patterns
+<details>
+<summary><strong>Additional @ Patterns & Session Commands</strong></summary>
+<a id="additional-patterns"></a>
 
-For power users, Copilot supports glob patterns and image references:
+### Additional @ Patterns
+
+For power users, Copilot supports wildcard patterns and image references:
 
 | Pattern | What It Does |
 |---------|--------------|
 | `@folder/*.py` | All .py files in folder |
-| `@**/test_*.py` | Recursive glob - find all test files anywhere |
+| `@**/test_*.py` | Recursive wildcard: find all test files anywhere |
 | `@image.png` | Image file for UI review |
 
 ```bash
@@ -386,8 +425,6 @@ copilot
 
 > Find all TODO comments in @samples/book-app-project/**/*.py
 ```
-
----
 
 ### Switch Sessions While Working
 
@@ -398,15 +435,6 @@ copilot
 
 > /resume
 # Shows a list of sessions to switch to
-```
-
-### Rename Your Session
-
-```bash
-copilot
-
-> /rename backend-refactor
-# Session renamed for easier identification
 ```
 
 ### View Session Info
@@ -433,13 +461,17 @@ copilot
 # Creates a GitHub gist with the session
 ```
 
----
+</details>
 
-## Context-Aware Conversations
+<details>
+<summary><strong>Context-Aware Conversations</strong></summary>
+<a id="context-aware-conversations"></a>
+
+### Context-Aware Conversations
 
 The magic happens when you have multi-turn conversations that build on each other.
 
-### Example: Progressive Enhancement
+#### Example: Progressive Enhancement
 
 ```bash
 copilot
@@ -467,19 +499,25 @@ Copilot: "Based on the class with types and error handling..."
 [Generates comprehensive tests]
 ```
 
-Notice how each prompt builds on the previous work - this is the power of context.
+Notice how each prompt builds on the previous work. This is the power of context.
 
----
+</details>
 
-## Understanding Context Windows
+<details>
+<summary><strong>Understanding Context Windows</strong></summary>
+<a id="understanding-context-windows"></a>
 
-Every AI has a "context window" - the amount of text it can consider at once.
+### Understanding Context Windows
+
+You already know `/context` and `/clear` from the essentials. Here's the deeper picture of how context windows work.
+
+Every AI has a "context window," which is the amount of text it can consider at once.
 
 <img src="images/context-window-visualization.png" alt="Context Window Visualization" width="800"/>
 
-*The context window is like a desk - it can only hold so much at once. Files, conversation history, and system prompts all take space.*
+*The context window is like a desk: it can only hold so much at once. Files, conversation history, and system prompts all take space.*
 
-### What Happens at the Limit
+#### What Happens at the Limit
 
 ```bash
 copilot
@@ -501,21 +539,19 @@ Context usage: 120,000 / 128,000 tokens (94%)
 Context limit reached. Older context will be summarized.
 ```
 
-### Managing Context
+#### The `/compact` Command
+
+When your context is getting full but you don't want to lose the conversation, `/compact` summarizes your history to free up tokens:
 
 ```bash
-# Check current usage
-> /context
+copilot
 
-# Clear and start fresh
-> /clear
-
-# Start new topic in same session
-> /clear
-> Let's switch to talking about the database...
+> /compact
+# Summarizes conversation history, freeing up context space
+# Your key findings and decisions are preserved
 ```
 
-### Context Efficiency Tips
+#### Context Efficiency Tips
 
 | Situation | Action | Why |
 |-----------|--------|-----|
@@ -525,20 +561,24 @@ Context limit reached. Older context will be summarized.
 | Hitting limits | Start new session | Fresh 128K context |
 | Multiple topics | Use `/rename` per topic | Easy to resume right session |
 
-### Best Practices for Large Codebases
+#### Best Practices for Large Codebases
 
 1. **Be specific**: `@samples/book-app-project/books.py` instead of `@samples/book-app-project/`
 2. **Clear between topics**: Use `/clear` when switching focus
 3. **Use `/compact`**: Summarize conversation to free up context
 4. **Use multiple sessions**: One session per feature or topic
 
----
+</details>
 
-## Choosing What to Reference
+<details>
+<summary><strong>Choosing What to Reference</strong></summary>
+<a id="choosing-what-to-reference"></a>
+
+### Choosing What to Reference
 
 Not all files are equal when it comes to context. Here's how to choose wisely:
 
-### File Size Considerations
+#### File Size Considerations
 
 | File Size | Approximate [Tokens](../GLOSSARY.md#token) | Strategy |
 |-----------|-------------------|----------|
@@ -556,7 +596,7 @@ Not all files are equal when it comes to context. Here's how to choose wisely:
 
 > 💡 **Quick estimate for code:** Multiply lines of code by ~15 to get approximate tokens. Keep in mind this is only an estimate.
 
-### What to Include vs. Exclude
+#### What to Include vs. Exclude
 
 **High value** (include these):
 - Entry points (`book_app.py`, `main.py`, `app.py`)
@@ -571,7 +611,7 @@ Not all files are equal when it comes to context. Here's how to choose wisely:
 - Large data files or fixtures
 - Files unrelated to your question
 
-### The Specificity Spectrum
+#### The Specificity Spectrum
 
 ```
 Less specific ────────────────────────► More specific
@@ -591,7 +631,7 @@ Less specific ──────────────────────
 - Code review of a specific file
 - Asking about a single function
 
-### Practical Example: Staged Context Loading
+#### Practical Example: Staged Context Loading
 
 ```bash
 copilot
@@ -611,9 +651,13 @@ copilot
 
 This staged approach keeps context focused and efficient.
 
----
+</details>
 
-## Working with Images
+<details>
+<summary><strong>Working with Images</strong></summary>
+<a id="working-with-images"></a>
+
+### Working with Images
 
 You can include images in your conversations using the `@` syntax, or simply **paste from your clipboard** (Cmd+V / Ctrl+V). Copilot can analyze screenshots, mockups, and diagrams to help with UI debugging, design implementation, and error analysis.
 
@@ -627,6 +671,8 @@ copilot
 
 > 📖 **Learn more**: See [Additional Context Features](../appendices/additional-context.md#working-with-images) for supported formats, practical use cases, and tips for combining images with code.
 
+</details>
+
 ---
 
 # Practice
@@ -637,7 +683,7 @@ Time to apply your context and session management skills.
 
 ---
 
-## 🎯 Try It Yourself
+## ▶️ Try It Yourself
 
 ### Full Project Review
 
@@ -689,7 +735,7 @@ After completing the demos, try these variations:
 
 2. **Session Challenge**: Start a session, name it with `/rename my-first-session`, work on something, exit with `/exit`, then run `copilot --continue`. Does it remember what you were doing?
 
-3. **Context Challenge**: Run `/context` mid-session. How many tokens are you using? Try `/compact` and check again.
+3. **Context Challenge**: Run `/context` mid-session. How many tokens are you using? Try `/compact` and check again. (See [Understanding Context Windows](#understanding-context-windows) in Going Deeper for more on `/compact`.)
 
 **Self-Check**: You understand context when you can explain why `@folder/` is more powerful than opening each file individually.
 
@@ -789,6 +835,8 @@ copilot --add-dir /path/to/directory
 </details>
 
 ---
+
+# Summary
 
 ## 🔑 Key Takeaways
 

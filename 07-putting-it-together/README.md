@@ -19,9 +19,25 @@ By the end of this chapter, you'll be able to:
 
 ---
 
+## 🧩 Real-World Analogy: The Orchestra
+<img src="images/orchestra-analogy.png" alt="Orchestra Analogy - Unified Workflow" width="800"/>
+
+A symphony orchestra has many sections:
+- **Strings** provide the foundation (like your core workflows)
+- **Brass** adds power (like agents with specialized expertise)
+- **Woodwinds** add color (like skills that extend capabilities)
+- **Percussion** keeps rhythm (like MCP connecting to external systems)
+
+Individually, each section sounds limited. Together, conducted well, they create something magnificent.
+
+**That's what this chapter teaches!**<br>
+*Like a conductor with an orchestra, you orchestrate agents, skills, and MCP into unified workflows*
+
+---
+
 ## Idea to Merged PR in One Session
 
-This is the culmination of everything you've learned. Traditional development of a feature like "list unread books" means switching between your editor, terminal, test runner, and GitHub UI — plus losing context each time you switch. Watch what happens when you combine all your tools in one terminal session:
+This is the culmination of everything you've learned. Traditional development of a feature like "list unread books" means switching between your editor, terminal, test runner, and GitHub UI, losing context each time you switch. Watch what happens when you combine all your tools in one terminal session:
 
 ```bash
 # Start Copilot in interactive mode
@@ -76,33 +92,15 @@ copilot
 
 ![Full Review Demo](images/full-review-demo.gif)
 
-*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+*Demo output varies. Your model, tools, and responses will differ from what's shown here.*
 
 </details>
 
 ---
 
-**Traditional approach**: Switching between editor, terminal, test runner, docs, and GitHub UI — losing context each time
+**Traditional approach**: Switching between editor, terminal, test runner, docs, and GitHub UI, losing context each time
 
 **The key insight**: You directed specialists like an architect. They handled the details. You handled the vision.
-
----
-
-## 🧩 Real-World Analogy: The Orchestra
-
-A symphony orchestra has many sections:
-- **Strings** provide the foundation (like your core workflows)
-- **Brass** adds power (like agents with specialized expertise)
-- **Woodwinds** add color (like skills that extend capabilities)
-- **Percussion** keeps rhythm (like MCP connecting to external systems)
-
-Individually, each section sounds limited. Together, conducted well, they create something magnificent.
-
-That's what this chapter teaches: conducting your tools into a unified workflow.
-
-<img src="images/orchestra-analogy.png" alt="Orchestra Analogy - Unified Workflow" width="800"/>
-
-*Like a conductor with an orchestra, you orchestrate agents, skills, and MCP into unified workflows*
 
 ---
 
@@ -136,7 +134,7 @@ From minimal to advanced, these workflows show how to combine everything you've 
 
 ![Minimal Workflow Demo](images/minimal-workflow-demo.gif)
 
-*Demo output varies — your model, tools, and responses will differ from what's shown here.*
+*Demo output varies. Your model, tools, and responses will differ from what's shown here.*
 
 </details>
 
@@ -257,7 +255,7 @@ if [ -n "$STAGED" ]; then
 
     # Use timeout to prevent hanging (60 seconds per file)
     # --allow-all auto-approves file reads/writes so the hook can run unattended.
-    # Only use this in automated scripts — in interactive sessions, let Copilot ask for permission.
+    # Only use this in automated scripts. In interactive sessions, let Copilot ask for permission.
     REVIEW=$(timeout 60 copilot --allow-all -p "Quick security review of @$file - critical issues only" 2>/dev/null)
 
     # Check if timeout occurred
@@ -281,6 +279,8 @@ chmod +x .git/hooks/pre-commit
 ```
 
 > 📚 **Official Documentation**: [Use hooks](https://docs.github.com/copilot/how-tos/copilot-cli/use-hooks) and [Hooks configuration reference](https://docs.github.com/copilot/reference/hooks-configuration) for the complete hooks API.
+>
+> 💡 **Built-in alternative**: Copilot CLI also has a built-in hooks system (`copilot hooks`) that can run automatically on events like pre-commit. The manual git hook above gives you full control, while the built-in system is simpler to configure. See the docs above to decide which approach fits your workflow.
 
 Now every commit gets a quick security review:
 
@@ -371,7 +371,13 @@ copilot
 > Pick the simplest open issue and outline a plan to fix it
 ```
 
-This workflow combines `@` context (Ch 02), agents (Ch 04), and MCP (Ch 06) into a single onboarding session — exactly the integration pattern from earlier in this chapter.
+This workflow combines `@` context (Ch 02), agents (Ch 04), and MCP (Ch 06) into a single onboarding session, exactly the integration pattern from earlier in this chapter.
+
+---
+
+# Best Practices & Automation
+
+Patterns and habits that make your workflows more effective.
 
 ---
 
@@ -408,6 +414,8 @@ Always gather context before asking for analysis:
 ```
 
 ### 3. Keep Sessions Focused
+
+Use `/rename` to label your session (makes it easy to find in history) and `/exit` to end it cleanly:
 
 ```bash
 # Good: One feature per session
@@ -476,7 +484,7 @@ Put the complete workflow into practice.
 
 ---
 
-## 🎯 Try It Yourself
+## ▶️ Try It Yourself
 
 After completing the demos, try these variations:
 
@@ -499,7 +507,7 @@ After completing the demos, try these variations:
 
 ### Main Challenge: End-to-End Feature
 
-The hands-on examples walked through building a "list unread books" feature. Now practice the full workflow on a different feature — **search books by year range**:
+The hands-on examples walked through building a "list unread books" feature. Now practice the full workflow on a different feature: **search books by year range**:
 
 1. Start Copilot and gather context: `@samples/book-app-project/books.py`
 2. Plan with `/plan Add a "search by year" command that lets users find books published between two years`
@@ -560,7 +568,21 @@ Document your workflow as you go.
 
 ---
 
-## Course Complete!
+# Summary
+
+## 🔑 Key Takeaways
+
+1. **Integration > Isolation**: Combine tools for maximum impact
+2. **Context first**: Always gather context before analysis
+3. **Agents analyze, Skills execute**: Use the right tool for the job
+4. **Automate repetition**: Hooks and scripts multiply your effectiveness
+5. **Document workflows**: Shareable patterns benefit the whole team
+
+> 📋 **Quick Reference**: See the [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference) for a complete list of commands and shortcuts.
+
+---
+
+## 🎓 Course Complete!
 
 Congratulations! You've learned:
 
@@ -577,8 +599,6 @@ Congratulations! You've learned:
 
 You're now equipped to use GitHub Copilot CLI as a genuine force multiplier in your development workflow.
 
----
-
 ## ➡️ What's Next
 
 Your learning doesn't stop here:
@@ -593,18 +613,6 @@ Your learning doesn't stop here:
 - [GitHub Copilot CLI Documentation](https://docs.github.com/copilot/concepts/agents/about-copilot-cli)
 - [MCP Server Registry](https://github.com/modelcontextprotocol/servers)
 - [Community Skills](https://github.com/topics/copilot-skill)
-
----
-
-## 🔑 Key Takeaways
-
-1. **Integration > Isolation**: Combine tools for maximum impact
-2. **Context first**: Always gather context before analysis
-3. **Agents analyze, Skills execute**: Use the right tool for the job
-4. **Automate repetition**: Hooks and scripts multiply your effectiveness
-5. **Document workflows**: Shareable patterns benefit the whole team
-
-> 📋 **Quick Reference**: See the [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference) for a complete list of commands and shortcuts.
 
 ---
 

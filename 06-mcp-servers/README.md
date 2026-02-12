@@ -24,6 +24,8 @@ By the end of this chapter, you'll be able to:
 
 ## 🧩 Real-World Analogy: Browser Extensions
 
+<img src="images/browser-extensions-analogy.png" alt="MCP Servers are like Browser Extensions" width="800"/>
+
 Think of MCP servers like browser extensions. Your browser on its own can display web pages, but extensions connect it to extra services:
 
 | Browser Extension | What It Connects To | MCP Equivalent |
@@ -34,24 +36,18 @@ Think of MCP servers like browser extensions. Your browser on its own can displa
 
 Without extensions, your browser is still useful, but with them, it becomes a powerhouse. MCP servers do the same for Copilot. They connect it to real, live data sources so it can read your GitHub issues, explore your file system, fetch up-to-date documentation, and more.
 
+***MCP servers connect Copilot to the outside world: GitHub, repositories, documentation, and more***
+
 > 💡 **Key insight**: Without MCP, Copilot can only see files you explicitly share with `@`. With MCP, it can proactively explore your project, check your GitHub repo, and look up documentation, all automatically.
 
-<img src="images/browser-extensions-analogy.png" alt="MCP Servers are like Browser Extensions" width="800"/>
-
-*MCP servers connect Copilot to the outside world: GitHub, repositories, documentation, and more*
-
 ---
-
-# Quick Start: MCP in 30 Seconds
 
 <img src="images/quick-start-mcp.png" alt="Power cable connecting with bright electrical spark surrounded by floating tech icons representing MCP server connections" width="800"/>
 
+# Quick Start: MCP in 30 Seconds
+
+## Get started with the built-in GitHub MCP server
 Let's see MCP in action right now, before configuring anything.
-
----
-
-## 🚀 Use the Built-in GitHub MCP
-
 The GitHub MCP server is included by default. Try this:
 
 ```bash
@@ -63,7 +59,7 @@ If Copilot returns real commit data, you've just seen MCP in action. That's the 
 
 ---
 
-## 🛠️ The `/mcp show` Command
+## The `/mcp show` Command
 
 Use `/mcp show` to see which MCP servers are configured and whether they're enabled:
 
@@ -92,7 +88,7 @@ MCP Servers:
 
 ---
 
-## 🧠 What Changes with MCP?
+## What Changes with MCP?
 
 Here's the difference MCP makes in practice:
 
@@ -127,7 +123,7 @@ Now that you've seen MCP in action, let's set up additional servers. This sectio
 
 ---
 
-## 📁 MCP Configuration File
+## MCP Configuration File
 
 MCP servers are configured in `~/.copilot/mcp-config.json` (global) or `.copilot/mcp-config.json` (project). 
 
@@ -167,7 +163,7 @@ MCP servers are configured in `~/.copilot/mcp-config.json` (global) or `.copilot
 
 ---
 
-## ➕ Adding MCP Servers
+## Adding MCP Servers
 
 The GitHub MCP server is built-in and requires no setup. Below are additional servers you can add. **Pick what interests you, or work through them in order.**
 
@@ -273,12 +269,13 @@ copilot
 
 </details>
 
-### Complete Configuration File
 <a id="complete-configuration-file"></a>
+
+### Complete Configuration File
 
 Here's a full `mcp-config.json` with filesystem and Context7 servers:
 
-> 💡 **Note:** GitHub MCP is built-in — you don't need to add it to your config file.
+> 💡 **Note:** GitHub MCP is built-in. You don't need to add it to your config file.
 
 ```json
 {
@@ -303,9 +300,15 @@ Save this as `~/.copilot/mcp-config.json` for global access or `.copilot/mcp-con
 
 ---
 
-## 🔧 Using Your MCP Servers
+# Using MCP Servers
 
-Now that you have MCP servers configured, let's see what they can do. **Pick a server to explore, or work through them in order.**
+Now that you have MCP servers configured, let's see what they can do.
+
+---
+
+## Server Usage Examples
+
+**Pick a server to explore, or work through them in order.**
 
 | I want to try... | Jump to |
 |---|---|
@@ -320,7 +323,7 @@ Now that you have MCP servers configured, let's see what they can do. **Pick a s
 
 ### GitHub Server (Built-in)
 
-The GitHub MCP server is **built-in** — if you logged into Copilot (which you did during initial setup), it already works. No configuration needed!
+The GitHub MCP server is **built-in**. If you logged into Copilot (which you did during initial setup), it already works. No configuration needed!
 
 > 💡 **Not working?** Run `/login` to re-authenticate with GitHub.
 
@@ -486,7 +489,7 @@ copilot
 
 ---
 
-## 🔗 Multi-Server Workflows
+## Multi-Server Workflows
 
 These workflows show why developers say "I never want to work without this again." Each example combines multiple MCP servers in a single session.
 
@@ -648,11 +651,11 @@ Recommendations:
 
 ---
 
-## 🎯 Try It Yourself
+## ▶️ Try It Yourself
 
 Now it's your turn! Complete these exercises to practice using MCP servers with the book app project.
 
-### 📋 Exercise 1: Check Your MCP Status
+### Exercise 1: Check Your MCP Status
 
 Start by seeing what MCP servers are available:
 
@@ -666,7 +669,7 @@ You should see the GitHub server listed as enabled. If not, run `/login` to auth
 
 ---
 
-### 📋 Exercise 2: Explore the Book App with Filesystem MCP
+### Exercise 2: Explore the Book App with Filesystem MCP
 
 If you've configured the filesystem server, use it to explore the book app:
 
@@ -683,7 +686,7 @@ copilot
 
 ---
 
-### 📋 Exercise 3: Query Repository History with GitHub MCP
+### Exercise 3: Query Repository History with GitHub MCP
 
 Use the built-in GitHub MCP to explore this course repository:
 
@@ -701,7 +704,7 @@ copilot
 
 ---
 
-### 📋 Exercise 4: Combine Multiple MCP Servers
+### Exercise 4: Combine Multiple MCP Servers
 
 Now combine filesystem and GitHub MCP in a single session:
 
@@ -853,6 +856,8 @@ For most of this course, `/mcp show` is all you need. The other commands become 
 </details>
 
 ---
+
+# Summary
 
 ## 🔑 Key Takeaways
 
