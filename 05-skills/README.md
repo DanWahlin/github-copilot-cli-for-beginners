@@ -347,6 +347,8 @@ Provide issues as a numbered list with severity:
 
 ### Creating Your First Skill
 
+Let's build a security audit skill that checks for OWASP Top 10 vulnerabilities:
+
 ```bash
 # Create skill directory
 mkdir -p .github/skills/security-audit
@@ -550,7 +552,7 @@ Pre-made skills are also available from community repositories:
 
 ### Installing a Community Skill Manually
 
-To use a community skill without the plugin system, copy its folder to your skills directory:
+If you find a skill in a GitHub repository, copy its folder into your skills directory:
 
 ```bash
 # Clone the awesome-copilot repository
@@ -562,6 +564,8 @@ cp -r /tmp/awesome-copilot/skills/code-review .github/skills/
 # Or for personal use across all projects
 cp -r /tmp/awesome-copilot/skills/code-review ~/.copilot/skills/
 ```
+
+> ⚠️ **Review before installing**: Always read a skill's `SKILL.md` before copying it into your project. Skills control what Copilot does — a malicious skill could instruct it to run harmful commands or modify code in unexpected ways.
 
 ---
 
